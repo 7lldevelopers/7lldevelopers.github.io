@@ -165,55 +165,15 @@
     <div class="article-entry" itemprop="articleBody">
       
         <hr>
-<p>#进程和线程<br>[TOC]<br>##<strong>进程和线程的由来</strong></p>
-<ul>
+<h2 id="进程和线程"><a href="#进程和线程" class="headerlink" title="进程和线程"></a>进程和线程</h2><h2 id="进程和线程的由来"><a href="#进程和线程的由来" class="headerlink" title="进程和线程的由来"></a>进程和线程的由来</h2><ul>
 <li>串行 ：cpu初期串行执行任务。需要长期等待用户的输入。</li>
 <li>批处理：预先将用户的指令形成清单，批量串行执行，无法并发处理。</li>
-<li>进程：进程独占内存空间，保持各自的运行状态，可以相互切换，为          并发处理成为可能。</li>
+<li>进程：进程独占内存空间，保持各自的运行状态，可以相互切换，为并发处理成为可能。</li>
 <li>线程：共享进程的内存空间，线程相互间切换快捷。使进程的子任务并发处理。</li>
-<li></li>
-</ul>
-<hr>
-<h2 id="进程和线程区别"><a href="#进程和线程区别" class="headerlink" title="进程和线程区别"></a>进程和线程区别</h2><p> 1.进程是资源分配的最小空间。线程是CUP的最小单位<br> 2.所有与进程相关的资源，都记录在PCB中<br> 3.进程是抢占处理机的调度单位，线程属于某个进程，共享其资源<br> 4.线程不能看为独立的应用程序，而进程可以<br> 5.进程有独立的地址空间，互不影响，而线程姿势进程不同的执行路径<br> 6.线程没有独立的地址空间，多进程比多线程号<br> 7.进程的切换比线程的切换开销大<br> 8线程只有堆栈寄存器，程序计数器，TCB组成</p>
-<p> /img/0.png<br> /img/00.png</p>
-<hr>
-<p>##java的进程和线程</p>
-<ul>
-<li>java对操作系统提高的功能进程封装，包括进程和线程</li>
-<li>运行一个程序会产生一个进程，进程至少包含一个线程</li>
-<li></li>
-</ul>
-<blockquote>
-<p>每一个进程对应一个JVM实例，每个实例对于一个堆。<br>java是单线程编程，会有一个主线程。<br>####Thread中start（）和run（）的区别<br> /img/1.png</p>
-</blockquote>
-<ol>
-<li><p>start方法用创建一个新的子线程</p>
-</li>
-<li><p>run方法知识thread的普通方法的调用</p>
-<p>/img/11.png<br>/img/12.png</p>
-</li>
-</ol>
-<hr>
-<p>##thread和runable</p>
-<ol>
-<li>thread是个类，runable是个借口</li>
-<li>thread实现了runable接口（interface）</li>
-<li>runable只有一个抽象（abstract）run方法</li>
-</ol>
-<p>####实现多线程 thread</p>
-<p>2 个类一个线程类 一个调用类</p>
-<p> /img/21.png<br>/img/22.png<br> /img/2323.png</p>
-<ul>
-<li>会变成随机调用*</li>
-</ul>
-<hr>
-<p>#####实现多线程 runable</p>
-<p>2 个类   runable是接口 线程类 一个调用类<br> /img/31.png<br> /img/32.png</p>
-<ul>
-<li>会变成随机调用*</li>
-</ul>
-<hr>
-
+<li>
+        
+          <a class="article-more-a" href="/2020/03/05/%E7%BA%BF%E7%A8%8B%E5%92%8C%E8%BF%9B%E7%A8%8B/#more">more >></a>
+        
       
 
       
