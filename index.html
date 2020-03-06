@@ -144,19 +144,19 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-hexo-使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-线程和进程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/05/hexo-%E4%BD%BF%E7%94%A8/">hexo 使用</a>
+      <a class="article-title" href="/2020/03/05/%E7%BA%BF%E7%A8%8B%E5%92%8C%E8%BF%9B%E7%A8%8B/">线程和进程</a>
     </h1>
   
 
         
-        <a href="/2020/03/05/hexo-%E4%BD%BF%E7%94%A8/" class="archive-article-date">
+        <a href="/2020/03/05/%E7%BA%BF%E7%A8%8B%E5%92%8C%E8%BF%9B%E7%A8%8B/" class="archive-article-date">
   	<time datetime="2020-03-05T02:16:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-05</time>
 </a>
         
@@ -164,8 +164,55 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h2><hr>
-<h2 id="第二章"><a href="#第二章" class="headerlink" title="第二章"></a>第二章</h2><hr>
+        <hr>
+<p>#进程和线程<br>[TOC]<br>##<strong>进程和线程的由来</strong></p>
+<ul>
+<li>串行 ：cpu初期串行执行任务。需要长期等待用户的输入。</li>
+<li>批处理：预先将用户的指令形成清单，批量串行执行，无法并发处理。</li>
+<li>进程：进程独占内存空间，保持各自的运行状态，可以相互切换，为          并发处理成为可能。</li>
+<li>线程：共享进程的内存空间，线程相互间切换快捷。使进程的子任务并发处理。</li>
+<li></li>
+</ul>
+<hr>
+<h2 id="进程和线程区别"><a href="#进程和线程区别" class="headerlink" title="进程和线程区别"></a>进程和线程区别</h2><p> 1.进程是资源分配的最小空间。线程是CUP的最小单位<br> 2.所有与进程相关的资源，都记录在PCB中<br> 3.进程是抢占处理机的调度单位，线程属于某个进程，共享其资源<br> 4.线程不能看为独立的应用程序，而进程可以<br> 5.进程有独立的地址空间，互不影响，而线程姿势进程不同的执行路径<br> 6.线程没有独立的地址空间，多进程比多线程号<br> 7.进程的切换比线程的切换开销大<br> 8线程只有堆栈寄存器，程序计数器，TCB组成</p>
+<p> /img/0.png<br> /img/00.png</p>
+<hr>
+<p>##java的进程和线程</p>
+<ul>
+<li>java对操作系统提高的功能进程封装，包括进程和线程</li>
+<li>运行一个程序会产生一个进程，进程至少包含一个线程</li>
+<li></li>
+</ul>
+<blockquote>
+<p>每一个进程对应一个JVM实例，每个实例对于一个堆。<br>java是单线程编程，会有一个主线程。<br>####Thread中start（）和run（）的区别<br> /img/1.png</p>
+</blockquote>
+<ol>
+<li><p>start方法用创建一个新的子线程</p>
+</li>
+<li><p>run方法知识thread的普通方法的调用</p>
+<p>/img/11.png<br>/img/12.png</p>
+</li>
+</ol>
+<hr>
+<p>##thread和runable</p>
+<ol>
+<li>thread是个类，runable是个借口</li>
+<li>thread实现了runable接口（interface）</li>
+<li>runable只有一个抽象（abstract）run方法</li>
+</ol>
+<p>####实现多线程 thread</p>
+<p>2 个类一个线程类 一个调用类</p>
+<p> /img/21.png<br>/img/22.png<br> /img/2323.png</p>
+<ul>
+<li>会变成随机调用*</li>
+</ul>
+<hr>
+<p>#####实现多线程 runable</p>
+<p>2 个类   runable是接口 线程类 一个调用类<br> /img/31.png<br> /img/32.png</p>
+<ul>
+<li>会变成随机调用*</li>
+</ul>
+<hr>
 
       
 
@@ -178,7 +225,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/05/hexo-%E4%BD%BF%E7%94%A8/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/03/05/%E7%BA%BF%E7%A8%8B%E5%92%8C%E8%BF%9B%E7%A8%8B/">展开全文 >></a>
         </p>
       
 
@@ -208,19 +255,19 @@
 
 
   
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-hexo用法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/05/hello-world/">hexo用法</a>
+      <a class="article-title" href="/2020/03/05/hexo%E7%94%A8%E6%B3%95/">hexo用法</a>
     </h1>
   
 
         
-        <a href="/2020/03/05/hello-world/" class="archive-article-date">
+        <a href="/2020/03/05/hexo%E7%94%A8%E6%B3%95/" class="archive-article-date">
   	<time datetime="2020-03-05T02:08:38.280Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-05</time>
 </a>
         
@@ -231,7 +278,7 @@
         <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
         
-          <a class="article-more-a" href="/2020/03/05/hello-world/#more">more >></a>
+          <a class="article-more-a" href="/2020/03/05/hexo%E7%94%A8%E6%B3%95/#more">more >></a>
         
       
 
@@ -244,7 +291,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/05/hello-world/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/03/05/hexo%E7%94%A8%E6%B3%95/">展开全文 >></a>
         </p>
       
 
