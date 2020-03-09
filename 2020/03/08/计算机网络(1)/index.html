@@ -6,15 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2020 | 7大亮</title>
+  <title>计算机网络（1） | 7大亮</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="7大亮">
-<meta property="og:url" content="http://yoursite.com/archives/2020/index.html">
+  <meta name="description" content="TCP和UDO的区别tcp 和 udp 是 OSI 模型中的运输层中的协议。tcp 提供可靠的通信传输，而 udp 则常被用于让广播和细节控制交给应用的通信传输。两者的区别大致如下：tcp 面向连接，udp 面向非连接即发送数据前不需要建立链接；tcp 提供可靠的服务（数据传输），udp 无法保证；tcp 面向字节流，udp 面向报文；tcp 数据传输慢，udp 数据传输快； TCP的三次握手">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机网络（1）">
+<meta property="og:url" content="http://yoursite.com/2020/03/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C(1)/index.html">
 <meta property="og:site_name" content="7大亮">
+<meta property="og:description" content="TCP和UDO的区别tcp 和 udp 是 OSI 模型中的运输层中的协议。tcp 提供可靠的通信传输，而 udp 则常被用于让广播和细节控制交给应用的通信传输。两者的区别大致如下：tcp 面向连接，udp 面向非连接即发送数据前不需要建立链接；tcp 提供可靠的服务（数据传输），udp 无法保证；tcp 面向字节流，udp 面向报文；tcp 数据传输慢，udp 数据传输快； TCP的三次握手">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/img/TCP.png">
+<meta property="article:published_time" content="2020-03-08T08:40:50.501Z">
+<meta property="article:modified_time" content="2020-03-09T02:19:58.994Z">
 <meta property="article:author" content="7LL">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/img/TCP.png">
   
     <link rel="alternative" href="/atom.xml" title="7大亮" type="application/atom+xml">
   
@@ -142,184 +148,152 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-计算机网络(1)" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/09/java%E9%9D%A2%E8%AF%95%E9%A2%98(3)/" class="archive-article-date">
-  	<time datetime="2020-03-09T01:09:00.738Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-09</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/09/java%E9%9D%A2%E8%AF%95%E9%A2%98(3)/">java面试题（3）</a>
+    <h1 class="article-title" itemprop="name">
+      计算机网络（1）
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C(1)/" class="archive-article-date">
+        
+        <a href="/2020/03/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C(1)/" class="archive-article-date">
   	<time datetime="2020-03-08T08:40:50.501Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-08</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C(1)/">计算机网络（1）</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="TCP和UDO的区别"><a href="#TCP和UDO的区别" class="headerlink" title="TCP和UDO的区别"></a>TCP和UDO的区别</h2><p>tcp 和 udp 是 OSI 模型中的运输层中的协议。tcp 提供可靠的通信传输，而 udp 则常被用于让广播和细节控制交给应用的通信传输。<br>两者的区别大致如下：<br>tcp 面向连接，udp 面向非连接即发送数据前不需要建立链接；<br>tcp 提供可靠的服务（数据传输），udp 无法保证；<br>tcp 面向字节流，udp 面向报文；<br>tcp 数据传输慢，udp 数据传输快；</p>
+<h2 id="TCP的三次握手"><a href="#TCP的三次握手" class="headerlink" title="TCP的三次握手"></a>TCP的三次握手</h2><p>  <img src="/img/TCP.png" alt=""></p>
+<h3 id="TCP内容"><a href="#TCP内容" class="headerlink" title="TCP内容"></a>TCP内容</h3><p> 1.面向连接，可靠的，基于字节流的传输层协议<br> 2.将应用层的数据量分割成报文段发给目标节点<br> 3.数据包有序，对方收到发送ACK确认，未收到重传<br> 4.使用校验来验证数据传输过程是否有误</p>
+<h3 id="TCP的标志位"><a href="#TCP的标志位" class="headerlink" title="TCP的标志位"></a>TCP的标志位</h3><p>URG：紧急指针标志   RST： 重置连接<br>ACK：确认序号标志    SYN：同步序号，用于建立连接<br>PSH：push标志          FIN：finish标志，用于释放</p>
+<h3 id="TCP的三次握手-1"><a href="#TCP的三次握手-1" class="headerlink" title="TCP的三次握手"></a>TCP的三次握手</h3><p>第一次：建立连接是，客户端发送SYN包（syn=j）到服务器，并进行SYN_SEND状态，等待服务器确认<br>第二次：服务器收到SYN报，必须确认客户的SYN（ack=j+1）同时发送一个SYN包（syn=k）即SYN+ACK报，同时服务器进入SYN_RECV状态<br>第三次：客户确认收到服务器的SYN+ACK包，向服务器发送确认包ACK（ack=ack+1）此时发送完毕，客户端和服务器进入established状态，完成三次握手。</p>
+<h2 id="tcp-为什么要三次握手，两次不行吗？为什么？"><a href="#tcp-为什么要三次握手，两次不行吗？为什么？" class="headerlink" title="tcp 为什么要三次握手，两次不行吗？为什么？"></a>tcp 为什么要三次握手，两次不行吗？为什么？</h2><p>我们假设A和B是通信的双方。我理解的握手实际上就是通信，发一次信息就是进行一次握手。<br>第一次握手：A给B打电话说，你可以听到我说话吗？<br>第二次握手：B收到了A的信息，然后对A说：我可以听得到你说话啊，你能听得到我说话吗？<br>第三次握手：A收到了B的信息，然后说可以的，我要给你发信息啦！<br>在三次握手之后，A和B都能确定这么一件事：我说的话，你能听到；你说的话，我也能听到。这样，就可以开始正常通信了。<br>注意：HTTP是基于TCP协议的，所以每次都是客户端发送请求，服务器应答，但是TCP还可以给其他应用层提供服务，即可能A、B在建立链接之后，谁都可能先开始通信。</p>
+<h2 id="http-响应码-301-和-302-代表的是什么？有什么区别？"><a href="#http-响应码-301-和-302-代表的是什么？有什么区别？" class="headerlink" title="http 响应码 301 和 302 代表的是什么？有什么区别？"></a>http 响应码 301 和 302 代表的是什么？有什么区别？</h2><p>301：永久重定向；302：暂时重定向。<br>它们的区别是，301 对搜索引擎优化（SEO）更加有利；302 有被提示为网络拦截的风险。</p>
+<a id="more"></a>
+<h2 id="forward-和-redirect-的区别？"><a href="#forward-和-redirect-的区别？" class="headerlink" title="forward 和 redirect 的区别？"></a>forward 和 redirect 的区别？</h2><p>forward 是转发 和 redirect 是重定向：<br>地址栏 url 显示：foward url 不会发生改变，redirect url 会发生改变；<br>数据共享：forward 可以共享 request 里的数据，redirect 不能共享；<br>效率：forward 比 redirect 效率高。</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2>
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/03/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C(1)/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/08/java%E9%9D%A2%E8%AF%95%E9%A2%98(2)/" class="archive-article-date">
-  	<time datetime="2020-03-08T08:01:28.737Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-08</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2020/03/09/java%E9%9D%A2%E8%AF%95%E9%A2%98(3)/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          java面试题（3）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/03/08/java%E9%9D%A2%E8%AF%95%E9%A2%98(2)/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">java面试题（2）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/08/java%E9%9D%A2%E8%AF%95%E9%A2%98(2)/">java面试题（2）</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/07/java%E9%9D%A2%E8%AF%95%E9%A2%98(1)/" class="archive-article-date">
-  	<time datetime="2020-03-07T02:16:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/07/java%E9%9D%A2%E8%AF%95%E9%A2%98(1)/">java面试题（1）</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/05/%E7%BA%BF%E7%A8%8B%E5%92%8C%E8%BF%9B%E7%A8%8B/" class="archive-article-date">
-  	<time datetime="2020-03-05T02:16:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/05/%E7%BA%BF%E7%A8%8B%E5%92%8C%E8%BF%9B%E7%A8%8B/">线程和进程</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/05/hexo%E7%94%A8%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2020-03-05T02:08:38.280Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/05/hexo%E7%94%A8%E6%B3%95/">hexo用法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -342,8 +316,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

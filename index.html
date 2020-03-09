@@ -144,6 +144,210 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-java面试题(3)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/09/java%E9%9D%A2%E8%AF%95%E9%A2%98(3)/">java面试题（3）</a>
+    </h1>
+  
+
+        
+        <a href="/2020/03/09/java%E9%9D%A2%E8%AF%95%E9%A2%98(3)/" class="archive-article-date">
+  	<time datetime="2020-03-09T01:09:00.738Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="并行和并发有什么区别？"><a href="#并行和并发有什么区别？" class="headerlink" title="并行和并发有什么区别？"></a>并行和并发有什么区别？</h2><p>并行：多个处理器或多核处理器同时处理多个任务。<br>并发：多个任务在同一个 CPU 核上，按细分的时间片轮流(交替)执行，从逻辑上来看那些任务是同时执行。</p>
+<h2 id="线程和进程的区别？"><a href="#线程和进程的区别？" class="headerlink" title="线程和进程的区别？"></a>线程和进程的区别？</h2><p>一个程序下至少有一个进程，一个进程下至少有一个线程，一个进程下也可以有多个线程来增加程序的执行速度。</p>
+<h2 id="守护线程是什么？"><a href="#守护线程是什么？" class="headerlink" title="守护线程是什么？"></a>守护线程是什么？</h2><p>守护线程是运行在后台的一种特殊进程。它独立于控制终端并且周期性地执行某种任务或等待处理某些发生的事件。在 Java 中垃圾回收线程就是特殊的守护线程。</p>
+        
+          <a class="article-more-a" href="/2020/03/09/java%E9%9D%A2%E8%AF%95%E9%A2%98(3)/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/03/09/java%E9%9D%A2%E8%AF%95%E9%A2%98(3)/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-计算机网络(1)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C(1)/">计算机网络（1）</a>
+    </h1>
+  
+
+        
+        <a href="/2020/03/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C(1)/" class="archive-article-date">
+  	<time datetime="2020-03-08T08:40:50.501Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="TCP和UDO的区别"><a href="#TCP和UDO的区别" class="headerlink" title="TCP和UDO的区别"></a>TCP和UDO的区别</h2><p>tcp 和 udp 是 OSI 模型中的运输层中的协议。tcp 提供可靠的通信传输，而 udp 则常被用于让广播和细节控制交给应用的通信传输。<br>两者的区别大致如下：<br>tcp 面向连接，udp 面向非连接即发送数据前不需要建立链接；<br>tcp 提供可靠的服务（数据传输），udp 无法保证；<br>tcp 面向字节流，udp 面向报文；<br>tcp 数据传输慢，udp 数据传输快；</p>
+<h2 id="TCP的三次握手"><a href="#TCP的三次握手" class="headerlink" title="TCP的三次握手"></a>TCP的三次握手</h2><p>  <img src="/img/TCP.png" alt=""></p>
+<h3 id="TCP内容"><a href="#TCP内容" class="headerlink" title="TCP内容"></a>TCP内容</h3><p> 1.面向连接，可靠的，基于字节流的传输层协议<br> 2.将应用层的数据量分割成报文段发给目标节点<br> 3.数据包有序，对方收到发送ACK确认，未收到重传<br> 4.使用校验来验证数据传输过程是否有误</p>
+<h3 id="TCP的标志位"><a href="#TCP的标志位" class="headerlink" title="TCP的标志位"></a>TCP的标志位</h3><p>URG：紧急指针标志   RST： 重置连接<br>ACK：确认序号标志    SYN：同步序号，用于建立连接<br>PSH：push标志          FIN：finish标志，用于释放</p>
+<h3 id="TCP的三次握手-1"><a href="#TCP的三次握手-1" class="headerlink" title="TCP的三次握手"></a>TCP的三次握手</h3><p>第一次：建立连接是，客户端发送SYN包（syn=j）到服务器，并进行SYN_SEND状态，等待服务器确认<br>第二次：服务器收到SYN报，必须确认客户的SYN（ack=j+1）同时发送一个SYN包（syn=k）即SYN+ACK报，同时服务器进入SYN_RECV状态<br>第三次：客户确认收到服务器的SYN+ACK包，向服务器发送确认包ACK（ack=ack+1）此时发送完毕，客户端和服务器进入established状态，完成三次握手。</p>
+<h2 id="tcp-为什么要三次握手，两次不行吗？为什么？"><a href="#tcp-为什么要三次握手，两次不行吗？为什么？" class="headerlink" title="tcp 为什么要三次握手，两次不行吗？为什么？"></a>tcp 为什么要三次握手，两次不行吗？为什么？</h2><p>我们假设A和B是通信的双方。我理解的握手实际上就是通信，发一次信息就是进行一次握手。<br>第一次握手：A给B打电话说，你可以听到我说话吗？<br>第二次握手：B收到了A的信息，然后对A说：我可以听得到你说话啊，你能听得到我说话吗？<br>第三次握手：A收到了B的信息，然后说可以的，我要给你发信息啦！<br>在三次握手之后，A和B都能确定这么一件事：我说的话，你能听到；你说的话，我也能听到。这样，就可以开始正常通信了。<br>注意：HTTP是基于TCP协议的，所以每次都是客户端发送请求，服务器应答，但是TCP还可以给其他应用层提供服务，即可能A、B在建立链接之后，谁都可能先开始通信。</p>
+<h2 id="http-响应码-301-和-302-代表的是什么？有什么区别？"><a href="#http-响应码-301-和-302-代表的是什么？有什么区别？" class="headerlink" title="http 响应码 301 和 302 代表的是什么？有什么区别？"></a>http 响应码 301 和 302 代表的是什么？有什么区别？</h2><p>301：永久重定向；302：暂时重定向。<br>它们的区别是，301 对搜索引擎优化（SEO）更加有利；302 有被提示为网络拦截的风险。</p>
+        
+          <a class="article-more-a" href="/2020/03/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C(1)/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/03/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C(1)/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-java面试题(2)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/08/java%E9%9D%A2%E8%AF%95%E9%A2%98(2)/">java面试题（2）</a>
+    </h1>
+  
+
+        
+        <a href="/2020/03/08/java%E9%9D%A2%E8%AF%95%E9%A2%98(2)/" class="archive-article-date">
+  	<time datetime="2020-03-08T08:01:28.737Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="java的容器模块"><a href="#java的容器模块" class="headerlink" title="java的容器模块"></a>java的容器模块</h1><h2 id="Java-容器都有哪些？"><a href="#Java-容器都有哪些？" class="headerlink" title=".Java 容器都有哪些？"></a>.Java 容器都有哪些？</h2><p>Java 容器分为 Collection 和 Map 两大类，其下又有很多子类，如下所示：<br>Collection     List   ArrayList  LinkedList  Vector  Stack<br>Set  HashSet  LinkedHashSet  TreeSet  Map  HashMap<br>LinkedHashMap  TreeMap  ConcurrentHashMap  Hashtable</p>
+<h2 id="Collection-和-Collections-有什么区别？"><a href="#Collection-和-Collections-有什么区别？" class="headerlink" title="Collection 和 Collections 有什么区别？"></a>Collection 和 Collections 有什么区别？</h2><p>Collection 是一个集合接口，它提供了对集合对象进行基本操作的通用接口方法，所有集合都是它的子类，比如 List、Set 等。<br>Collections 是一个包装类，包含了很多静态方法，不能被实例化，就像一个工具类，比如提供的排序方法：Collections. sort(list)。 </p>
+        
+          <a class="article-more-a" href="/2020/03/08/java%E9%9D%A2%E8%AF%95%E9%A2%98(2)/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/03/08/java%E9%9D%A2%E8%AF%95%E9%A2%98(2)/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-java面试题(1)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
