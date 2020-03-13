@@ -16,8 +16,12 @@
 <meta property="og:description" content="TCP和UDO的区别tcp 和 udp 是 OSI 模型中的运输层中的协议。tcp 提供可靠的通信传输，而 udp 则常被用于让广播和细节控制交给应用的通信传输。两者的区别大致如下：tcp 面向连接，udp 面向非连接即发送数据前不需要建立链接；tcp 提供可靠的服务（数据传输），udp 无法保证；tcp 面向字节流，udp 面向报文；tcp 数据传输慢，udp 数据传输快； TCP的三次握手">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://yoursite.com/img/TCP.png">
+<meta property="og:image" content="http://yoursite.com/img/wlc.png">
+<meta property="og:image" content="http://yoursite.com/img/wlc1.png">
+<meta property="og:image" content="http://yoursite.com/img/ipv4.png">
+<meta property="og:image" content="http://yoursite.com/img/csc.png">
 <meta property="article:published_time" content="2020-03-08T08:40:50.501Z">
-<meta property="article:modified_time" content="2020-03-09T02:26:29.008Z">
+<meta property="article:modified_time" content="2020-03-13T02:26:17.502Z">
 <meta property="article:author" content="7LL">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://yoursite.com/img/TCP.png">
@@ -175,9 +179,49 @@
 <h3 id="TCP的标志位"><a href="#TCP的标志位" class="headerlink" title="TCP的标志位"></a>TCP的标志位</h3><p>URG：紧急指针标志   RST： 重置连接<br>ACK：确认序号标志    SYN：同步序号，用于建立连接<br>PSH：push标志          FIN：finish标志，用于释放</p>
 <h3 id="TCP的三次握手-1"><a href="#TCP的三次握手-1" class="headerlink" title="TCP的三次握手"></a>TCP的三次握手</h3><p>第一次：建立连接是，客户端发送SYN包（syn=j）到服务器，并进行SYN_SEND状态，等待服务器确认<br>第二次：服务器收到SYN报，必须确认客户的SYN（ack=j+1）同时发送一个SYN包（syn=k）即SYN+ACK报，同时服务器进入SYN_RECV状态<br>第三次：客户确认收到服务器的SYN+ACK包，向服务器发送确认包ACK（ack=ack+1）此时发送完毕，客户端和服务器进入established状态，完成三次握手。</p>
 <h2 id="tcp-为什么要三次握手，两次不行吗？为什么？"><a href="#tcp-为什么要三次握手，两次不行吗？为什么？" class="headerlink" title="tcp 为什么要三次握手，两次不行吗？为什么？"></a>tcp 为什么要三次握手，两次不行吗？为什么？</h2><p>我们假设A和B是通信的双方。我理解的握手实际上就是通信，发一次信息就是进行一次握手。<br>第一次握手：A给B打电话说，你可以听到我说话吗？<br>第二次握手：B收到了A的信息，然后对A说：我可以听得到你说话啊，你能听得到我说话吗？<br>第三次握手：A收到了B的信息，然后说可以的，我要给你发信息啦！<br>在三次握手之后，A和B都能确定这么一件事：我说的话，你能听到；你说的话，我也能听到。这样，就可以开始正常通信了。<br>注意：HTTP是基于TCP协议的，所以每次都是客户端发送请求，服务器应答，但是TCP还可以给其他应用层提供服务，即可能A、B在建立链接之后，谁都可能先开始通信。</p>
+<h3 id="TCP的释放-即-4次握手"><a href="#TCP的释放-即-4次握手" class="headerlink" title="TCP的释放 即 4次握手"></a>TCP的释放 即 4次握手</h3><p>1.客户机打算关闭 发送一个释放报文段 FIN=1 seq=u FIN发送端不再接受数据<br>2.服务器收到连接后   确认号 ack=u+1 会发报文aseq=v 但是数据链没有关闭 是单向的 服务器到客户机的发放没有关闭<br>3.若 服务器没有向客户机发送数据，者 tcp释放连接。发出FIN=1 ack=u+1 ack=1 seq=w的释放报文<br>4.客户机收到连接释放报文 发出ACK确认。ack=1 seq=u+1  seq=w+1</p>
+<h3 id="TCP的流量控制"><a href="#TCP的流量控制" class="headerlink" title="TCP的流量控制"></a>TCP的流量控制</h3><p>tcp提供一个控制流量的服务来消除发送方使接受方缓冲区溢出的可能性 流量控制就是一个速度匹配服务。<br>TCP 通过窗口机制来实现 流量控制</p>
+<h3 id="TCP的拥塞控制"><a href="#TCP的拥塞控制" class="headerlink" title="TCP的拥塞控制"></a>TCP的拥塞控制</h3><p>拥塞控制是防止更多的数据注入网络 使网络过载 是一个全局的控制</p>
 <h2 id="http-响应码-301-和-302-代表的是什么？有什么区别？"><a href="#http-响应码-301-和-302-代表的是什么？有什么区别？" class="headerlink" title="http 响应码 301 和 302 代表的是什么？有什么区别？"></a>http 响应码 301 和 302 代表的是什么？有什么区别？</h2><p>301：永久重定向；302：暂时重定向。<br>它们的区别是，301 对搜索引擎优化（SEO）更加有利；302 有被提示为网络拦截的风险。</p>
 <h2 id="forward-和-redirect-的区别？"><a href="#forward-和-redirect-的区别？" class="headerlink" title="forward 和 redirect 的区别？"></a>forward 和 redirect 的区别？</h2><p>forward 是转发 和 redirect 是重定向：<br>地址栏 url 显示：foward url 不会发生改变，redirect url 会发生改变；<br>数据共享：forward 可以共享 request 里的数据，redirect 不能共享；<br>效率：forward 比 redirect 效率高。</p>
-<h2 id=""><a href="#" class="headerlink" title=""></a></h2>
+<h2 id="tcp-粘包是怎么产生的？"><a href="#tcp-粘包是怎么产生的？" class="headerlink" title="tcp 粘包是怎么产生的？"></a>tcp 粘包是怎么产生的？</h2><p>tcp 粘包可能发生在发送端或者接收端，分别来看两端各种产生粘包的原因：<br>发送端粘包：发送端需要等缓冲区满才发送出去，造成粘包；<br>接收方粘包：接收方不及时接收缓冲区的包，造成多个包接收。 </p>
+<h2 id="OSI-的七层模型都有哪些？"><a href="#OSI-的七层模型都有哪些？" class="headerlink" title="OSI 的七层模型都有哪些？"></a>OSI 的七层模型都有哪些？</h2><p>物理层：利用传输介质为数据链路层提供物理连接，实现比特流的透明传输。<br>数据链路层：负责建立和管理节点间的链路。<br>网络层：通过路由选择算法，为报文或分组通过通信子网选择最适当的路径。<br>传输层：向用户提供可靠的端到端的差错和流量控制，保证报文的正确传输。<br>会话层：向两个实体的表示层提供建立和使用连接的方法。<br>表示层：处理用户信息的表示问题，如编码、数据格式转换和加密解密等。<br>应用层：直接向用户提供服务，完成用户希望在网络上完成的各种工作。</p>
+<h2 id="get-和-post-请求有哪些区别？"><a href="#get-和-post-请求有哪些区别？" class="headerlink" title="get 和 post 请求有哪些区别？"></a>get 和 post 请求有哪些区别？</h2><p>get 请求会被浏览器主动缓存，而 post 不会。<br>get 传递参数有大小限制，而 post 没有。<br>post 参数传输更安全，get 的参数会明文限制在 url 上，post 不会。</p>
+<h4 id="网络逻辑：资源子网-通信子网"><a href="#网络逻辑：资源子网-通信子网" class="headerlink" title="网络逻辑：资源子网 通信子网"></a>网络逻辑：资源子网 通信子网</h4><p>资源子网：计算机系统，，终端，联网外部设备，软件资源和信息资源<br>                 主要负责全网的数据处理业务，负责像网络用户提供资源和服务<br>通信子网： 通信处理及，通信线路，其它通信设备，<br>                  完成网库的数据传送，转发<br>网桥，交换机和路由器是通信子网<br>计算机软件属于资源子网</p>
+<h4 id="通信子网-资源子网"><a href="#通信子网-资源子网" class="headerlink" title="通信子网 资源子网"></a>通信子网 资源子网</h4><p>通信子网对于OSI的下三层：物理层，数据链路层，网络层<br>网桥，交换机，路由器，属于通信子网的硬件。</p>
+<h4 id="广域网和局域网"><a href="#广域网和局域网" class="headerlink" title="广域网和局域网"></a>广域网和局域网</h4><p>传播范围的不同，一个是点对点技术 一个是广播技术</p>
+<h4 id="中继器-路由器"><a href="#中继器-路由器" class="headerlink" title="中继器 路由器"></a>中继器 路由器</h4><p>中继器和桥接器是用于局域网的物理层和链路层的联网设备<br>局域网连于广域网是通过路由器来实现</p>
+<h4 id="协议-接口-服务"><a href="#协议-接口-服务" class="headerlink" title="协议  接口  服务"></a>协议  接口  服务</h4><p>协议是规则的集合<br>接口时同一节点相邻层交换信息的节点，时体系内部的规定<br>服务是指下层为上层提供的功能调布</p>
+<h4 id="ISO-OIS"><a href="#ISO-OIS" class="headerlink" title="ISO/OIS"></a>ISO/OIS</h4><p>开发系统互联参考模型（osi/rm）<br>osi有7层 物理层 数据链路层 网络层 传输层 会话层  表示出应用层<br> 低三层为通信子网  高三层为资源子网 相当于计算机系统。完成数据处理功能</p>
+<ul>
+<li>物理层：传输点位是比特 主要定义数据终端设备和数据通信设备的物理和逻辑连接方式</li>
+<li>数据链路层：传输单位是振  主要是将网络层传来的IP数据包组成振  功能为成振 ，差错控制和传输管理<pre><code>协议：SDLC,HDLC,PPP,STP,</code></pre></li>
+<li>网络层： 传输单位是数据包  主要是通信子网的运行控制 目的是吧网络层的协议数据单元从源端传输到目的端。。<pre><code>协议：IP,IPX,ICMP,IGMP,RARP,</code></pre></li>
+<li>传输层：传输单位是报文段（TCP）或 用户数据报（UDP） 主要是对2进程之间的通信 为端到端连接提高可靠的传输服务， 为端到端提供流量控制，差错控制，服务质量<pre><code>协议：TCP.UDP</code></pre></li>
+<li>会话层：可以不同的主机上的个个进程之间会话。 是提供端到端的服务。向表示层提供他的增值服务。<pre><code>是为了表示层实体和用户建立有序的传输数据。建立同步（SYN）。</code></pre></li>
+<li>表示层：表示层是处理两个通信系统中交换信息的表示方式。</li>
+<li>应用层：是用户与网络的界面，协议：<pre><code>文件传输FTP。电子邮件SMTP。万维网HTTP。</code></pre><h4 id="TCP-IP"><a href="#TCP-IP" class="headerlink" title="TCP/IP"></a>TCP/IP</h4>该模型：网络接口层（对OSI的物理层和数据链路层）  网际层 传输层 应用层（表示层和应用层）。<br>网络接口层表示与物理网络连接，为了传递IP分组。把它发送到指定的物理网络中。<br>网际层 为了选择合适的路由，但是不能有序的传达，它定义的标准的分组格式和协议。IP<br>传输层 为了让发送端和目的端进行对等的绘画  ，，，协议： 传输控制协议（TCP）用户数据报协议（UDP）<br>应用层  FTP文件传输协议   DNS域名解析协议 SMTP电子邮件协议   HTTP超文本协议。</li>
+</ul>
+<h4 id="数据链路层"><a href="#数据链路层" class="headerlink" title="数据链路层"></a>数据链路层</h4><p>1.无确认的无连接服务。<br>2.有确认的无连接服务，<br>3.有确认的面向连接服务。</p>
+<ul>
+<li>有链接一定有确认，不存在无确认的面向连接的服务，<br>数据链路层的建立，维持，释放为链路管理<br>为传输帧<pre><code>HDLC标准帧格式</code></pre>|标准|地址|控制|信息|校验序号|标准|<br>|    F |A 8位 |C 8位  |1可变|FCS16位|F    |</li>
+</ul>
+<p>· 流量控制：对于数据链路层控制2结点之间的流量<br>· 差错控制：用于发送方确定接收方师范确认收到其发顺丰的数据的法发</p>
+<h4 id="PPP协议"><a href="#PPP协议" class="headerlink" title="PPP协议"></a>PPP协议</h4><p>  建立在直接连接的2个点的链路上。面向字节的<br>1.链路控制协议<br>2.网络控制协议<br>3.一个将IP数据报封装到串行链路的方法<br>                    PPP帧<br>|           首部                |         IP数据报     |          尾部      |<br>|F 1   A 1    C 1   协议 2|     1500B             | FCS 2   F 1   |</p>
+<h4 id="HDLC协议"><a href="#HDLC协议" class="headerlink" title="HDLC协议"></a>HDLC协议</h4><p>高级数据链路控制 面向比特的数据链路层协议。<br>1.站    主站  从站 复合站<br>2.数据操作方式     正常响应  异步平衡   异步响应<br>3. 帧<br>|  8标志F|8地址A |8控制C |可变信息|16校验|8标志F|</p>
+<p>*中继器和集线器 物理层    网桥和交换机是数据链路层<br>   中继器和集线器不能隔离冲突域    交换机和网桥和路由器能隔离。<br>    只有路由器能隔离广播域</p>
+<h4 id="物理层"><a href="#物理层" class="headerlink" title="物理层"></a>物理层</h4><p>通过一定的方法，通过中间设备相互连接起来，<br>中间设备（中间系统或中继系统）<br>物理层中继系统：中继器，集线器。<br>数据链路层中继系统：网桥或交换机<br>网络层中继系统：路由器<br>网络层以上的中继系统：网关</p>
+<p>路由器：路由选择（确定拿一条路径）    分组转发（当一个分组到达所采取的动作）<br>路由选择 ：根据整个网络的拓扑变化 动态的选择路由<br>分组转发：将IP数据包从合适的端口转发出去。<br>拥塞控制：确保子网能够承载所到达的浏览。<br>流量控制和拥塞控制（开怀控制 闭环控制）的区别：流量控制往往是指点对点通信量的控制。拥塞控制必须确保通信子网能够传输带传送的数据，是一个全局的问题，</p>
+<h4 id="网络层转发分组的流程"><a href="#网络层转发分组的流程" class="headerlink" title="网络层转发分组的流程"></a>网络层转发分组的流程</h4><p>1.从数据报的首部提取目的主机IP地址D，得出目标的网络地址N<br>2.若网络N此路由器直接连接，交数据报交互主机D（路由器的直接交付）否则跳到3.<br>3.若路由器有目标地址D指定的主机路由<br>4.路由器中有达到路由N的路由，则吧数据包送给路由知名的下一路由器<br>5.路由表中有一个默认路由。<br>6.报告转发错误</p>
+<p>A(1-126)  \ 0\网络号\主机号<br>B(128-191)\10\网络号\主机号<br>C(192-223)\110\网络号\主机号<br>D(224-239)\1110\多地址<br>E(239-255)\1111\以后使用\</p>
+<p>X.X.X.0   网络本身<br>X.X.X.255 广播地址<br>127.0.0.0  自检地址<br>0.0.0.0 主机地址<br>255.255.255.255  TCP/IP广播地址<br>IP地址（&lt;网络号&gt;&lt;子网号&gt;&lt;主机号&gt;）</p>
+<p>子网掩码： 表示原网络中主机号的错位<br>主机的IP地址：192.168.5.56     子网掩码：255.255.255.0  进行与 运算<br>得到主机所在子网的网络号192.168.5.0</p>
+<h4 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h4><p> 传输层在网络层之上，他是让不同主机上的进程之间提供了逻辑通信，而网络层提供主机之间的逻辑通信。<br>2台主机通信是通过IP数据包首部给出来了2台主机的IP地址<br>复用和分组：复用是发送方不同的进程都可以使用同一个传输层协议<br>分组时接收方吧数据交给正确的地方<br>端口：是传输层服务访问点。端口是主机这中的应用程序。<br>数据链路层SAP（服务访问点）是MAC地址<br>网络层SAP          是IP地址<br>传输层SAP         是端口</p>
+<p>|应用程序|FTP|TELNET|SMTP|DNS|TFTP|HTTP|SNMP|<br>|端口号   |21  | 23        |25     |53    |69    |80     |161    |</p>
+<h4 id="TCP-UDP"><a href="#TCP-UDP" class="headerlink" title="TCP    UDP"></a>TCP    UDP</h4><p>在网络中通过 套接字来实现通信端点<br>套接字=（主机IP地址+端口号）<br>TCP面向连接的<br>UDP面向无连接的<br>UDP是个更为全面<br>UDP 分组首部开销少  TCP 20B  UDP  8B<br>UDP没有拥塞控制 不允许主机的发送效率<br>UDP是面向报文的  提供最大努力的交付</p>
+<p>UDP校验和IP数据包校验  都是采用    二进制反码运算求和在取反</p>
+<p>  <img src="/img/wlc.png" alt=""><br>  <img src="/img/wlc1.png" alt=""><br>  <img src="/img/ipv4.png" alt=""><br>  <img src="/img/csc.png" alt=""></p>
+
       
 
       
