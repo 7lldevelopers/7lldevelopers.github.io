@@ -144,6 +144,79 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-java面试题(4)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/10/java%E9%9D%A2%E8%AF%95%E9%A2%98(4)/">java面试题(4)</a>
+    </h1>
+  
+
+        
+        <a href="/2020/03/10/java%E9%9D%A2%E8%AF%95%E9%A2%98(4)/" class="archive-article-date">
+  	<time datetime="2020-03-10T12:48:41.159Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="JAVA编程"><a href="#JAVA编程" class="headerlink" title="JAVA编程"></a>JAVA编程</h1><p>##请设计一个一百亿的计算器<br>首先要明白这道题目的考查点是什么，一是大家首先要对计算机原理的底层细节要清楚、要知道加减法的位运算原理和知道计算机中的算术运算会发生越界的情况，二是要具备一定的面向对象的设计思想。<br>首先，计算机中用固定数量的几个字节来存储的数值，所以计算机中能够表示的数值是有一定的范围的，为了便于讲解和理解，我们先以byte 类型的整数为例，它用1个字节进行存储，表示的最大数值范围为-128到+127。-1在内存中对应的二进制数据为11111111，如果两个-1相加，不考虑Java运算时的类型提升，运算后会产生进位，二进制结果为1,11111110，由于进位后超过了byte类型的存储空间，所以进位部分被舍弃，即最终的结果为11111110，也就是-2，这正好利用溢位的方式实现了负数的运算。-128在内存中对应的二进制数据为10000000，如果两个-128相加，不考虑Java运算时的类型提升，运算后会产生进位，二进制结果为1,00000000，由于进位后超过了byte类型的存储空间，所以进位部分被舍弃，即最终的结果为00000000，也就是0，这样的结果显然不是我们期望的，这说明计算机中的算术运算是会发生越界情况的，两个数值的运算结果不能超过计算机中的该类型的数值范围。由于Java中涉及表达式运算时的类型自动提升，我们无法用byte类型来做演示这种问题和现象的实验，大家可以用下面一个使用整数做实验的例子程序体验一下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = Integer.MAX_VALUE;</span><br><span class="line"><span class="keyword">int</span> b = Integer.MAX_VALUE;</span><br><span class="line"><span class="keyword">int</span> sum = a + b;</span><br><span class="line">System.out.println(“a=”+a+”,b=”+b+”,sum=”+sum);</span><br></pre></td></tr></table></figure>
+<p>先不考虑long类型，由于int的正数范围为2的31次方，表示的最大数值约等于2<em>1000</em>1000*1000，也就是20亿的大小，所以，要实现一个一百亿的计算器，我们得自己设计一个类可以用于表示很大的整数，并且提供了与另外一个整数进行加减乘除的功能，大概功能如下：<br>（）这个类内部有两个成员变量，一个表示符号，另一个用字节数组表示数值的二进制数<br>（）有一个构造方法，把一个包含有多位数值的字符串转换到内部的符号和字节数组中<br>（）提供加减乘除的功能</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BigInteger</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line"><span class="keyword">int</span> sign;</span><br><span class="line"><span class="keyword">byte</span>[] val;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Biginteger</span><span class="params">(String val)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">sign = ;</span><br><span class="line">val = ;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> BigInteger <span class="title">add</span><span class="params">(BigInteger other)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> BigInteger <span class="title">subtract</span><span class="params">(BigInteger other)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> BigInteger <span class="title">multiply</span><span class="params">(BigInteger other)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> BigInteger <span class="title">divide</span><span class="params">(BigInteger other)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="二位数组查找某个数字"><a href="#二位数组查找某个数字" class="headerlink" title="二位数组查找某个数字"></a>二位数组查找某个数字</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">int</span> arr[][] = &#123;&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;,&#123;<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>&#125;,&#123;<span class="number">9</span>&#125;&#125;;</span><br><span class="line"><span class="keyword">boolean</span> found = <span class="keyword">false</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;arr.length &amp;&amp; !found;i++)</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;arr[i].length;j++)</span><br><span class="line">&#123;</span><br><span class="line">System.out.println(“i=” + i + “,j=” + j);</span><br><span class="line"><span class="keyword">if</span>(arr[i][j]  == <span class="number">5</span>) </span><br><span class="line">&#123;</span><br><span class="line">found = <span class="keyword">true</span>;</span><br><span class="line"><span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125; <span class="comment">//其中外层收到里层的代码控制</span></span><br></pre></td></tr></table></figure>
+<h2 id="switch语句能否作用在byte上，能否作用在long上，能否作用在String上"><a href="#switch语句能否作用在byte上，能否作用在long上，能否作用在String上" class="headerlink" title="switch语句能否作用在byte上，能否作用在long上，能否作用在String上?"></a>switch语句能否作用在byte上，能否作用在long上，能否作用在String上?</h2><p>在switch（expr1）中，expr1只能是一个整数表达式或者枚举常量（更大字体），整数表达式可以是int基本类型或Integer包装类型，由于，byte,short,char都可以隐含转换为int，所以，这些类型以及这些类型的包装类型也是可以的。显然，long和String类型都不符合switch的语法规定，并且不能被隐式转换成int类型，所以，它们不能作用于swtich语句中。 </p>
+<h2 id="使用final关键字修饰一个变量时，是引用不能变，还是引用的对象不能变？"><a href="#使用final关键字修饰一个变量时，是引用不能变，还是引用的对象不能变？" class="headerlink" title="使用final关键字修饰一个变量时，是引用不能变，还是引用的对象不能变？"></a>使用final关键字修饰一个变量时，是引用不能变，还是引用的对象不能变？</h2><p>使用final关键字修饰一个变量时，是指引用变量不能变，引用变量所指向的对象中的内容还是可以改变的。例如，对于如下语句：<br> final StringBuffer a=new StringBuffer(“immutable”);<br>执行如下语句将报告编译期错误：<br>a=new StringBuffer(“”);<br>但是，执行如下语句则可以通过编译：<br>a.append(“ broken!”); </p>
+<p>有人在定义方法的参数时，可能想采用如下形式来阻止方法内部修改传进来的参数对象：<br>public void method(final  StringBuffer  param)<br>{<br>}<br>实际上，这是办不到的，在该方法内部仍然可以增加如下代码来修改参数对象：<br>param.append(“a”);</p>
+<h2 id="“-”和equals区别"><a href="#“-”和equals区别" class="headerlink" title="“==”和equals区别"></a>“==”和equals区别</h2><p>==操作符专门用来比较两个变量的值是否相等，也就是用于比较变量所对应的内存中所存储的数值是否相同，要比较两个基本类型的数据或两个引用变量是否相等，只能用==操作符。<br>Objet obj = new Object();变量obj是一个内存，new Object()是另一个内存，此时，变量obj所对应的内存中存储的数值就是对象占用的那块内存的首地址。对于指向对象类型的变量，如果要比较两个变量是否指向同一个对象，即要看这两个变量所对应的内存中的数值是否相等，这时候就需要用==操作符进行比较。</p>
+<p>equals方法是用于比较两个独立对象的内容是否相同，就好比去比较两个人的长相是否相同，它比较的两个对象是独立的。例如，对于下面的代码：<br>String a=new String(“foo”);<br>String b=new String(“foo”);<br>两条new语句创建了两个对象，然后用a,b这两个变量分别指向了其中一个对象，这是两个不同的对象，它们的首地址是不同的，即a和b中存储的数值是不相同的，所以，表达式a==b将返回false，而这两个对象中的内容是相同的，所以，表达式a.equals(b)将返回true</p>
+<h2 id="静态变量和实体变量的区别"><a href="#静态变量和实体变量的区别" class="headerlink" title="静态变量和实体变量的区别"></a>静态变量和实体变量的区别</h2><p>语法定义：静态变量前要加static关键字，而实例变量前则不加。<br>yi</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/03/10/java%E9%9D%A2%E8%AF%95%E9%A2%98(4)/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-java面试题(3)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
