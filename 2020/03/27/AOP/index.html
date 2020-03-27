@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2020 | 7大亮</title>
+  <title>AOP | 7大亮</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="7大亮">
-<meta property="og:url" content="http://yoursite.com/archives/2020/index.html">
+  <meta name="description" content="spring AOP约定编程  定义接口  在实现接口 定义拦截器接口：里面的接口实现 并 挨个实现 通过给使用的约定 。当使用时 会调用拦截器 实现不同的结果  再按照约定 实现ProxyBean何将服务类和拦截方法织入对应的流程，是 ProxyBean 要实现的功能peoxy（代理）通过代理来实现控制对象springAOP 就是一种约定流程的编程AOP就是数据库事务的管控使用JDBC插入用户：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AOP">
+<meta property="og:url" content="http://yoursite.com/2020/03/27/AOP/index.html">
 <meta property="og:site_name" content="7大亮">
+<meta property="og:description" content="spring AOP约定编程  定义接口  在实现接口 定义拦截器接口：里面的接口实现 并 挨个实现 通过给使用的约定 。当使用时 会调用拦截器 实现不同的结果  再按照约定 实现ProxyBean何将服务类和拦截方法织入对应的流程，是 ProxyBean 要实现的功能peoxy（代理）通过代理来实现控制对象springAOP 就是一种约定流程的编程AOP就是数据库事务的管控使用JDBC插入用户：">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-03-27T01:16:57.902Z">
+<meta property="article:modified_time" content="2020-03-27T06:17:27.293Z">
 <meta property="article:author" content="7LL">
 <meta name="twitter:card" content="summary">
   
@@ -142,265 +146,206 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-AOP" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      AOP
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/27/AOP/" class="archive-article-date">
+
+        
+        <a href="/2020/03/27/AOP/" class="archive-article-date">
   	<time datetime="2020-03-27T01:16:57.902Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-27</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/27/AOP/">AOP</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="spring-AOP"><a href="#spring-AOP" class="headerlink" title="spring AOP"></a>spring AOP</h1><p>约定编程</p>
+<ol>
+<li>定义接口  在实现接口</li>
+<li>定义拦截器接口：里面的接口实现 并 挨个实现 通过给使用的约定 。当使用时 会调用拦截器 实现不同的结果  再按照约定 实现<br>ProxyBean何将服务类和拦截方法织入对应的流程，是 ProxyBean 要实现的功能<br>peoxy（代理）通过代理来实现控制对象<h2 id="springAOP-就是一种约定流程的编程"><a href="#springAOP-就是一种约定流程的编程" class="headerlink" title="springAOP 就是一种约定流程的编程"></a>springAOP 就是一种约定流程的编程</h2>AOP就是数据库事务的管控<br>使用JDBC插入用户：<br>``java<br>public class UserService (<br>public int insertUser () (<br>UserDao userDao= ηew UserDao ();<br>User user= new User() ;<br>user setUsername( “user name l “ );<br>user .setNote (” note 1 ” );<br>Connection conn = null ;<br>int result = O;<br>try (<br>／／获取数据事务连接<br>Class . forName ( “ com.mysql .jdbc.Driver” );<br>conn= DriverManager getConnection( ”jdbc : mysql : //localhost :3306/chapter3 “, ” root”,”123456” );<br>／／非自动提交事务<br>conn . setAutoCommit (fa l se );<br>result= userDao . insertUser (conn , user) ;<br>／／ 提交事务<br>conn . commit () ;<br>} catch (Exception e ) {<br>try {<br>／／回滚事<br>conn . rollback ();<br>} catch (SQLException ex) {<br>ex . printStackTrace();<br>e.printStackTrace();<br>} finally {<br>／／ 释放数据连接资源<br>if (conn ! = null ) (<br>try {<br>conn . close ( ) ;<br>} catch (SQLException e ) {<br>e.printStackTrace() ;<br>return result ;<br>}}</li>
+</ol>
+<p>==================<br>public class UserDao {<br>public nsertUser(Connection con n , User user) throws SQLException {<br>PreparedStatement ps = null ;<br>try {<br>ps = conn prepareStatement insert nto t _ user(user name , note) values (?,?) ” ) ;<br>ps .setStri ng(l, user . getUsername ( )) ;<br>ps . setString (2 , user. getNote () ) ;<br>return ps . executeUpdate() ;<br>} finally {<br>ps . close () ;<br>}<br>}<br>``</p>
+<ol>
+<li>打开数据库连接接，然后对其属性进行设置</li>
+<li>执行 SQL 语句：</li>
+<li>如果没有异常 ，则提交事务</li>
+<li>如果发生异常 ，则回滚事务</li>
+<li>关闭数据库事务连接。</li>
+</ol>
+<p>而AOP时将 连接数据库 提交事务 回滚事务 让默认的流程来实现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span> </span><br><span class="line"><span class="keyword">private</span> UserDao = <span class="keyword">null</span> ; </span><br><span class="line">...............</span><br><span class="line"><span class="meta">@Transactional</span> </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">inserUser</span> <span class="params">(U ser user)</span> </span>&#123; </span><br><span class="line"><span class="keyword">return</span> userDao. nsertUser(user);&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="AOP名词"><a href="#AOP名词" class="headerlink" title="AOP名词"></a>AOP名词</h3><ol>
+<li>连接点（join point ）： 对应的是具体被拦截的对象，因为 Spring 只能支持方法 所以被拦截<br>的对象往往就是指特定的方法，例如，我们前面提到的 Hello Serviceimp sayHello 方法就<br> 是个连接点， AOP 将通过动态代理技术 它织入对应的流程中</li>
+<li>切，点（ point cut ）：有时候，我 的切面不单单应用于单个方法，也可能是多个类的不同方<br> 法，这时，可以通过正则式和指示器的规则去定义，从而适配连接点 切点就是提供这样一<br> 个功能的概念</li>
+<li>通知（ advice ）： 就是按照约定的流程下的方法，分为前置通知（ befor advice ）、后置通知（ after<br>   advice ）、环绕通知 around advice 事后返回通知（ afterRetuming advice ）和异常通知<br>  (  after Throwing advice ），它会根据约定织入流程中，需要弄明白它 在流程中的顺序和运行<br>  条件                                                              </li>
+<li>目标对 target ）：即被代理对象，例如，约定编程中的 HelloServicelmpl 实例就是 个目<pre><code>标对象，它被代理了。</code></pre></li>
+<li>引入（ introduction ）： 是指引入新的类和其方法 增强现有 Bean 的功</li>
+<li>织入 weaving ）：它是 个通过动态代理技术，为原有服务对象生成代理对 然后将与切<pre><code>点定义匹配的连接点拦 ，并按约定将各类通知织入约定流程的过</code></pre></li>
+<li>切面（ aspect ）：是 个可以定义切点、各类通知和引入的内 SpringAOP 将通过它的信息<pre><code>来增强 Bea 的功能或者将对应的方法织入流程</code></pre><h3 id="spring-APO-流程约定"><a href="#spring-APO-流程约定" class="headerlink" title="spring APO 流程约定"></a>spring APO 流程约定</h3>通过动态代理对象织入界面&lt;———-通过连接点&lt;———–(前置通知———环绕通知——————&gt;后置通知————–是否异常来 异常通知和 返回通知)</li>
+</ol>
+<h1 id="AOP开发"><a href="#AOP开发" class="headerlink" title="AOP开发"></a>AOP开发</h1><ol>
+<li>确定连接点</li>
+<li>开发切面</li>
+<li>切点定义</li>
+<li>测试AOP</li>
+<li>环绕通知</li>
+<li>引入</li>
+<li>通知获取参数</li>
+<li>织入<h2 id="确定连接点"><a href="#确定连接点" class="headerlink" title="确定连接点"></a>确定连接点</h2>确定连接点（spring中什么类的什么方法）<br>确定一个userservice 接口 有一个printuser方法<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.springboot.chapter4.aspect.service</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">userservice</span></span>&#123;    <span class="comment">//用户服务接口</span></span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printuser</span><span class="params">(User user)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">pachage com.springboot.chapter4.aspect.service.impl</span><br><span class="line"><span class="meta">@service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">userserviceimpl</span> <span class="title">implement</span> <span class="title">userservice</span></span>&#123;</span><br><span class="line">  <span class="meta">@override</span> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printuser</span><span class="params">(User user)</span></span>&#123;</span><br><span class="line">   <span class="keyword">if</span>(user == unll)&#123;</span><br><span class="line">   <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"检查用户阐述是否为空。。。。"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    System out print =(<span class="string">"id=” + use r . get I d () ) ; </span></span><br><span class="line"><span class="string">    System . out . print (” \ tus ername =” +user. getUsername()) ; </span></span><br><span class="line"><span class="string">    System . out . println (” \ tnote =” + user.getNote ());</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+下面将printuser 方法没连接点 进行AOP编程<h2 id="开发切面"><a href="#开发切面" class="headerlink" title="开发切面"></a>开发切面</h2>有了连接点，还需要切面，通过它可以藐视AOP其他的信息，用以描述流程的织入。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义切面</span></span><br><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyAspect</span></span>&#123;</span><br><span class="line">      <span class="meta">@Before</span>(<span class="string">"execution(* com.springboot.chapter4.aspect.service.impl.userserviceimpl.printUser(..))"</span>)</span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">before</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println (<span class="string">"before . .... .”) ;</span></span><br><span class="line"><span class="string">        &#125;</span></span><br><span class="line"><span class="string">      @After("</span>execution(* com.springboot.chapter4.aspect.service.impl.userserviceimpl.printUser(..))<span class="string">")</span></span><br><span class="line"><span class="string">       public void After()&#123;</span></span><br><span class="line"><span class="string">        System.ou  t.println ("</span>After .... .”) ;</span><br><span class="line">        &#125;</span><br><span class="line">      <span class="meta">@AfterReturning</span>(<span class="string">"execution(* com.springboot.chapter4.aspect.service.impl.userserviceimpl.printUser(..))"</span>)</span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">AfterReturning</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println (<span class="string">"AfterReturning.... .”) ;</span></span><br><span class="line"><span class="string">        &#125;</span></span><br><span class="line"><span class="string">      @AfterThrowing("</span>execution(* com.springboot.chapter4.aspect.service.impl.userserviceimpl.printUser(..))<span class="string">")</span></span><br><span class="line"><span class="string">       public void AfterThrowing()&#123;</span></span><br><span class="line"><span class="string">        System.out.println ("</span>AfterThrowing.... .”) ;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+在spring中@Aspect是切面声明的，当为注解时：spring就直达为切面，<br>@Before@After@AfterReturning@AfterThrowing定义流程的方法，然后将其织入预订的流程<br>（这里没有配置内容，里面的正则式， 没有环绕通知的内容）<br>正则式：execution(* com.springboot.chapter4.aspect.service.impl.userserviceimpl.printUser(..))<h2 id="切点定义"><a href="#切点定义" class="headerlink" title="切点定义"></a>切点定义</h2>@Before@After@AfterReturning@AfterThrowing 还会定义一个正则式（ 来定义什么时候启动AOP，不是所有的功能需要启动AOPspring会通过正则式来匹配 去确定对于的方法 启动AOp）<br>切点的作用就是想spring描述那些类的那些方法启动AOP编程<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义切点</span></span><br><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyAspect</span></span>&#123;</span><br><span class="line"><span class="meta">@Pointcut</span>((<span class="string">"execution(* com.springboot.chapter4.aspect.service.impl.userserviceimpl.printUser(..))"</span>))</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pointcut</span><span class="params">()</span></span>&#123;</span><br><span class="line">&#125;</span><br><span class="line">      <span class="meta">@Before</span>(<span class="string">"pointcut()"</span>)</span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">before</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println (<span class="string">"before . .... .”) ;</span></span><br><span class="line"><span class="string">        &#125;</span></span><br><span class="line"><span class="string">      @After("</span>pointcut()<span class="string">")</span></span><br><span class="line"><span class="string">       public void After()&#123;</span></span><br><span class="line"><span class="string">        System.ou  t.println ("</span>After .... .”) ;</span><br><span class="line">        &#125;</span><br><span class="line">      <span class="meta">@AfterReturning</span>(<span class="string">"pointcut()"</span>)</span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">AfterReturning</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println (<span class="string">"AfterReturning.... .”) ;</span></span><br><span class="line"><span class="string">        &#125;</span></span><br><span class="line"><span class="string">      @AfterThrowing("</span>pointcut()<span class="string">")</span></span><br><span class="line"><span class="string">       public void AfterThrowing()&#123;</span></span><br><span class="line"><span class="string">        System.out.println ("</span>AfterThrowing.... .”) ;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+@pointcut就是切点：execution(* com.springboot.chapter4.aspect.service.impl.userserviceimpl.printUser(..))</li>
+<li>execution 表示在执行的时候 拦截里面的正则式的方法</li>
+<li>*表示返回的类型</li>
+<li>com.springboot.chapter4.aspect.service.impl.userserviceimpl.对象的全限定名称</li>
+<li>printuser 时方法</li>
+<li>（。。）表示仍以参数进行匹配</li>
+</ol>
+<h2 id="测试AOP"><a href="#测试AOP" class="headerlink" title="测试AOP"></a>测试AOP</h2><p>测试AOP需要一个web开发环境 开发一个用户控制器usercontroller</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@controller</span>  <span class="comment">//定义控制器</span></span><br><span class="line"><span class="meta">@requestmapping</span>(<span class="string">"/user"</span>) <span class="comment">//定义路径</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">usercontroller</span></span>&#123;</span><br><span class="line"><span class="meta">@autowired</span> <span class="comment">//注入用户服务</span></span><br><span class="line"><span class="keyword">private</span>  userverice userservice=unll;</span><br><span class="line"><span class="meta">@requsermapping</span>(<span class="string">"/print"</span>)<span class="comment">// 定义请求</span></span><br><span class="line"><span class="meta">@responsebody</span> <span class="comment">//转换为JSON</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> User <span class="title">printUser</span> <span class="params">(Long id, String userName, String note)</span> </span>&#123; </span><br><span class="line">User user= <span class="keyword">new</span> User(); </span><br><span class="line">user . setid (id) ; </span><br><span class="line">user.setUsername (u serName) ; </span><br><span class="line">user .setNote(note) ; </span><br><span class="line"><span class="function">userService <span class="title">printUser</span><span class="params">(user)</span></span>;<span class="comment">// user为空 者实现afterthrowing</span></span><br><span class="line">retuen user <span class="comment">//加入端点</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过自动注入userservice服务接口， 然后使它进行用户信息的打印， 因为方法标注了@responsebody springmvc会将转换成JSON响应请求。<br>这里的userservice 实现了类满足切点的定义，SOP会织入戚流程中</p>
+<p>spring boot 配置启动文件</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span>(scanBasePackage=&#123;<span class="string">"com.spring.boot.chapter.aspect"</span>&#125;)<span class="comment">//指定扫描包</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Chapter</span> <span class="title">Application</span></span>&#123;</span><br><span class="line"><span class="meta">@Bean</span>(name=<span class="string">"myaspect"</span>)</span><br><span class="line"><span class="function">buplic myaspect <span class="title">initmyaspect</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="function">retuen new <span class="title">myaspect</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(string[] args)</span></span>&#123; <span class="comment">// 启动切面</span></span><br><span class="line">springapplication.run(chapterapplication<span class="class">.<span class="keyword">class</span> , <span class="title">args</span>)</span></span><br><span class="line"><span class="class">&#125;</span></span><br><span class="line"><span class="class">&#125;</span></span><br></pre></td></tr></table></figure>
 
-        <div class="article-info info-on-right">
-          
-          
+<p>无论是否发生异常，后置通知（ after ）都会被流程执行 为发生了异常，按照约定 异常通知（ afterThrowing ）会被触发 返回通知（ afterReturning） 不会被触发。 这就是spring aop的约定流程</p>
+<h2 id="环绕通知"><a href="#环绕通知" class="headerlink" title="环绕通知"></a>环绕通知</h2><p>环绕通知是一个取代原有目标对象方法的通知</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Around</span> (”pointCut () ” ) </span><br><span class="line"><span class="function"><span class="keyword">public</span> voi d ar <span class="title">ound</span> <span class="params">(ProceedingJoinPoint jp)</span> <span class="keyword">throws</span> Throwable </span>&#123; </span><br><span class="line">System . o ut.<span class="function">pr <span class="keyword">int</span> <span class="title">ln</span> <span class="params">(” around b efore . .....”)</span></span>; <span class="comment">//回调原有目标的方法</span></span><br><span class="line">Jp . proceed() ; </span><br><span class="line">System . out . println ( <span class="string">" around after . . . . ” ); </span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">``` </span></span><br><span class="line"><span class="string">proceed() 通过此方法来回调目标对象的方法。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">## 引入</span></span><br><span class="line"><span class="string">当类没有某些功能，可以为此接口引入一个新的接口：加强类的功能</span></span><br><span class="line"><span class="string">如：加入测试功能</span></span><br><span class="line"><span class="string">```java</span></span><br><span class="line"><span class="string">public interface uservalidator&#123;</span></span><br><span class="line"><span class="string">public boolean colidate()</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//实现测试类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span>  <span class="title">usercaliadatorimpl</span> <span class="keyword">implements</span> <span class="title">uservalidator</span></span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span>  <span class="keyword">boolean</span> <span class="title">validate</span><span class="params">(User user)</span></span>&#123;</span><br><span class="line">          system.out.println(("引入接口"+uservalidator.class.getsimplename()):</span><br><span class="line">            retuen  user!=unll;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在切面代码 加入</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">。。。。。。</span><br><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="keyword">public</span> classMyAspect&#123;</span><br><span class="line">  <span class="meta">@DeclareParents</span>( value= <span class="string">"com.springboot.chapter4.aspect.service.impl.UserServicempl ＋”，defaultimpl=UserValidator mpl.class)</span></span><br><span class="line"><span class="string">public UserValidator userValidator;</span></span><br><span class="line"><span class="string">&#125;  </span></span><br><span class="line"><span class="string">。。。。。。</span></span><br></pre></td></tr></table></figure>
+<p>＠DeclarePaents它是来引入 争强服务的 有2个配置属性 value和defaultimpl  第一个来增强服务  第二个来验证方法</p>
+<p>让通过强制将userservice 对象强制转换成uservalidator来实现方法<br>UserValidator userValidater = (UserValidator)userService</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">／／定义请求</span><br><span class="line"><span class="meta">@RequestMapping</span> (vp)</span><br><span class="line">／／返回 JSON</span><br><span class="line"><span class="meta">@ResponeBody</span> </span><br><span class="line"><span class="function"><span class="keyword">public</span> User <span class="title">validateAndPrint</span><span class="params">(Long id String userName , String note)</span> </span>&#123; </span><br><span class="line">User user= <span class="keyword">new</span> User() ; </span><br><span class="line">user .setid (id); </span><br><span class="line"><span class="function">user <span class="title">setUsername</span><span class="params">(userName)</span></span>; </span><br><span class="line">user . setNote (note ); </span><br><span class="line">／／ 强制转换</span><br><span class="line">UserValidator userVal dater = (UserValidat r)userService</span><br><span class="line">／／验证用户是否为空</span><br><span class="line"><span class="keyword">if</span> (userValidator.validate(user) ) &#123; </span><br><span class="line">userService . printUser(user) ; </span><br><span class="line"><span class="keyword">return</span> user;</span><br></pre></td></tr></table></figure>
+<p>原理时在new代理对象时，spring将2个对象的接口床底进去，让代理对象下挂这2个接口</p>
+<h2 id="通知获取参数"><a href="#通知获取参数" class="headerlink" title="通知获取参数"></a>通知获取参数</h2><p>在传递参数通知通过正则式<br>@Before (” pointCut () &amp;&amp; args(user)”)<br>public roid beforeParam (Join Point int User user) {<br>Object[] args = point.getArgs ( ) ;<br>System . out.println (”before ….. . ”）<br>}</p>
+<h2 id="织入"><a href="#织入" class="headerlink" title="织入"></a>织入</h2><p>织入是一个生成动态代理对象并且将切面和目标对象方法编织成为约定的过程</p>
+<p>Sprin 采用了 JDK CGLIB 对于 JDK 而言，它是要求被代理的目标对象必须<br>拥有接口 而对于 CGLIB 不做要求。因 在默认的情况下 Sprin 会按照这样的一条规则处理，<br>即当你需要使用 AOP 的类拥有接口时 它会 JDK 动态代理运行，否则以 CGLIB 运行<br>不用接口：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserServiceirnpl</span></span>&#123; </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printUser</span> <span class="params">(User user)</span> </span>&#123; </span><br><span class="line"><span class="keyword">if</span> (user == <span class="keyword">null</span>) &#123; </span><br><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> RuntirneExcept on 检查用户参数是否为空 ．．．．</span><br><span class="line">System.out . print (” id =” + user. <span class="function">get <span class="title">Id</span><span class="params">()</span> ) </span>; </span><br><span class="line">System.out.print (” \ tuse rnarne = <span class="string">" + user.getUsernarne()) ; </span></span><br><span class="line"><span class="string">Systern . out . println (” \ tnot e =”+ user . getNote()) ;</span></span><br><span class="line"><span class="string">&#125;&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">／／定义控制器</span><br><span class="line"><span class="meta">@Conroller</span> </span><br><span class="line">／／定义类请求路径</span><br><span class="line"><span class="meta">@RequestMapping</span> (” / user <span class="string">" ) </span></span><br><span class="line"><span class="string">public class UserController &#123; </span></span><br><span class="line"><span class="string">／／使用非接口注入</span></span><br><span class="line"><span class="string">@Au tow red</span></span><br><span class="line"><span class="string">private UserServiceimpl userService = null ; </span></span><br><span class="line"><span class="string">／／定义请求</span></span><br><span class="line"><span class="string">RequestMapping pri nt</span></span><br><span class="line"><span class="string">／／返回 JSON</span></span><br><span class="line"><span class="string">@ResponseBody </span></span><br><span class="line"><span class="string">public User printUser (Long id, String userNarne , String note) &#123; </span></span><br><span class="line"><span class="string">User user = new User() ; </span></span><br><span class="line"><span class="string">user . set Id (id) ; </span></span><br><span class="line"><span class="string">user . setUsernarne(userNarne) ; </span></span><br><span class="line"><span class="string">user.setNo te(note ) ; </span></span><br><span class="line"><span class="string">userService . printUser(user)</span></span><br><span class="line"><span class="string">retuen user//加入断点</span></span><br><span class="line"><span class="string">&#125;&#125;</span></span><br></pre></td></tr></table></figure>
 
+
+
+
+
+
+
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/03/27/AOP/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/21/SpringBoot/" class="archive-article-date">
-  	<time datetime="2020-03-21T07:08:38.457Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-21</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/03/21/SpringBoot/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">SpringBoot</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/21/SpringBoot/">SpringBoot</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/10/java%E9%9D%A2%E8%AF%95%E9%A2%98(4)/" class="archive-article-date">
-  	<time datetime="2020-03-10T12:48:41.159Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/10/java%E9%9D%A2%E8%AF%95%E9%A2%98(4)/">java面试题(4)</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/09/java%E9%9D%A2%E8%AF%95%E9%A2%98(3)/" class="archive-article-date">
-  	<time datetime="2020-03-09T01:09:00.738Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/09/java%E9%9D%A2%E8%AF%95%E9%A2%98(3)/">java面试题（3）</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C(1)/" class="archive-article-date">
-  	<time datetime="2020-03-08T08:40:50.501Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C(1)/">计算机网络（1）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/08/java%E9%9D%A2%E8%AF%95%E9%A2%98(2)/" class="archive-article-date">
-  	<time datetime="2020-03-08T08:01:28.737Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/08/java%E9%9D%A2%E8%AF%95%E9%A2%98(2)/">java面试题（2）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/07/java%E9%9D%A2%E8%AF%95%E9%A2%98(1)/" class="archive-article-date">
-  	<time datetime="2020-03-07T02:16:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/07/java%E9%9D%A2%E8%AF%95%E9%A2%98(1)/">java面试题（1）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/05/%E7%BA%BF%E7%A8%8B%E5%92%8C%E8%BF%9B%E7%A8%8B/" class="archive-article-date">
-  	<time datetime="2020-03-05T02:16:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/05/%E7%BA%BF%E7%A8%8B%E5%92%8C%E8%BF%9B%E7%A8%8B/">线程和进程</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/05/hexo%E7%94%A8%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2020-03-05T02:08:38.280Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/05/hexo%E7%94%A8%E6%B3%95/">hexo用法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -423,8 +368,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
