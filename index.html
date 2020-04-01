@@ -144,6 +144,425 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-springMVC" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/31/springMVC/">springMVC</a>
+    </h1>
+  
+
+        
+        <a href="/2020/03/31/springMVC/" class="archive-article-date">
+  	<time datetime="2020-03-31T08:29:10.437Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-31</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="spring-MVC"><a href="#spring-MVC" class="headerlink" title="spring MVC"></a>spring MVC</h1><p>用户视图（ View ）控制器返回数据模型（ Model ）、 定位视图的视图解析器（ ViewResolver） 处理适配器（ HandlerAdapter ）等<br>1.请求 ——2与业务层交互 ——-3 响应请求</p>
+<h2 id="spring-MVC-流程"><a href="#spring-MVC-流程" class="headerlink" title="spring MVC 流程"></a>spring MVC 流程</h2><p>流程和组件时springMVC的核心，springMVC的流程时围绕DispatcherServlet而工作。<br>处理器映射：定位控制器响应方法<br>处理器执行链：包含处理器及其拦截器<br>视图：将数据模型血染展示<br>处理器适配器：运行处理器<br>模型与视图：通过它获取视图和数据模型<br>开发控制器（controller）：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">@controller</span><br><span class="line">@requestMapping("/user")</span><br><span class="line">public class UserController&#123;</span><br><span class="line">           @antowired //注入用户服务类</span><br><span class="line">            private UserService userSservice =null;</span><br><span class="line">            @RequestMapping("datails")//展示用户详情</span><br><span class="line">            public Modelandview details(Long is)&#123;</span><br><span class="line">                  ／／访问模型层得到数据</span><br><span class="line">             User user= userServ i c e . getUser(id); </span><br><span class="line">                   ／／模型和视图</span><br><span class="line">             ModelAndView mv = ne w delAnd Tiew (); </span><br><span class="line">                  ／／定义模型视图</span><br><span class="line">              mv . setViewName (” user/de tails ” ); </span><br><span class="line">                  ／／加入数据模型</span><br><span class="line">               mv.addObject (” user”, user) ; </span><br><span class="line">                 ／／返回模型和视图</span><br><span class="line">                return mv ;</span><br><span class="line">         &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>@controller表明是一个控制器<br>@RequserMapping时表示请求路径的控制器的映射方法 他会在web服务器启动springmvc时 被扫描到handlerMappling的机制内存中，，之后在用户发起请求被 DispatcherServlet 拦截后，通过 阳和其他的条件 通过 HandlerMapper<br>机制就能找到对应的控制器（或其方法）进行响应。<br>HandlerMapping 返回的是一个HandlerExecutionChain 对象：<br>该对象包含一个一个处理器（handler），这个处理器是对控制器的包装，应为控制器方法可能存在参数，那么处理器就可以读取HTTP和上下文的相关参数，然后在传递给控制器方法。<br>在http请求中需要一个适配器去运行该对象包含 的处理器，浙江时handleradapter接口定义的实现类。<br>在处理器调用控制器时，它首先通过模型层得到数据，再放入数据模型中，最后将返回模型和<br>视图（ ModelAndView ）对象，这里控制器设置的视图名称设置为“user details ”，这样就走到了视图<br>解析器（ ViewResolver ），去解析视图逻辑名称了。<br>列入：在视图解析器（viewresolver）的自动初始化。为了定制<br>Interna!Resource View Resolver 初始化，可以在配置文件 application .properties 中进行配置<br>视图解析器定位到视图后，视图的作用是将数据模型（ Mode ）渲染，这样就能够响应用户的请<br>求。这 步就是视图将数据模型植染（ iew ）出来，用来展示给用户查看。<br>修改spring boot的启动文件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">／／定制扫描路径</span><br><span class="line">@SpringBootApplication( scanBasePackages = ” com. springboot.chapter9")</span><br><span class="line">／／扫描 MyBatis DAO 接口</span><br><span class="line">@MapperScan(basePackages = ” com.springboot.chapter9 ”)</span><br><span class="line">annotatio Class = Repository . class) </span><br><span class="line">public class Chapter9Application &#123;</span><br><span class="line">             public stat C VO main(Str ng[] args) &#123; </span><br><span class="line">             SpringApplication.run (Chapter9Application.class, args);</span><br><span class="line">&#125;&#125;</span><br></pre></td></tr></table></figure>
+<p>SpringMVC 云行的过程：</p>
+<ol>
+<li>请求</li>
+<li>HandlerMapping（注解@requestMapping提供URI和其他配置）—–handlerexecutionchain（返回包含控制器逻辑的处理器）</li>
+<li>httprequesthandleradapter（运行处理器）—4——modelandview（视图名称user/details）<br>5internalresourceviewresolver（定位视图   前缀/WEB-INF/jsp    视图名称/user/details  后最： 。jsp）<br>6 将用户模型渲染到视图展示。。。。。</li>
+</ol>
+<p>这里还有JSON视图</p>
+<h2 id="springMVC的初始化"><a href="#springMVC的初始化" class="headerlink" title="springMVC的初始化"></a>springMVC的初始化</h2><p>不再需要通过如何XML去配置spring MVC的运行环境<br>Spring Boot 中，自 定义是通过配置类 WebMvcAutoConfiguration 定义的 ，它有<br>个静态的内部 WebMvcAutoConfigurationAdapter ，通过它 Spring Boot 自动配置了 SpringMVC<br>初始化。<br>WebMvcAuto onfigurationAdapter 类中 它会读入 Spring 配置 prin MV 属性来初始<br>化对应组件 这样便能够在一定程度 自定以 。<br>1＃异步请求超时时间 单位为 秒）<br>2是否使用请求参数〔默认参数为 format ）来确定请求的媒体类型<br>3是否使用 URL 中的路径扩展来确定请求的媒体类型<br>4设置内容协商向媒体类型映射文件扩展名。例如， YML 文本／ YAML<br>5spring . mvc . view . prefix=                # Spring MVC 视图前缀<br>6spring . mvc ew.suffix=                      # Spr ng MVC 视图后缀</p>
+<h2 id="spring-MVC实例"><a href="#spring-MVC实例" class="headerlink" title="spring MVC实例"></a>spring MVC实例</h2><p>spring MVC的核心时控制器的开发。<br>第一 定义请求分发，让spring MVC能够产生handlermapping<br>第二 接收请求获取参数<br>第三 处理业务逻辑获取数据模型<br>第四 绑定视图和数据模型</p>
+<h1 id="例子：用户列表查询的界面"><a href="#例子：用户列表查询的界面" class="headerlink" title="例子：用户列表查询的界面"></a>例子：用户列表查询的界面</h1><p>1假设可以通过用户名称 和备注来查询<br>2 一开始进入页面需要载入所有 数据展示给用户查看<br>2.1 一般来说是不允许存在异步请求 ，因为异步请求会造成数据的刷新，对用户不友好<br>2.2 另一种是进入页面后的查询，这 可以考虑使用 ja 异步请求 只刷新数据而不刷新页面</p>
+<h2 id="开发控制器"><a href="#开发控制器" class="headerlink" title="开发控制器"></a>开发控制器</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span> </span><br><span class="line"><span class="meta">@RequestMapping</span> (” / user <span class="string">" ) </span></span><br><span class="line"><span class="string"> public class UserController &#123; </span></span><br><span class="line"><span class="string">                     @Autowired  //自动扫描</span></span><br><span class="line"><span class="string">                     private UserServ ce userSer rice = null ;</span></span><br><span class="line"><span class="string">@RequestMapping (” / table ” ) </span></span><br><span class="line"><span class="string">public ModelAndView table() &#123; </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">       List&lt;User&gt; userList = userService.findUsers(null , null) ;    //访问模型层得到数据</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">      ModelAndV ew rnv =new ModelAndView ();    //模型 和视图</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">      mv . setViewNarne (” user/table ” );     //定义模型视图</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">      mv. addObJect (” userList”, userList);    //加入数据模型</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">retuen  mv;     //返回模型和视图</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">@RequestMapping (” / list” ) </span></span><br><span class="line"><span class="string">@ResponseBody  </span></span><br><span class="line"><span class="string">public List&lt;User&gt; list ( </span></span><br><span class="line"><span class="string">              @RequestPararn(value = ” userNarne ”, required = false) String userNarne , </span></span><br><span class="line"><span class="string">              @RequestPararn(value = ” note ”, required = false) String note) &#123; </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">List&lt;User&gt; userList = userService.findUsers(userNarne, note) ;  //访问模型层得到数据</span></span><br><span class="line"><span class="string">return userList;</span></span><br><span class="line"><span class="string">&#125;&#125;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>这里的请求分发 交给注解@requestmapping来完成。Spring MVC 扫描机制就可以将其扫描，并且装载为 HandlerMapping ，以备后面使用</li>
+<li>@ResponseBody 是让spring MVC自导最终结果返回转换为json</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/03/31/springMVC/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Mybatis" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/31/Mybatis/">Mybatis</a>
+    </h1>
+  
+
+        
+        <a href="/2020/03/31/Mybatis/" class="archive-article-date">
+  	<time datetime="2020-03-31T01:44:00.308Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-31</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="三层架构："><a href="#三层架构：" class="headerlink" title="三层架构："></a>三层架构：</h2><p>表现层：展示数据<br>业务层：处理业务<br>持久层：与数据库交互<br>MyBatis 用于持久层与数据库交互</p>
+<h2 id="MyBatis"><a href="#MyBatis" class="headerlink" title="MyBatis"></a>MyBatis</h2><p>  基于java的持久层框架，内部封装了jdbc 。只需要sql  不需要加载驱动，创建连接，<br>实现了orm（对象关系映射）思想结果集的封装。<br>ORM：数据库表和实体机属性对于起来。<br>加入依赖：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- https:<span class="comment">//mvnrepository.com/artifact/org.mybatis/mybatis --&gt;</span></span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.mybatis&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;mybatis&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;3.5.2&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;!-- https:<span class="comment">//mvnrepository.com/artifact/mysql/mysql-connector-java --&gt;</span></span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;mysql&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;5.1.47&lt;/version&gt;</span><br><span class="line">&lt;/dependency</span><br></pre></td></tr></table></figure>
+<p>通过类来实现：<br>类要实现serializable接口：类里面 要实现getting setting  同string方法。<br>通过接口来操作数据库：及用户的持久层接口<br>在资源resource下创建 sqlmyconfig ：进行约束配置：<br>通过标签实现configuration的环境，里面有mysql的环境，配置事务类型，配置睡觉员即连接池</p>
+<p>第一：创建maven工程导入坐标<br>第二：创建实体类和dao的接口<br>第三：创建mybatis的主配置配件<br>                sqlmyconfig.xml<br>第四：创建映射文件<br>            <strong>**</strong>bao.xml<br>            com.<strong><strong>.</strong></strong>.类 （目录要在三级接口  因为 dao包也是三级接口）<br>注意：在创建类和类的xml式要保持一致<br>        持久层的操作接口名称和映射文件名为：mapper<br>        m’ybatis的映射文件位置和dao接口的包结构要相同<br>        映射配置文件的mapper标签 namespace属性值必须为dao接口的全限定类名<br>        映射配置文件的操作配置 id 属性必须式dao接口的方法名</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><ol>
+<li>读取配置文件<br>inputsteam in= resources.getresourceasstream（“sqlmapconfig.xml”）这里使用类加载器<br>2  创建sqlsessionfactory工厂<br>sqlsessionfactory builder=new  sqlsessionfactory（）  new一个对象     使用了构建者模式<br>sqlsessionfactory  factory.opensession（）； 这里是代理对象 他来实现具体的<br>3 . 使用过程产生sqlsession对象<br>sqlsession session =factory.opensession（）使用了工厂模式，来使用类，实现依赖，降低来之间的依赖关系，不需要重新编译和构建</li>
+<li>使用sqlsession创建dao接口的代理对象<br>dao   dao= session.getmapper（dao.clas） 代理模式， 关键dao接口实现类使用。不修改代码 </li>
+<li>使用代理对象来执行方法</li>
+<li>释放对象<br>session。close（）<br>in。close（）</li>
+</ol>
+<ul>
+<li>不要忘记映射配置中返回到那个类,即封装到哪里<br>可以通过注解@selcet 就用不到dao.xml配置 直接在类上加注解。。。。在sqlmeyconfiger主配置中的mapper的配置为：class<h2 id="自定义mybatis"><a href="#自定义mybatis" class="headerlink" title="自定义mybatis"></a>自定义mybatis</h2>mybatis的代理dao的方式来实现增删改：</li>
+</ul>
+<p>1.创建代理对象<br>2代理对象调用selectlist</p>
+<h2 id="sql语句"><a href="#sql语句" class="headerlink" title="sql语句"></a>sql语句</h2><p>1根据配置文件创建connection对象<br>      注册驱动，获取连接<br>2 获取与处理对象preparesatement<br>  SQL语句<br>3执行查询<br>   preparedstemtent.executequery   返回值为 resultset<br>4遍历结果集用户封装<br>  list <E> =new arraylisr()<br>  while(resulset.next()){<br>     E  element=………  用于封装<br>     list。add（element）<br>}<br>返回list。。。 </p>
+<p>其中：<br>class  resources 使用类加载器读取配置文件的类<br>class  sqlsessionfactorybuilder  用与创建sqlsessionfactory对象<br>interface  sqlsessionfactory  里面有sqlsession<br>interface  sqlsession   是数据库交互的核心类  它用于创建dao接口的代理对象<br>                                 《T》  T germapping（） 映射  创建代理对象 实现增删改方法<br>                                        .close()关闭资源<br>.putall 追加输出</p>
+<h2 id="代理对象"><a href="#代理对象" class="headerlink" title="代理对象"></a>代理对象</h2><p>根据dao接口的字节码创建dao的代理对象<br>public《T》 getmapping（class《T》）daointerfacecalss{<br>类加载器：使用用代理对象线条的类加载器<br>代理对象时现代接口：和被代理对象相同的接口<br>如何代理：他是增强的方法，来实现的。使用一个接口（         ）来显现selectlist方法</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/03/31/Mybatis/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Redis和MongDB" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/30/Redis%E5%92%8CMongDB/">Redis和MongDB</a>
+    </h1>
+  
+
+        
+        <a href="/2020/03/30/Redis%E5%92%8CMongDB/" class="archive-article-date">
+  	<time datetime="2020-03-30T08:52:36.634Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Redis-和spring-boot-结合"><a href="#Redis-和spring-boot-结合" class="headerlink" title="Redis 和spring boot 结合"></a>Redis 和spring boot 结合</h2><p>Rediss 种运行在内存的数据库，支持 种数据类型的存储 Redis 是一个开源、使用 ANSIC<br>语言编写 遵守 BSD 协议、支持网络、可基于内存亦可持久化的日志型、键值数据库，并提供多种<br>语言的 APl dis 是基于内存的，所以运行速度很快，大约是关系数据库几倍到 十倍的速度<br>Redis 是一种键值数据库 ，而且 字符串类型为中 心的， 当前它能够支持多种数据类型 包括<br>字符串、散列、列表（链表） 集合 有序集合 基数和地理位置<br>在spring boot中配置 application. properties </p>
+<ol>
+<li>在maven中增加依赖<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt; </span><br><span class="line">       &lt;groupid&gt;org spr ngfrarnework boot&lt;&#x2F;groupid&gt;</span><br><span class="line">       &lt;artifactid&gt;spring boot-starter-data- redis&lt;&#x2F;artifactid&gt; </span><br><span class="line">       &lt;exclusions&gt; </span><br><span class="line">              &lt;!一不依赖 Redis 的异步客户端 lettuce &gt;</span><br><span class="line">        &lt;exclusion&gt; </span><br><span class="line">               &lt;groupId ＞io.lettuce&lt;&#x2F;groupid&gt;</span><br><span class="line">               &lt; artifact Id&gt;lettuce core&lt;&#x2F;artifactid&gt;</span><br><span class="line">         &lt;&#x2F;exclusion&gt; </span><br><span class="line">         &lt;&#x2F;exclusions&gt; </span><br><span class="line">&lt;&#x2F;dependency&gt; </span><br><span class="line"> &lt;！一引 Redis 的客户端驱动 edis--&gt; </span><br><span class="line">&lt;dependency&gt; </span><br><span class="line">              &lt;groupid&gt;redis .cl ents &lt;&#x2F;groupid&gt;</span><br><span class="line">              &lt;artifact Id&gt;jedis&lt;&#x2F;artifactid&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
+在使用redis 会使用到驱动器 Jedis  但是spring标注为@ Deprecated<br>Spring 供了 RedisConnectionFactory 接口， 通过它可以生成一个 RedisConnection 接口 对象<br>RedisConnection 接口对象是对 Red is 底层接口的封装。<br>主要使用redistemplate来实现  她会会自动从 Red i sConnectionFactory 工厂中获取连接，然后执行对应的 Re is<br>命令，在最后还会关闭 Redis 连接。<br>RedisTemplate 中的序列化器属性<br>spring boot集成了redis（字符串，散列，列表，集合，有序集合）<h2 id="redis还支持事务，刘淑仙，lua语，发布订阅"><a href="#redis还支持事务，刘淑仙，lua语，发布订阅" class="headerlink" title="redis还支持事务，刘淑仙，lua语，发布订阅"></a>redis还支持事务，刘淑仙，lua语，发布订阅</h2><h3 id="使用redis事务"><a href="#使用redis事务" class="headerlink" title="使用redis事务"></a>使用redis事务</h3>常用的命令组合 warch。。。。multi。。。exec    使用sessioncallback接口来实现<br>watch命令———multi命令开启事务———-命令进入队列—–exec命令执行事务——（判断监控值是否变化—执行事务—-取消事务）—取消监控的键值对<h3 id="redis流水线"><a href="#redis流水线" class="headerlink" title="redis流水线"></a>redis流水线</h3>用来丢关系数据库批量发送命令<h3 id="redis发布订阅"><a href="#redis发布订阅" class="headerlink" title="redis发布订阅"></a>redis发布订阅</h3>发布订阅是消息的一种常用模式。例如，在企业分配任务之后 ，可以通过邮件、 短信或者微信<br>通知到相关的责任人，这就是 种典型的发布订阅模式。首先是 Redis 提供 个渠道，让消息能够发<br>送到这个渠道上 ，而多个系统可以监听这个渠道， 如短信、微信和邮件系统都可以监昕这个渠道，<br>当一条消息发送 渠道，渠道就会通知它的监昕者，这样短信、微信和邮件系统就能够得 这个渠<br>道给它们的消息了，这些监听者会根据自己的需要去处理这个消息，于是我们就可以得到各种各样<br>的通知了。<h3 id="使用lua脚本"><a href="#使用lua脚本" class="headerlink" title="使用lua脚本"></a>使用lua脚本</h3>为了增强 R的计算能力， Red is 2.6 版本后提供了 lua 脚本的支持，而且执行 ua 脚本在 Redis 中还具备原子<br>性，所以在需要保证数据 致性的高并发环境中 我们也可以使用 Red is ua 语言来保证数据的<br>致性 ，且 Lua 脚本具备更加强大的运算功能 在高并发需要保证数据 致性时， Lua 脚本方案比使用<br>Red is 身提供的事务要更好<br>Redis 中有两种运行 lua 的方法， 种是直接发送 ua Red is 务器去执行，另 种是先把<br>Lua 发送给 Redis, Redis 会对 Lua 脚本进行缓存，然后返回 SHA 32 位编码回来，之后只需<br>要发送 SHAl 和相关参数给 Redis 便可以执行了 这里需要解释的是为什么会存在通过 32 位编码执<br>行的方法 如果 ua 脚本很长 那么就需要通过网络传递脚本给 Redis 去执行了 ，而现实的情况是网<br>的传递速度往往跟不上 Red is 的执行速度，所以网络就会成为 Red is 执行的瓶颈 如果只是传递<br>位编码 参数，那么需要传递的消息就少 这样就可以极大地减少网络传输的内容，从而提搞系统性能。<br>为了支持 Redis Lua 脚本 Spring 提供了 RedisScript 接口。<h2 id="使用spring-缓存注解操作redis"><a href="#使用spring-缓存注解操作redis" class="headerlink" title="使用spring 缓存注解操作redis"></a>使用spring 缓存注解操作redis</h2></li>
+</ol>
+<h1 id="MongDB"><a href="#MongDB" class="headerlink" title="MongDB"></a>MongDB</h1>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/03/30/Redis%E5%92%8CMongDB/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-牛客选择" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/29/%E7%89%9B%E5%AE%A2%E9%80%89%E6%8B%A9/">牛客选择</a>
+    </h1>
+  
+
+        
+        <a href="/2020/03/29/%E7%89%9B%E5%AE%A2%E9%80%89%E6%8B%A9/" class="archive-article-date">
+  	<time datetime="2020-03-29T12:32:34.766Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="错题"><a href="#错题" class="headerlink" title="错题"></a>错题</h1><ul>
+<li>常量的定义需要初始化 例如：const char ch；错误</li>
+<li>代表以双绞线为传输介质的快速以太网的是100base-T base为基带</li>
+<li>七层协议： <pre><code>物理层：EIA/TIA-232, EIA/TIA-499, V.35, V.24, RJ45, Ethernet, 802.3, 802.5, FDDI, NRZI, NRZ, B8ZS
+数据链路层：Frame Relay, HDLC, PPP, IEEE 802.3/802.2, FDDI, ATM,  IEEE 802.5/802.2
+网络层：IP，IPX，AppleTalk DDP
+传输层：TCP，UDP，SPX
+会话层：RPC,SQL,NFS,NetBIOS,names,AppleTalk,ASP,DECnet,SCP
+表示层:TIFF,GIF,JPEG,PICT,ASCII,EBCDIC,encryption,MPEG,MIDI,HTML
+应用层：FTP,WWW,Telnet,NFS,SMTP,Gateway,SNMP</code></pre></li>
+<li>在操作系统中，引入缓冲的主要原因： <pre><code>1、改善CPU与I/O设备间速度不匹配的矛盾 
+      例如一个程序,它时而进行长时间的计算而没有输出,时而又阵发性把输出送到打印机.由于打印机的速度跟不上CPU,而使得CPU长时间的等待.如果设置了缓冲区,程序输出的数据先送到缓冲区暂存,然后由打印机慢慢地输出.这时,CPU不必等待,可以继续执行程序.实现了CPU与I/O设备之间的并行工作.事实上,凡在数据的到达速率与其离去速率不同的地方,都可设置缓冲,以缓和它们之间速度不匹配的矛盾.众所周知,通常的程序都是时而计算,时而输出的. 
+2、可以减少对CPU的中断频率，放宽对中断响应时间的限制 
+      如果I/O操作每传送一个字节就要产生一次中断,那么设置了n个字节的缓冲区后,则可以等到缓冲区满才产生中断,这样中断次数就减少到1/n,而且中断响应的时间也可以相应的放宽 
+3、提高CPU和I/O设备之间的并行性 
+      缓冲的引入可显著提高CPU和设备的并行操作程度，提高系统的吞吐量和设备的利用率 
+      根据I/O控制方式，缓冲的实现方法有两种： 
+      一种是采用专用硬件缓冲器 
+      一种是在内存划出一个具有n个单元的专用缓冲区，以便存放输入/输出的数据，内存缓冲区又称软件缓冲</code></pre></li>
+<li>P问题:  能在多项式时间内解决的问题<br> NP问题: 不能在多项式时间内解决或不确定能不能在多项式时间内解决，但 能在多项式时间验证的问题<br> NPC问题: NP完全问题， 所有NP问题在多项式时间内都能约化(Reducibility)到它的NP问题 ，即解决了此NPC问题，所有NP问题也都得到解决。<br> NP hard问题:NP难问题， 所有NP问题在多项式时间内都能约化(Reducibility)到它的问题(不一定是NP问题)。</li>
+<li>有字符序列{Q, H, C, Y, P ,A, M, S, R, D, F, X}，新序列{F, H ,C, D, P, A, M, Q, R, S, Y, X}是下列<strong><em>快速排序</em></strong>排序算法一趟扫描的结果</li>
+<li>请求页式存储管理： 采用动态从定位 内存动态分配</li>
+<li>java数组：<ol>
+<li>数组是一个对象，不同类型的数组具有不同的类</li>
+<li>数组是一个连续的存储结构</li>
+<li>可以二维数组，且可以有多维数组，都是在java中合法的</li>
+<li>两个数组用equals方法比较时，会逐个便利其中的元素，对每个元素进行比较（感觉正确）</li>
+</ol>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/03/29/%E7%89%9B%E5%AE%A2%E9%80%89%E6%8B%A9/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-算法思路" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/29/%E7%AE%97%E6%B3%95%E6%80%9D%E8%B7%AF/">算法思路</a>
+    </h1>
+  
+
+        
+        <a href="/2020/03/29/%E7%AE%97%E6%B3%95%E6%80%9D%E8%B7%AF/" class="archive-article-date">
+  	<time datetime="2020-03-29T12:32:34.766Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="两数之和"><a href="#两数之和" class="headerlink" title="两数之和"></a>两数之和</h2><p>给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。<br>你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。<br>示例:</p>
+<p>给定 nums = [2, 7, 11, 15], target = 9<br>因为 nums[0] + nums[1] = 2 + 7 = 9<br>所以返回 [0, 1]</p>
+<ol>
+<li>遍历数组 nums，i 为当前下标，每个值都判断map中是否存在 target-nums[i] 的 key 值</li>
+<li>如果存在则找到了两个值，如果不存在则将当前的 (nums[i],i) 存入 map 中，继续遍历直到找到为止<br>时间复杂度O（n）<br><img src="/img/%E6%97%A0%E6%A0%87%E9%A2%98.png" alt=""><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] twoSum(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target) &#123;</span><br><span class="line">    Map&lt;Integer, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt; nums.length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span>(map.containsKey(target - nums[i])) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[] &#123;map.get(target-nums[i]),i&#125;;</span><br><span class="line">        &#125;</span><br><span class="line">        map.put(nums[i], i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="三数之和"><a href="#三数之和" class="headerlink" title="三数之和"></a>三数之和</h2>给你一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？请你找出所有满足条件且不重复的三元组。<br>注意：答案中不可以包含重复的三元组。<br>例子：</li>
+</ol>
+<p>给定数组 nums = [-1, 0, 1, 2, -1, -4]，<br>满足要求的三元组集合为：<br>[<br>  [-1, 0, 1],<br>  [-1, -1, 2]<br>]<br>首先对数组进行排序，排序后固定一个数 nums[i]，再使用左右指针指向 nums[i]后面的两端，数字分别为 nums[L]和 nums[R]，计算三个数的和 sum 判断是否满足为 0，满足则添加进结果集<br>如果 nums[i]大于 000，则三数之和必然无法等于 0，结束循环<br>如果 nums[i] == nums[i−1]，则说明该数字重复，会导致结果重复，所以应该跳过<br>当 sum == 0 时，nums[L] == nums[L+1] 则会导致结果重复，应该跳过，L++<br>当 sum == 0 时，nums[R] == nums[R−1]则会导致结果重复，应该跳过，R−−<br>时间复杂度：)O(n^2))，nnn 为数组长度<br>  <img src="/img/SN13%YOD5F%5D@2%60GDHJ" alt="">)5Q51.png)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> List&lt;List&lt;Integer&gt;&gt; threeSum(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; ans = <span class="keyword">new</span> ArrayList();</span><br><span class="line">        <span class="keyword">int</span> len = nums.length;</span><br><span class="line">        <span class="keyword">if</span>(nums == <span class="keyword">null</span> || len &lt; <span class="number">3</span>) <span class="keyword">return</span> ans;</span><br><span class="line">        Arrays.sort(nums); <span class="comment">// 排序</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len ; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i] &gt; <span class="number">0</span>) <span class="keyword">break</span>; <span class="comment">// 如果当前数字大于0，则三数之和一定大于0，所以结束循环</span></span><br><span class="line">            <span class="keyword">if</span>(i &gt; <span class="number">0</span> &amp;&amp; nums[i] == nums[i-<span class="number">1</span>]) <span class="keyword">continue</span>; <span class="comment">// 去重</span></span><br><span class="line">            <span class="keyword">int</span> L = i+<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">int</span> R = len-<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">while</span>(L &lt; R)&#123;</span><br><span class="line">                <span class="keyword">int</span> sum = nums[i] + nums[L] + nums[R];</span><br><span class="line">                <span class="keyword">if</span>(sum == <span class="number">0</span>)&#123;</span><br><span class="line">                    ans.add(Arrays.asList(nums[i],nums[L],nums[R]));</span><br><span class="line">                    <span class="keyword">while</span> (L&lt;R &amp;&amp; nums[L] == nums[L+<span class="number">1</span>]) L++; <span class="comment">// 去重</span></span><br><span class="line">                    <span class="keyword">while</span> (L&lt;R &amp;&amp; nums[R] == nums[R-<span class="number">1</span>]) R--; <span class="comment">// 去重</span></span><br><span class="line">                    L++;</span><br><span class="line">                    R--;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (sum &lt; <span class="number">0</span>) L++;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (sum &gt; <span class="number">0</span>) R--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;        </span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/03/29/%E7%AE%97%E6%B3%95%E6%80%9D%E8%B7%AF/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-访问数据库" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -493,344 +912,10 @@
 
 
   
-    <article id="post-计算机网络(1)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C(1)/">计算机网络（1）</a>
-    </h1>
-  
-
-        
-        <a href="/2020/03/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C(1)/" class="archive-article-date">
-  	<time datetime="2020-03-08T08:40:50.501Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="TCP和UDO的区别"><a href="#TCP和UDO的区别" class="headerlink" title="TCP和UDO的区别"></a>TCP和UDO的区别</h2><p>tcp 和 udp 是 OSI 模型中的运输层中的协议。tcp 提供可靠的通信传输，而 udp 则常被用于让广播和细节控制交给应用的通信传输。<br>两者的区别大致如下：<br>tcp 面向连接，udp 面向非连接即发送数据前不需要建立链接；<br>tcp 提供可靠的服务（数据传输），udp 无法保证；<br>tcp 面向字节流，udp 面向报文；<br>tcp 数据传输慢，udp 数据传输快；</p>
-<h2 id="TCP的三次握手"><a href="#TCP的三次握手" class="headerlink" title="TCP的三次握手"></a>TCP的三次握手</h2><p>  <img src="/img/TCP.png" alt=""></p>
-        
-          <a class="article-more-a" href="/2020/03/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C(1)/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C(1)/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-java面试题(2)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/08/java%E9%9D%A2%E8%AF%95%E9%A2%98(2)/">java面试题（2）</a>
-    </h1>
-  
-
-        
-        <a href="/2020/03/08/java%E9%9D%A2%E8%AF%95%E9%A2%98(2)/" class="archive-article-date">
-  	<time datetime="2020-03-08T08:01:28.737Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="java的容器模块"><a href="#java的容器模块" class="headerlink" title="java的容器模块"></a>java的容器模块</h1><h2 id="Java-容器都有哪些？"><a href="#Java-容器都有哪些？" class="headerlink" title=".Java 容器都有哪些？"></a>.Java 容器都有哪些？</h2><p>Java 容器分为 Collection 和 Map 两大类，其下又有很多子类，如下所示：<br>Collection     List   ArrayList  LinkedList  Vector  Stack<br>Set  HashSet  LinkedHashSet  TreeSet  Map  HashMap<br>LinkedHashMap  TreeMap  ConcurrentHashMap  Hashtable</p>
-<h2 id="Collection-和-Collections-有什么区别？"><a href="#Collection-和-Collections-有什么区别？" class="headerlink" title="Collection 和 Collections 有什么区别？"></a>Collection 和 Collections 有什么区别？</h2><p>Collection 是一个集合接口，它提供了对集合对象进行基本操作的通用接口方法，所有集合都是它的子类，比如 List、Set 等。<br>Collections 是一个包装类，包含了很多静态方法，不能被实例化，就像一个工具类，比如提供的排序方法：Collections. sort(list)。 </p>
-        
-          <a class="article-more-a" href="/2020/03/08/java%E9%9D%A2%E8%AF%95%E9%A2%98(2)/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/08/java%E9%9D%A2%E8%AF%95%E9%A2%98(2)/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-java面试题(1)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/07/java%E9%9D%A2%E8%AF%95%E9%A2%98(1)/">java面试题（1）</a>
-    </h1>
-  
-
-        
-        <a href="/2020/03/07/java%E9%9D%A2%E8%AF%95%E9%A2%98(1)/" class="archive-article-date">
-  	<time datetime="2020-03-07T02:16:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <hr>
-<h2 id="JDK-和-JRE-有什么区别？"><a href="#JDK-和-JRE-有什么区别？" class="headerlink" title="JDK 和 JRE 有什么区别？"></a>JDK 和 JRE 有什么区别？</h2><p>JDK：Java Development Kit 的简称，Java 开发工具包，提供了 Java 的开发环境和运行环境。<br>JRE：Java Runtime Environment 的简称，Java 运行环境，为 Java 的运行提供了所需环境。<br>具体来说 JDK 其实包含了 JRE，同时还包含了编译 Java 源码的编译器 Javac，还包含了很多 Java 程序调试和分析的工具。简单来说：如果你需要运行 Java 程序，只需安装 JRE 就可以了，如果你需要编写 Java 程序，需要安装 JDK。</p>
-<hr>
-<h2 id="和-equals-的区别是什么？"><a href="#和-equals-的区别是什么？" class="headerlink" title="== 和 equals 的区别是什么？"></a>== 和 equals 的区别是什么？</h2><p>== 解读:<br>对于基本类型和引用类型 == 的作用效果是不同的，如下所示：<br>基本类型：比较的是值是否相同；<br>引用类型：比较的是引用是否相同；<br>代码示例：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">String x = <span class="string">"string"</span>;</span><br><span class="line">String y = <span class="string">"string"</span>;</span><br><span class="line">String z = <span class="keyword">new</span> String(<span class="string">"string"</span>);</span><br><span class="line">System.out.println(x==y); <span class="comment">// true</span></span><br><span class="line">System.out.println(x==z); <span class="comment">// false</span></span><br><span class="line">System.out.println(x.equals(y)); <span class="comment">// true</span></span><br><span class="line">System.out.println(x.equals(z)); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2020/03/07/java%E9%9D%A2%E8%AF%95%E9%A2%98(1)/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/07/java%E9%9D%A2%E8%AF%95%E9%A2%98(1)/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-线程和进程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/05/%E7%BA%BF%E7%A8%8B%E5%92%8C%E8%BF%9B%E7%A8%8B/">线程和进程</a>
-    </h1>
-  
-
-        
-        <a href="/2020/03/05/%E7%BA%BF%E7%A8%8B%E5%92%8C%E8%BF%9B%E7%A8%8B/" class="archive-article-date">
-  	<time datetime="2020-03-05T02:16:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <hr>
-<h2 id="进程和线程"><a href="#进程和线程" class="headerlink" title="进程和线程"></a>进程和线程</h2><h2 id="进程和线程的由来"><a href="#进程和线程的由来" class="headerlink" title="进程和线程的由来"></a>进程和线程的由来</h2><ul>
-<li>串行 ：cpu初期串行执行任务。需要长期等待用户的输入。</li>
-<li>批处理：预先将用户的指令形成清单，批量串行执行，无法并发处理。</li>
-<li>进程：进程独占内存空间，保持各自的运行状态，可以相互切换，为并发处理成为可能。</li>
-<li>线程：共享进程的内存空间，线程相互间切换快捷。使进程的子任务并发处理。</li>
-<li>
-        
-          <a class="article-more-a" href="/2020/03/05/%E7%BA%BF%E7%A8%8B%E5%92%8C%E8%BF%9B%E7%A8%8B/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/05/%E7%BA%BF%E7%A8%8B%E5%92%8C%E8%BF%9B%E7%A8%8B/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hexo用法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/05/hexo%E7%94%A8%E6%B3%95/">hexo用法</a>
-    </h1>
-  
-
-        
-        <a href="/2020/03/05/hexo%E7%94%A8%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2020-03-05T02:08:38.280Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2020/03/05/hexo%E7%94%A8%E6%B3%95/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/05/hexo%E7%94%A8%E6%B3%95/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+    </nav>
   
 
 

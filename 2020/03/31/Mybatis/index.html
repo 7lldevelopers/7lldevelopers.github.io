@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | 7大亮</title>
+  <title>Mybatis | 7大亮</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="7大亮">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="三层架构：表现层：展示数据业务层：处理业务持久层：与数据库交互MyBatis 用于持久层与数据库交互 MyBatis  基于java的持久层框架，内部封装了jdbc 。只需要sql  不需要加载驱动，创建连接，实现了orm（对象关系映射）思想结果集的封装。ORM：数据库表和实体机属性对于起来。加入依赖： 123456789101112&lt;!-- https:&#x2F;&#x2F;mvnrepository.co">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mybatis">
+<meta property="og:url" content="http://yoursite.com/2020/03/31/Mybatis/index.html">
 <meta property="og:site_name" content="7大亮">
+<meta property="og:description" content="三层架构：表现层：展示数据业务层：处理业务持久层：与数据库交互MyBatis 用于持久层与数据库交互 MyBatis  基于java的持久层框架，内部封装了jdbc 。只需要sql  不需要加载驱动，创建连接，实现了orm（对象关系映射）思想结果集的封装。ORM：数据库表和实体机属性对于起来。加入依赖： 123456789101112&lt;!-- https:&#x2F;&#x2F;mvnrepository.co">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-03-31T01:44:00.308Z">
+<meta property="article:modified_time" content="2020-04-01T10:36:01.137Z">
 <meta property="article:author" content="7LL">
 <meta name="twitter:card" content="summary">
   
@@ -142,295 +146,160 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Mybatis" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/31/springMVC/" class="archive-article-date">
-  	<time datetime="2020-03-31T08:29:10.437Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-31</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/31/springMVC/">springMVC</a>
+    <h1 class="article-title" itemprop="name">
+      Mybatis
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/31/Mybatis/" class="archive-article-date">
+        
+        <a href="/2020/03/31/Mybatis/" class="archive-article-date">
   	<time datetime="2020-03-31T01:44:00.308Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-31</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/31/Mybatis/">Mybatis</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="三层架构："><a href="#三层架构：" class="headerlink" title="三层架构："></a>三层架构：</h2><p>表现层：展示数据<br>业务层：处理业务<br>持久层：与数据库交互<br>MyBatis 用于持久层与数据库交互</p>
+<h2 id="MyBatis"><a href="#MyBatis" class="headerlink" title="MyBatis"></a>MyBatis</h2><p>  基于java的持久层框架，内部封装了jdbc 。只需要sql  不需要加载驱动，创建连接，<br>实现了orm（对象关系映射）思想结果集的封装。<br>ORM：数据库表和实体机属性对于起来。<br>加入依赖：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- https:<span class="comment">//mvnrepository.com/artifact/org.mybatis/mybatis --&gt;</span></span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.mybatis&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;mybatis&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;3.5.2&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;!-- https:<span class="comment">//mvnrepository.com/artifact/mysql/mysql-connector-java --&gt;</span></span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;mysql&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;5.1.47&lt;/version&gt;</span><br><span class="line">&lt;/dependency</span><br></pre></td></tr></table></figure>
+<p>通过类来实现：<br>类要实现serializable接口：类里面 要实现getting setting  同string方法。<br>通过接口来操作数据库：及用户的持久层接口<br>在资源resource下创建 sqlmyconfig ：进行约束配置：<br>通过标签实现configuration的环境，里面有mysql的环境，配置事务类型，配置睡觉员即连接池</p>
+<p>第一：创建maven工程导入坐标<br>第二：创建实体类和dao的接口<br>第三：创建mybatis的主配置配件<br>                sqlmyconfig.xml<br>第四：创建映射文件<br>            <strong>**</strong>bao.xml<br>            com.<strong><strong>.</strong></strong>.类 （目录要在三级接口  因为 dao包也是三级接口）<br>注意：在创建类和类的xml式要保持一致<br>        持久层的操作接口名称和映射文件名为：mapper<br>        m’ybatis的映射文件位置和dao接口的包结构要相同<br>        映射配置文件的mapper标签 namespace属性值必须为dao接口的全限定类名<br>        映射配置文件的操作配置 id 属性必须式dao接口的方法名</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><ol>
+<li>读取配置文件<br>inputsteam in= resources.getresourceasstream（“sqlmapconfig.xml”）这里使用类加载器<br>2  创建sqlsessionfactory工厂<br>sqlsessionfactory builder=new  sqlsessionfactory（）  new一个对象     使用了构建者模式<br>sqlsessionfactory  factory.opensession（）； 这里是代理对象 他来实现具体的<br>3 . 使用过程产生sqlsession对象<br>sqlsession session =factory.opensession（）使用了工厂模式，来使用类，实现依赖，降低来之间的依赖关系，不需要重新编译和构建</li>
+<li>使用sqlsession创建dao接口的代理对象<br>dao   dao= session.getmapper（dao.clas） 代理模式， 关键dao接口实现类使用。不修改代码 </li>
+<li>使用代理对象来执行方法</li>
+<li>释放对象<br>session。close（）<br>in。close（）</li>
+</ol>
+<ul>
+<li>不要忘记映射配置中返回到那个类,即封装到哪里<br>可以通过注解@selcet 就用不到dao.xml配置 直接在类上加注解。。。。在sqlmeyconfiger主配置中的mapper的配置为：class<h2 id="自定义mybatis"><a href="#自定义mybatis" class="headerlink" title="自定义mybatis"></a>自定义mybatis</h2>mybatis的代理dao的方式来实现增删改：</li>
+</ul>
+<p>1.创建代理对象<br>2代理对象调用selectlist</p>
+<h2 id="sql语句"><a href="#sql语句" class="headerlink" title="sql语句"></a>sql语句</h2><p>1根据配置文件创建connection对象<br>      注册驱动，获取连接<br>2 获取与处理对象preparesatement<br>  SQL语句<br>3执行查询<br>   preparedstemtent.executequery   返回值为 resultset<br>4遍历结果集用户封装<br>  list <E> =new arraylisr()<br>  while(resulset.next()){<br>     E  element=………  用于封装<br>     list。add（element）<br>}<br>返回list。。。 </p>
+<p>其中：<br>class  resources 使用类加载器读取配置文件的类<br>class  sqlsessionfactorybuilder  用与创建sqlsessionfactory对象<br>interface  sqlsessionfactory  里面有sqlsession<br>interface  sqlsession   是数据库交互的核心类  它用于创建dao接口的代理对象<br>                                 《T》  T germapping（） 映射  创建代理对象 实现增删改方法<br>                                        .close()关闭资源<br>.putall 追加输出</p>
+<h2 id="代理对象"><a href="#代理对象" class="headerlink" title="代理对象"></a>代理对象</h2><p>根据dao接口的字节码创建dao的代理对象<br>public《T》 getmapping（class《T》）daointerfacecalss{<br>类加载器：使用用代理对象线条的类加载器<br>代理对象时现代接口：和被代理对象相同的接口<br>如何代理：他是增强的方法，来实现的。使用一个接口（         ）来显现selectlist方法</p>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/03/31/Mybatis/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/30/Redis%E5%92%8CMongDB/" class="archive-article-date">
-  	<time datetime="2020-03-30T08:52:36.634Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-30</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2020/03/31/springMVC/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          springMVC
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/03/30/Redis%E5%92%8CMongDB/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Redis和MongDB</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/30/Redis%E5%92%8CMongDB/">Redis和MongDB</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/29/%E7%89%9B%E5%AE%A2%E9%80%89%E6%8B%A9/" class="archive-article-date">
-  	<time datetime="2020-03-29T12:32:34.766Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/29/%E7%89%9B%E5%AE%A2%E9%80%89%E6%8B%A9/">牛客选择</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/29/%E7%AE%97%E6%B3%95%E6%80%9D%E8%B7%AF/" class="archive-article-date">
-  	<time datetime="2020-03-29T12:32:34.766Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/29/%E7%AE%97%E6%B3%95%E6%80%9D%E8%B7%AF/">算法思路</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/27/%E8%AE%BF%E9%97%AE%E6%95%B0%E6%8D%AE%E5%BA%93/" class="archive-article-date">
-  	<time datetime="2020-03-27T08:21:37.128Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/27/%E8%AE%BF%E9%97%AE%E6%95%B0%E6%8D%AE%E5%BA%93/">访问数据库</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/27/AOP/" class="archive-article-date">
-  	<time datetime="2020-03-27T01:16:57.902Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/27/AOP/">AOP</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/21/SpringBoot/" class="archive-article-date">
-  	<time datetime="2020-03-21T07:08:38.457Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/21/SpringBoot/">SpringBoot</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/10/java%E9%9D%A2%E8%AF%95%E9%A2%98(4)/" class="archive-article-date">
-  	<time datetime="2020-03-10T12:48:41.159Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/10/java%E9%9D%A2%E8%AF%95%E9%A2%98(4)/">java面试题(4)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/09/java%E9%9D%A2%E8%AF%95%E9%A2%98(3)/" class="archive-article-date">
-  	<time datetime="2020-03-09T01:09:00.738Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/09/java%E9%9D%A2%E8%AF%95%E9%A2%98(3)/">java面试题（3）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">Next &amp;raquo;</a>
-    </nav>
   
 
 
@@ -454,8 +323,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
