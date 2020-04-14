@@ -16,7 +16,7 @@
 <meta property="og:description" content="三层架构：表现层：展示数据业务层：处理业务持久层：与数据库交互MyBatis 用于持久层与数据库交互 MyBatis  基于java的持久层框架，内部封装了jdbc 。只需要sql  不需要加载驱动，创建连接，实现了orm（对象关系映射）思想结果集的封装。ORM：数据库表和实体机属性对于起来。加入依赖： 123456789101112&lt;!-- https:&#x2F;&#x2F;mvnrepository.co">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-03-31T01:44:00.308Z">
-<meta property="article:modified_time" content="2020-04-01T10:36:01.137Z">
+<meta property="article:modified_time" content="2020-04-14T12:47:21.257Z">
 <meta property="article:author" content="7LL">
 <meta name="twitter:card" content="summary">
   
@@ -169,6 +169,7 @@
         <h2 id="三层架构："><a href="#三层架构：" class="headerlink" title="三层架构："></a>三层架构：</h2><p>表现层：展示数据<br>业务层：处理业务<br>持久层：与数据库交互<br>MyBatis 用于持久层与数据库交互</p>
 <h2 id="MyBatis"><a href="#MyBatis" class="headerlink" title="MyBatis"></a>MyBatis</h2><p>  基于java的持久层框架，内部封装了jdbc 。只需要sql  不需要加载驱动，创建连接，<br>实现了orm（对象关系映射）思想结果集的封装。<br>ORM：数据库表和实体机属性对于起来。<br>加入依赖：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- https:<span class="comment">//mvnrepository.com/artifact/org.mybatis/mybatis --&gt;</span></span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.mybatis&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;mybatis&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;3.5.2&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;!-- https:<span class="comment">//mvnrepository.com/artifact/mysql/mysql-connector-java --&gt;</span></span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;mysql&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;5.1.47&lt;/version&gt;</span><br><span class="line">&lt;/dependency</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <p>通过类来实现：<br>类要实现serializable接口：类里面 要实现getting setting  同string方法。<br>通过接口来操作数据库：及用户的持久层接口<br>在资源resource下创建 sqlmyconfig ：进行约束配置：<br>通过标签实现configuration的环境，里面有mysql的环境，配置事务类型，配置睡觉员即连接池</p>
 <p>第一：创建maven工程导入坐标<br>第二：创建实体类和dao的接口<br>第三：创建mybatis的主配置配件<br>                sqlmyconfig.xml<br>第四：创建映射文件<br>            <strong>**</strong>bao.xml<br>            com.<strong><strong>.</strong></strong>.类 （目录要在三级接口  因为 dao包也是三级接口）<br>注意：在创建类和类的xml式要保持一致<br>        持久层的操作接口名称和映射文件名为：mapper<br>        m’ybatis的映射文件位置和dao接口的包结构要相同<br>        映射配置文件的mapper标签 namespace属性值必须为dao接口的全限定类名<br>        映射配置文件的操作配置 id 属性必须式dao接口的方法名</p>
 <h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><ol>
