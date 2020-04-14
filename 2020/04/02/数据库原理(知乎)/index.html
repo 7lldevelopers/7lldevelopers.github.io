@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2020 | 7大亮</title>
+  <title>数据库原理(知乎) | 7大亮</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="7大亮">
-<meta property="og:url" content="http://yoursite.com/archives/2020/page/2/index.html">
+  <meta name="description" content="一、DBS系统构成1、DB的概念与特点：数据库（DB）是存储在计算机系统内的有结构的数据集合，是相关数据的集合，数据由数据库管理系统统一管理和维护。数据（Data）指的是可观察的客观事实，并且有隐含的含义。在数据库中，数据与数据的含义（数据名称及说明）同时存储。数据的最小存取单位是构成记录的、有名称的、有含义的最小数据单位——数据项。定义数据库时，必须定义数据项的逻辑结构。在使用数据库时，以数据项">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库原理(知乎)">
+<meta property="og:url" content="http://yoursite.com/2020/04/02/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86(%E7%9F%A5%E4%B9%8E)/index.html">
 <meta property="og:site_name" content="7大亮">
+<meta property="og:description" content="一、DBS系统构成1、DB的概念与特点：数据库（DB）是存储在计算机系统内的有结构的数据集合，是相关数据的集合，数据由数据库管理系统统一管理和维护。数据（Data）指的是可观察的客观事实，并且有隐含的含义。在数据库中，数据与数据的含义（数据名称及说明）同时存储。数据的最小存取单位是构成记录的、有名称的、有含义的最小数据单位——数据项。定义数据库时，必须定义数据项的逻辑结构。在使用数据库时，以数据项">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-04-02T10:37:25.857Z">
+<meta property="article:modified_time" content="2020-04-02T12:43:46.948Z">
 <meta property="article:author" content="7LL">
 <meta name="twitter:card" content="summary">
   
@@ -142,214 +146,251 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-数据库原理(知乎)" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      数据库原理(知乎)
+    </h1>
+  
+
+        
+        <a href="/2020/04/02/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86(%E7%9F%A5%E4%B9%8E)/" class="archive-article-date">
+  	<time datetime="2020-04-02T10:37:25.857Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-02</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、DBS系统构成"><a href="#一、DBS系统构成" class="headerlink" title="一、DBS系统构成"></a>一、DBS系统构成</h2><h3 id="1、DB的概念与特点："><a href="#1、DB的概念与特点：" class="headerlink" title="1、DB的概念与特点："></a>1、DB的概念与特点：</h3><p>数据库（DB）是存储在计算机系统内的有结构的数据集合，是相关数据的集合，数据由数据库管理系统统一管理和维护。<br>数据（Data）指的是可观察的客观事实，并且有隐含的含义。<br>在数据库中，数据与数据的含义（数据名称及说明）同时存储。<br>数据的最小存取单位是构成记录的、有名称的、有含义的最小数据单位——数据项。<br>定义数据库时，必须定义数据项的逻辑结构。<br>在使用数据库时，以数据项名存储数据、更新数据以及查询和使用数据。<br>在数据库中，不仅包含数据本身，还包含了数据结构和约束的完整性定义或者描述。这些定义存储在DBMS的目录中，称为数据库的元数据或者数据字典。<br>任何合法用户都可以在元数据的帮助下，利用数据项名方面的访问数据库中的数据以及他们的逻辑定义，并使用这些数据，亦即数据可高度共享。<br>数据库是存储在计算机系统内的有结构的数据的集合，数据是由数据库管理系统管理的。</p>
+<h3 id="2、DBS特点与组成要素："><a href="#2、DBS特点与组成要素：" class="headerlink" title="2、DBS特点与组成要素："></a>2、DBS特点与组成要素：</h3><p>DBS是指在计算机系统中引入数据库后的数据构成，由计算机硬件、操作系统、DBMS、DB、应用程序和用户以及数据库开发和管理人员等组成。<br>数据库系统区别于传统文件处理系统的最重要特征是引入了数据库这个概念，以及产生数据库管理系统。<br>与文件系统相比，DBS有如下四个主要特点：<br>整体数据结构化：数据库中的任何数据都是公开的，不属于任何应用，结构是全面的。<br>数据的共享度高：在显示数据的同时可以显示数据的逻辑结构；整个组织的整体数据被综合考虑，整体数据结构化。可以方面的使用数据和扩充新的应用。<br>数据的独立性高：数据与数据的结构存储在数据库中，应用程序既不存储数据也不存储数据的逻辑结构。数据与程序相对独立。<br>高度的数据控制能力：具有较高的数据安全性；较好的数据完整性；较强的并发控制能力；较强的数据恢复能力。</p>
+<h3 id="3、DBMS的功能："><a href="#3、DBMS的功能：" class="headerlink" title="3、DBMS的功能："></a>3、DBMS的功能：</h3><p>数据库管理系统是专门用来实现和维护数据库而建立的通用软件。<br>DBMS是操作系统支持下工作的数据管理软件，是支持用户创建和维护数据库的一组程序包。对内负责管理数据库，对外向用户提供一整套命令。用户可以通过命令来创建数据库，定义数据，对数据库中的数据进行各种合法的操作。<br>DBMS有如下六种基本功能：<br>数据定义：用户可以利用数据定义语言（DDL）来方便地定义数据库中数据的逻辑结构。<br>数据操纵：用户可以利用数据操纵语言（DML）来实现对数据库对数据库中数据的插入、查找、修改或者删除操作。<br>完整性约束检查：检查数据时候符合一定的规定。<br>访问控制：通过数据控制语言（DCL）来实现对不同级别用户的访问控制功能。<br>并发控制：通过只用并发控制功能，可以确保试图更新同一数据的多个用户能够以一种受控的方式完成各自的工作，即避免并发操作时可能带来的数据不一致性。<br>数据恢复：恢复数据库。</p>
+<h3 id="4、DBA的职责"><a href="#4、DBA的职责" class="headerlink" title="4、DBA的职责"></a>4、DBA的职责</h3><p>数据库管理员的主要职责有：<br>在用户与数据库开发人员之间进行沟通和协调。<br>参与数据库设计工作。<br>决定数据的完整性约束和不同用户的存取权限。<br>保证数据库的正常运行，进行数据库的维护工作。<br>提出数据库的重构计划。</p>
+<h2 id="二、DB的三级模式与关系数据模型的实例"><a href="#二、DB的三级模式与关系数据模型的实例" class="headerlink" title="二、DB的三级模式与关系数据模型的实例"></a>二、DB的三级模式与关系数据模型的实例</h2><p>数据的三级模式结构包括外模式、模式和内模式。</p>
+<p>模式：也成逻辑模式，是数据库中全体数据在逻辑上的视图。逻辑结构包括数据记录的名称，数据项的名称、类型、域值。通过模式DDL来进行模式的定义。<br>数据库中存储的是数据及数据之间的联系。<br>Transaction：事务<br>数据库是在计算机系统中按照一定的数据模型组织、存储和应用的数据的集合。<br>关系数据操作语言（DML）的特点是：操作对象与结果均是 关系、操作的非过程性强 、语言一体化，并且是建立在数学理论的基础上的。</p>
+<h2 id="三、SQL语言的特点"><a href="#三、SQL语言的特点" class="headerlink" title="三、SQL语言的特点"></a>三、SQL语言的特点</h2><p>一体化<br>面向集合的操作方式。<br>高度非过程化<br>两种使用方式，统一的语法结构。<br>语言简洁，易学易用。</p>
+<h2 id="四、视图的定义"><a href="#四、视图的定义" class="headerlink" title="四、视图的定义"></a>四、视图的定义</h2><p>视图是从一个或多个关系（基本表或已存在的视图）导出的关系。是数据库系统的一个重要机制。</p>
+<h2 id="五、视图与基本表的区别与联系"><a href="#五、视图与基本表的区别与联系" class="headerlink" title="五、视图与基本表的区别与联系"></a>五、视图与基本表的区别与联系</h2><p>视图是虚表，在一般情况下不建立索引。<br>sql一般也不提供修改视图定义的语句。<br>对视图中数据进行更新是有限制的。</p>
+<h2 id="六、数据模型的三要素"><a href="#六、数据模型的三要素" class="headerlink" title="六、数据模型的三要素"></a>六、数据模型的三要素</h2><p>数据结构<br>数据操作<br>完整性约束</p>
+<h2 id="七、事务"><a href="#七、事务" class="headerlink" title="七、事务"></a>七、事务</h2><p>事务是数据库操作的最小逻辑工作单元，是一系列SQL操作的集合。<br>事务必须具有的四个性质(ACID特性)是：原子性、一致性、隔离性和持久性。<br>提交(commit transaction)：使事务成功地结束。所执行事务对数据库的所有更新将永远存在。<br>回滚(rollback transaction)：即在事务的运行过程中发生了某种故障，事务不能继续运行，影响该事务的SQL语句所造成的任何改变必须全部作废，回滚到事务开始前的状态。</p>
+<h2 id="八、并发操作的三类问题"><a href="#八、并发操作的三类问题" class="headerlink" title="八、并发操作的三类问题"></a>八、并发操作的三类问题</h2><p>丢失更新：写写冲突，加排它锁X<br>读“脏”数据：写读冲突，加共享锁S<br>不可重复读：读写冲突</p>
+<h2 id="九、数据库系统的基本特点"><a href="#九、数据库系统的基本特点" class="headerlink" title="九、数据库系统的基本特点"></a>九、数据库系统的基本特点</h2><p>整体数据结构化<br>数据的共享度高<br>数据的独立性高<br>高度的数据控制能力。</p>
+<h2 id="十、数据库的基本特点"><a href="#十、数据库的基本特点" class="headerlink" title="十、数据库的基本特点"></a>十、数据库的基本特点</h2><p>数据可以共享<br>数据独立性<br>数据冗余小，易扩充<br>统一管理和控制。</p>
+<h2 id="十一、自然连接与等值连接的区别"><a href="#十一、自然连接与等值连接的区别" class="headerlink" title="十一、自然连接与等值连接的区别"></a>十一、自然连接与等值连接的区别</h2><p>自然连接要求相等的分量必须有共同的属性；等值连接就不需要。<br>自然连接要求把结果中的所有重复属性名都去掉一个；等值连接却不这样。</p>
+<h2 id="十二、SQL语言分类"><a href="#十二、SQL语言分类" class="headerlink" title="十二、SQL语言分类"></a>十二、SQL语言分类</h2><p>DDL数据定义语言：负责创建、修改、删除表、索引和视图等对象，由动词 create, alter, drop 组成。<br>DML数据操作语言：负责数据库中数据的插入、修改、查询和删除操作，由动词 insert, update, select, delete 组成。<br>DCL数据控制语言：用来授予和撤销用户对数据的操作权限，由动词 grant, revoke 组成。</p>
+<h2 id="十三、SQL数据类型"><a href="#十三、SQL数据类型" class="headerlink" title="十三、SQL数据类型"></a>十三、SQL数据类型</h2><p>int/integer：全字长整数型<br>smallint：半字长整数型<br>decimal(p[,q])：精确数值型，共p位，小数点后有q位。<br>float：双字长浮点数<br>char(n)：长度为n的定长字符串<br>varchar(n)：最大长度为n的变长字符串。<br>datetime：日期时间型，格式可以设置</p>
+<h2 id="十四、数据完整性约束"><a href="#十四、数据完整性约束" class="headerlink" title="十四、数据完整性约束"></a>十四、数据完整性约束</h2><p>not null：不为空<br>null：可以为空<br>unique：不能有相同的值</p>
+<h2 id="十五、集函数"><a href="#十五、集函数" class="headerlink" title="十五、集函数"></a>十五、集函数</h2><p>count(distinct/all *)：统计结果中元组个数<br>count(distinct/all&lt;列名&gt;)：统计结果中某列值的个数<br>max(&lt;列名&gt;)：给出一列上的最大值<br>min(&lt;列名&gt;)：给出一列上的最小值<br>sum(distinct/all&lt;列名&gt;)：给出一列上值的总和<br>avg(distinct/all&lt;列名&gt;)：给出一列上值的平均</p>
+<h2 id="十六、特殊运算符"><a href="#十六、特殊运算符" class="headerlink" title="十六、特殊运算符"></a>十六、特殊运算符</h2><h2 id="十七、查询方式"><a href="#十七、查询方式" class="headerlink" title="十七、查询方式"></a>十七、查询方式</h2><p>1、分组查询</p>
+<ul>
+<li>where子句作用于基表或者视图，从中选择满足条件的元组；having子句作用于分组后的组，从中选择满足条件的组。<br>2、排序查询</li>
+<li>用 order by 进行默认升序排序</li>
+<li>在列名后面添加 desc 进行降序排序<br>3、多关系连接查询</li>
+<li>交叉连接： cross join ，两表之间没有任何联系</li>
+<li>select [distinct/all] &lt;目标列清单&gt;</li>
+<li>from &lt;关系名[别名]清单&gt;</li>
+</ul>
+<p>2.内部连接： inner join ，两表之间具有共同性质的属性。</p>
+<ul>
+<li>select [distinct/all] &lt;目标清单&gt;</li>
+<li>from &lt;关系名1&gt; inner join &lt;关系名2&gt;</li>
+<li>on &lt;连接条件&gt;</li>
+</ul>
+<p>3.外连接：</p>
+<ul>
+<li>outer join</li>
+</ul>
+<p>4.自身连接：</p>
+<ul>
+<li>self join<br>4、嵌套查询<br>如果子查询的返回结果总是单个值，那么可以用“=”来代替“in”。<br>在嵌套查询中可以使用比较运算符来构成它的连接词。如 &lt; , &gt; , = , &lt;= , &gt;= , &lt;&gt;<br>在比较运算符的后面可以加上 any 后者 all ， any 只需其中的一个即可， all 表示必须全部满足。<br>在使用嵌套语句时也可以结合 between…and…<h2 id="十八、select语句的集合操作"><a href="#十八、select语句的集合操作" class="headerlink" title="十八、select语句的集合操作"></a>十八、select语句的集合操作</h2>集合操作主要包括并（union），交（intersect），差（except/minus）<br>select默认保留重复的元素，除非使用 distinct 进行指明。但是select语句的集合操作，在默认情况是消除重复元组的，要想保留，需要在集合操作的关键字后面加上 all。<h2 id="十九、视图操作"><a href="#十九、视图操作" class="headerlink" title="十九、视图操作"></a>十九、视图操作</h2>1、定义视图</li>
+<li>create view &lt;视图名&gt;</li>
+<li>as &lt;子查询&gt;</li>
+<li>[with check option]<br>若有 with check option ，则今后在对此视图，进行 insert, update, delete 操作时，会自动检查是否符合原定义视图子查询中的&lt;条件表达式&gt;。<br>视图是数据库中数据的物理独立性和逻辑独立性的重要支柱。<br>2、删除视图</li>
+<li>drop view<h2 id="二十、参照完整性约束的实现策略"><a href="#二十、参照完整性约束的实现策略" class="headerlink" title="二十、参照完整性约束的实现策略"></a>二十、参照完整性约束的实现策略</h2>限制策略：</li>
+<li>no action<br>级联策略：</li>
+<li>cascade<br>置空策略<h2 id="二十一、完整性约束"><a href="#二十一、完整性约束" class="headerlink" title="二十一、完整性约束"></a>二十一、完整性约束</h2>实体完整性：通过主码定义来完成<br>参照完整性：外部码约束references 和参照完整性约束<br>用户自定义完整性：基于属性和元组的check约束<h2 id="二十二、触发器的基本概念"><a href="#二十二、触发器的基本概念" class="headerlink" title="二十二、触发器的基本概念"></a>二十二、触发器的基本概念</h2>触发器，就是一类由数据库操作实践（插入、删除、修改）驱动的特殊过程，一旦由某个用户定义，任何用户对该触发器指定的数据进行增、删或改操作时，系统将会自动激活相应的触发动作，在数据库服务器上进行集中的完整性控制。<br>tigger<h2 id="二十三、访问控制"><a href="#二十三、访问控制" class="headerlink" title="二十三、访问控制"></a>二十三、访问控制</h2>授予权限 grant<br>收回权限 revoke<h2 id="二十四、规范化"><a href="#二十四、规范化" class="headerlink" title="二十四、规范化"></a>二十四、规范化</h2>1、未规范化的数据存在的问题<br>数据冗余度大，主要由于属性之间的约束关系太强导致。<br>修改异常。<br>插入与删除异常。<br>2、规范化后的数据的好处<br>数据量减少<br>表达能力增强<br>修改方便<br>找出所有没有选修1号课程的学生姓名；</li>
+<li>select sname</li>
+<li>from student</li>
+<li>where sno not in –“ not in ”等同于“ &lt;&gt; all ”</li>
+<li>(select sno</li>
+<li>from grade</li>
+<li>where cno=’1’)</li>
+</ul>
+<p>找出选修了全部课程的学生姓名。<br>–（提示：可找出这样的学生，没有一门课程是他不选修的。）</p>
+<ul>
+<li>Select sname from student</li>
+<li>Where not exists ( select cno from course</li>
+<li>Except</li>
+<li>Select cno from grade where grade.sno=student.sno )</li>
+</ul>
+<h1 id="数据库范式1NF-2NF-3NF-BCNF-实例）"><a href="#数据库范式1NF-2NF-3NF-BCNF-实例）" class="headerlink" title="数据库范式1NF 2NF 3NF BCNF(实例）"></a>数据库范式1NF 2NF 3NF BCNF(实例）</h1><p>设计范式（范式,数据库设计范式,数据库的设计范式）是符合某一种级别的关系模式的集合。构造数据库必须遵循一定的规则。在关系数据库中，这种规则就是范式。关系数据库中的关系必须满足一定的要求，即满足不同的范式。目前关系数据库有六种范式：第一范式（1NF）、第二范式（2NF）、第三范式（3NF）、第四范式（4NF）、第五范式（5NF）和第六范式（6NF）。满足最低要求的范式是第一范式（1NF）。在第一范式的基础上进一步满足更多要求的称为第二范式（2NF），其余范式以次类推。一般说来，数据库只需满足第三范式（3NF）就行了。下面我们举例介绍第一范式（1NF）、第二范式（2NF）和第三范式（3NF）。<br>在创建一个数据库的过程中，范化是将其转化为一些表的过程，这种方法可以使从数据库得到的结果更加明确。这样可能使数据库产生重复数据，从而导致创建多余的表。范化是在识别数据库中的数据元素、关系，以及定义所需的表和各表中的项目这些初始工作之后的一个细化的过程。<br>下面是范化的一个例子：<br>Customer    ; Item purchased ; Purchase price<br>Thomas      ; Shirt          ; $40<br>Maria Tennis; shoes          ; $35<br>Evelyn      ; Shirt          ; $40<br>Pajaro      ; Trousers       ; $25<br>如果上面这个表用于保存物品的价格，而你想要删除其中的一个顾客，这时你就必须同时删除一个价格。范化就是要解决这个问题，你可以将这个表化为两个表，一个用于存储每个顾客和他所买物品的信息，另一个用于存储每件产品和其价格的信息，这样对其中一个表做添加或删除操作就不会影响另一个表。<br>关系数据库的几种设计范式介绍</p>
+<h2 id="1、第一范式（1NF）"><a href="#1、第一范式（1NF）" class="headerlink" title="1、第一范式（1NF）"></a>1、第一范式（1NF）</h2><p>在任何一个关系数据库中，第一范式（1NF）是对关系模式的基本要求，不满足第一范式（1NF）的数据库就不是关系数据库。<br>所谓第一范式（1NF）是指数据库表的每一列都是不可分割的基本数据项，同一列中不能有多个值，即实体中的某个属性不能有多个值或者不能有重复的属性。如果出现重复的属性，就可能需要定义一个新的实体，新的实体由重复的属性构成，新实体与原实体之间为一对多关系。在第一范式（1NF）中表的每一行只包含一个实例的信息。例如，对于图3-2 中的员工信息表，不能将员工信息都放在一列中显示，也不能将其中的两列或多列在一列中显示；员工信息表的每一行只表示一个员工的信息，一个员工的信息在表中只出现一次。简而言之，第一范式就是无重复的列。</p>
+<h2 id="2、第二范式（2NF）"><a href="#2、第二范式（2NF）" class="headerlink" title="2、第二范式（2NF）"></a>2、第二范式（2NF）</h2><p>第二范式（2NF）是在第一范式（1NF）的基础上建立起来的，即满足第二范式（2NF）必须先满足第一范式（1NF）。第二范式（2NF）要求数据库表中的每个实例或行必须可以被惟一地区分。为实现区分通常需要为表加上一个列，以存储各个实例的惟一标识。如图3-2 员工信息表中加上了员工编号（emp_id）列，因为每个员工的员工编号是惟一的，因此每个员工可以被惟一区分。这个惟一属性列被称为主关键字或主键、主码。<br>第二范式（2NF）要求实体的属性完全依赖于主关键字。所谓完全依赖是指不能存在仅依赖主关键字一部分的属性，如果存在，那么这个属性和主关键字的这一部分应该分离出来形成一个新的实体，新实体与原实体之间是一对多的关系。为实现区分通常需要为表加上一个列，以存储各个实例的惟一标识。简而言之，第二范式就是非主属性非部分依赖于主关键字。</p>
+<h2 id="3、第三范式（3NF）"><a href="#3、第三范式（3NF）" class="headerlink" title="3、第三范式（3NF）"></a>3、第三范式（3NF）</h2><p>满足第三范式（3NF）必须先满足第二范式（2NF）。简而言之，第三范式（3NF）要求一个数据库表中不包含已在其它表中已包含的非主关键字信息。例如，存在一个部门信息表，其中每个部门有部门编号（dept_id）、部门名称、部门简介等信息。那么在图3-2的员工信息表中列出部门编号后就不能再将部门名称、部门简介等与部门有关的信息再加入员工信息表中。如果不存在部门信息表，则根据第三范式（3NF）也应该构建它，否则就会有大量的数据冗余。简而言之，第三范式就是属性不依赖于其它非主属性。<br>数据库设计三大范式应用实例剖析<br>数据库的设计范式是数据库设计所需要满足的规范，满足这些规范的数据库是简洁的、结构明晰的，同时，不会发生插入（insert）、删除（delete）和更新（update）操作异常。反之则是乱七八糟，不仅给数据库的编程人员制造麻烦，而且面目可憎，可能存储了大量不需要的冗余信息。<br>设计范式是不是很难懂呢？非也，大学教材上给我们一堆数学公式我们当然看不懂，也记不住。所以我们很多人就根本不按照范式来设计数据库。<br>实质上，设计范式用很形象、很简洁的话语就能说清楚，道明白。本文将对范式进行通俗地说明，并以笔者曾经设计的一个简单论坛的数据库为例来讲解怎样将这些范式应用于实际工程。</p>
+<h3 id="范式说明"><a href="#范式说明" class="headerlink" title="范式说明"></a>范式说明</h3><h4 id="第一范式（1NF）：数据库表中的字段都是单一属性的，不可再分。这个单一属性由基本类型构成，包括整型、实数、字符型、逻辑型、日期型等。"><a href="#第一范式（1NF）：数据库表中的字段都是单一属性的，不可再分。这个单一属性由基本类型构成，包括整型、实数、字符型、逻辑型、日期型等。" class="headerlink" title="第一范式（1NF）：数据库表中的字段都是单一属性的，不可再分。这个单一属性由基本类型构成，包括整型、实数、字符型、逻辑型、日期型等。"></a>第一范式（1NF）：数据库表中的字段都是单一属性的，不可再分。这个单一属性由基本类型构成，包括整型、实数、字符型、逻辑型、日期型等。</h4><p>例如，如下的数据库表是符合第一范式的：</p>
+<ul>
+<li>字段1  字段2  字段3  字段4<br>而这样的数据库表是不符合第一范式的：</li>
+<li>字段1  字段2  字段3  字段4 </li>
+<li>　　  　 字段3.1  字段3.2  　　<br>很显然，在当前的任何关系数据库管理系统（DBMS）中，傻瓜也不可能做出不符合第一范式的数据库，因为这些DBMS不允许你把数据库表的一列再分成二列或多列。因此，你想在现有的DBMS中设计出不符合第一范式的数据库都是不可能的。<h4 id="第二范式（2NF）：数据库表中不存在非关键字段对任一候选关键字段的部分函数依赖（部分函数依赖指的是存在组合关键字中的某些字段决定非关键字段的情况），也即所有非关键字段都完全依赖于任意一组候选关键字。"><a href="#第二范式（2NF）：数据库表中不存在非关键字段对任一候选关键字段的部分函数依赖（部分函数依赖指的是存在组合关键字中的某些字段决定非关键字段的情况），也即所有非关键字段都完全依赖于任意一组候选关键字。" class="headerlink" title="第二范式（2NF）：数据库表中不存在非关键字段对任一候选关键字段的部分函数依赖（部分函数依赖指的是存在组合关键字中的某些字段决定非关键字段的情况），也即所有非关键字段都完全依赖于任意一组候选关键字。"></a>第二范式（2NF）：数据库表中不存在非关键字段对任一候选关键字段的部分函数依赖（部分函数依赖指的是存在组合关键字中的某些字段决定非关键字段的情况），也即所有非关键字段都完全依赖于任意一组候选关键字。</h4>假定选课关系表为SelectCourse(学号, 姓名, 年龄, 课程名称, 成绩, 学分)，关键字为组合关键字(学号, 课程名称)，因为存在如下决定关系：</li>
+<li>(学号, 课程名称) → (姓名, 年龄, 成绩, 学分)<br>这个数据库表不满足第二范式，因为存在如下决定关系：</li>
+<li>(课程名称) → (学分)</li>
+<li>(学号) → (姓名, 年龄)<br>即存在组合关键字中的字段决定非关键字的情况。<br>由于不符合2NF，这个选课关系表会存在如下问题：<br>(1) 数据冗余：同一门课程由n个学生选修，”学分”就重复n-1次；同一个学生选修了m门课程，姓名和年龄就重复了m-1次。<br>(2) 更新异常：若调整了某门课程的学分，数据表中所有行的”学分”值都要更新，否则会出现同一门课程学分不同的情况。<br>(3) 插入异常：假设要开设一门新的课程，暂时还没有人选修。这样，由于还没有”学号”关键字，课程名称和学分也无法记录入数据库。<br>(4) 删除异常：假设一批学生已经完成课程的选修，这些选修记录就应该从数据库表中删除。但是，与此同时，课程名称和学分信息也被删除了。很显然，这也会导致插入异常。<br>把选课关系表SelectCourse改为如下三个表：</li>
+<li>学生：Student(学号, 姓名, 年龄)；</li>
+<li>课程：Course(课程名称, 学分)；</li>
+<li>选课关系：SelectCourse(学号, 课程名称, 成绩)。<br>这样的数据库表是符合第二范式的， 消除了数据冗余、更新异常、插入异常和删除异常。<br>另外，所有单关键字的数据库表都符合第二范式，因为不可能存在组合关键字。<h4 id="第三范式（3NF）：在第二范式的基础上，数据表中如果不存在非关键字段对任一候选关键字段的传递函数依赖则符合第三范式。所谓传递函数依赖，指的是如果存在”A-→-B-→-C”的决定关系，则C传递函数依赖于A。因此，满足第三范式的数据库表应该不存在如下依赖关系："><a href="#第三范式（3NF）：在第二范式的基础上，数据表中如果不存在非关键字段对任一候选关键字段的传递函数依赖则符合第三范式。所谓传递函数依赖，指的是如果存在”A-→-B-→-C”的决定关系，则C传递函数依赖于A。因此，满足第三范式的数据库表应该不存在如下依赖关系：" class="headerlink" title="第三范式（3NF）：在第二范式的基础上，数据表中如果不存在非关键字段对任一候选关键字段的传递函数依赖则符合第三范式。所谓传递函数依赖，指的是如果存在”A → B → C”的决定关系，则C传递函数依赖于A。因此，满足第三范式的数据库表应该不存在如下依赖关系："></a>第三范式（3NF）：在第二范式的基础上，数据表中如果不存在非关键字段对任一候选关键字段的传递函数依赖则符合第三范式。所谓传递函数依赖，指的是如果存在”A → B → C”的决定关系，则C传递函数依赖于A。因此，满足第三范式的数据库表应该不存在如下依赖关系：</h4></li>
+<li>关键字段 → 非关键字段x → 非关键字段y<br>假定学生关系表为Student(学号, 姓名, 年龄, 所在学院, 学院地点, 学院电话)，关键字为单一关键字”学号”，因为存在如下决定关系：</li>
+<li>(学号) → (姓名, 年龄, 所在学院, 学院地点, 学院电话)<br>这个数据库是符合2NF的，但是不符合3NF，因为存在如下决定关系：</li>
+<li>(学号) → (所在学院) → (学院地点, 学院电话)<br>即存在非关键字段”学院地点”、”学院电话”对关键字段”学号”的传递函数依赖。<br>它也会存在数据冗余、更新异常、插入异常和删除异常的情况，读者可自行分析得知。<br>把学生关系表分为如下两个表：</li>
+<li>学生：(学号, 姓名, 年龄, 所在学院)；</li>
+<li>学院：(学院, 地点, 电话)。<br>这样的数据库表是符合第三范式的，消除了数据冗余、更新异常、插入异常和删除异常。<br>鲍依斯-科得范式（BCNF）：在第三范式的基础上，数据库表中如果不存在任何字段对任一候选关键字段的传递函数依赖则符合第三范式。<br>假设仓库管理关系表为StorehouseManage(仓库ID, 存储物品ID, 管理员ID, 数量)，且有一个管理员只在一个仓库工作；一个仓库可以存储多种物品。这个数据库表中存在如下决定关系：</li>
+<li>(仓库ID, 存储物品ID) → (管理员ID, 数量)</li>
+<li>(管理员ID, 存储物品ID) → (仓库ID, 数量)<br>所以，(仓库ID, 存储物品ID)和(管理员ID, 存储物品ID)都是StorehouseManage的候选关键字，表中的唯一非关键字段为数量，它是符合第三范式的。但是，由于存在如下决定关系：</li>
+<li>(仓库ID) → (管理员ID)</li>
+<li>(管理员ID) → (仓库ID)<br>即存在关键字段决定关键字段的情况，所以其不符合BCNF范式。它会出现如下异常情况：</li>
+<li>(1) 删除异常：当仓库被清空后，所有”存储物品ID”和”数量”信息被删除的同时，”仓库ID”和”管理员ID”信息也被删除了。</li>
+<li>(2) 插入异常：当仓库没有存储任何物品时，无法给仓库分配管理员。</li>
+<li>(3) 更新异常：如果仓库换了管理员，则表中所有行的管理员ID都要修改。</li>
+<li>把仓库管理关系表分解为二个关系表：</li>
+<li>仓库管理：StorehouseManage(仓库ID, 管理员ID)；</li>
+<li>仓库：Storehouse(仓库ID, 存储物品ID, 数量)。<br>这样的数据库表是符合BCNF范式的，消除了删除异常、插入异常和更新异常。<br>范式应用<br>我们来逐步搞定一个论坛的数据库，有如下信息：</li>
+<li>（1） 用户：用户名，email，主页，电话，联系地址</li>
+<li>（2） 帖子：发帖标题，发帖内容，回复标题，回复内容<br>第一次我们将数据库设计为仅仅存在表：</li>
+<li>用户名  email  主页  电话  联系地址  发帖标题  发帖内容  回复标题  回复内容<br>这个数据库表符合第一范式，但是没有任何一组候选关键字能决定数据库表的整行，唯一的关键字段用户名也不能完全决定整个元组。我们需要增加”发帖ID”、”回复ID”字段，即将表修改为：</li>
+<li>用户名  email  主页  电话  联系地址  发帖ID  发帖标题  发帖内容  回复ID  回复标题  回复内容<br>这样数据表中的关键字(用户名，发帖ID，回复ID)能决定整行：<br>(* 用户名,发帖ID,回复ID) → (email,主页,电话,联系地址,发帖标题,发帖内容,回复标题,回复内容)<br>但是，这样的设计不符合第二范式，因为存在如下决定关系：</li>
+<li>(用户名) → (email,主页,电话,联系地址)</li>
+<li>(发帖ID) → (发帖标题,发帖内容)</li>
+<li>(回复ID) → (回复标题,回复内容)<br>即非关键字段部分函数依赖于候选关键字段，很明显，这个设计会导致大量的数据冗余和操作异常。<br>我们将数据库表分解为（带下划线的为关键字）：</li>
+<li>（1） 用户信息：用户名，email，主页，电话，联系地址</li>
+<li>（2） 帖子信息：发帖ID，标题，内容</li>
+<li>（3） 回复信息：回复ID，标题，内容</li>
+<li>（4） 发贴：用户名，发帖ID</li>
+<li>（5） 回复：发帖ID，回复ID<br>这样的设计是满足第1、2、3范式和BCNF范式要求的，但是这样的设计是不是最好的呢？<br>不一定。观察可知，第4项”发帖”中的”用户名”和”发帖ID”之间是1：N的关系，因此我们可以把”发帖”合并到第2项的”帖子信息”中；第5项”回复”中的”发帖ID”和”回复ID”之间也是1：N的关系，因此我们可以把”回复”合并到第3项的”回复信息”中。这样可以一定量地减少数据冗余，新的设计为：</li>
+<li>（1） 用户信息：用户名，email，主页，电话，联系地址</li>
+<li>（2） 帖子信息：用户名，发帖ID，标题，内容</li>
+<li>（3） 回复信息：发帖ID，回复ID，标题，内容<br>数据库表1显然满足所有范式的要求；<br>数据库表2中存在非关键字段”标题”、”内容”对关键字段”发帖ID”的部分函数依赖，即不满足第二范式的要求，但是这一设计并不会导致数据冗余和操作异常；<br>数据库表3中也存在非关键字段”标题”、”内容”对关键字段”回复ID”的部分函数依赖，也不满足第二范式的要求，但是与数据库表2相似，这一设计也不会导致数据冗余和操作异常。<br>由此可以看出，并不一定要强行满足范式的要求，对于1：N关系，当1的一边合并到N的那边后，N的那边就不再满足第二范式了，但是这种设计反而比较好！</li>
+<li>对于M：N的关系，不能将M一边或N一边合并到另一边去，这样会导致不符合范式要求，同时导致操作异常和数据冗余。</li>
+<li>对于1：1的关系，我们可以将左边的1或者右边的1合并到另一边去，设计导致不符合范式要求，但是并不会导致操作异常和数据冗余。</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/10/java%E9%9D%A2%E8%AF%95%E9%A2%98(4)/" class="archive-article-date">
-  	<time datetime="2020-03-10T12:48:41.159Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/10/java%E9%9D%A2%E8%AF%95%E9%A2%98(4)/">java面试题(4)</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/04/02/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86(%E7%9F%A5%E4%B9%8E)/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/09/java%E9%9D%A2%E8%AF%95%E9%A2%98(3)/" class="archive-article-date">
-  	<time datetime="2020-03-09T01:09:00.738Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-09</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2020/04/08/%E5%85%AC%E5%8F%B8%E9%9D%A2%E8%AF%95%E9%A2%98/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          公司面试题
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/03/31/springMVC/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">springMVC</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/09/java%E9%9D%A2%E8%AF%95%E9%A2%98(3)/">java面试题（3）</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C(1)/" class="archive-article-date">
-  	<time datetime="2020-03-08T08:40:50.501Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C(1)/">计算机网络（1）</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/08/java%E9%9D%A2%E8%AF%95%E9%A2%98(2)/" class="archive-article-date">
-  	<time datetime="2020-03-08T08:01:28.737Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/08/java%E9%9D%A2%E8%AF%95%E9%A2%98(2)/">java面试题（2）</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/07/java%E9%9D%A2%E8%AF%95%E9%A2%98(1)/" class="archive-article-date">
-  	<time datetime="2020-03-07T02:16:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/07/java%E9%9D%A2%E8%AF%95%E9%A2%98(1)/">java面试题（1）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/05/%E7%BA%BF%E7%A8%8B%E5%92%8C%E8%BF%9B%E7%A8%8B/" class="archive-article-date">
-  	<time datetime="2020-03-05T02:16:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/05/%E7%BA%BF%E7%A8%8B%E5%92%8C%E8%BF%9B%E7%A8%8B/">线程和进程</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/05/hexo%E7%94%A8%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2020-03-05T02:08:38.280Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/05/hexo%E7%94%A8%E6%B3%95/">hexo用法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2020/">&amp;laquo; Prev</a><a class="page-number" href="/archives/2020/">1</a><span class="page-number current">2</span>
-    </nav>
   
 
 
@@ -373,8 +414,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
