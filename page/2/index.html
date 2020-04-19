@@ -144,6 +144,87 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-SpringBoot" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/21/SpringBoot/">SpringBoot</a>
+    </h1>
+  
+
+        
+        <a href="/2020/03/21/SpringBoot/" class="archive-article-date">
+  	<time datetime="2020-03-21T07:08:38.457Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h2><p>1.Spring通过控制反转（IOC）来管理java资源从而降低各种资源的耦合；<br>2.并且提供了极低的侵入性，也就是使 Spring 框架开发 编码 脱离了 Spring API 也可以继续使用<br>3.而 Spring 的面 切面的编程（ AOP ）通 动态代理技术，允许 按照约定进行配置编程 增强了 Bean 的功能，它除去了大量的重复代码如：try。。。catch。。。finally语句。和数据库控制代码逻辑<br>4.Spring还有 持久层Hibernate的Hibernate Template模板（应该是一个框架结构。。）</p>
+<h2 id="spring-boot"><a href="#spring-boot" class="headerlink" title="spring boot"></a>spring boot</h2><ol>
+<li>起步依赖<br> 对一个Maven项目对象模型（project object model pom）定义了对其他库的传递依赖  加起来形成功能</li>
+<li>自动装配<br> 程序启动时 多种因素spring自动配置完成</li>
+</ol>
+<h2 id="注解-XML（可扩展标记语言）"><a href="#注解-XML（可扩展标记语言）" class="headerlink" title="注解       XML（可扩展标记语言）"></a>注解       XML（可扩展标记语言）</h2><p>Spring的开发，大部分使用XML为主 注解为辅<br>业务类使用注解。如：MVC开发中控制器@controller    业务层@service     持久层@repository</p>
+<h2 id="Spring-Boot-优点"><a href="#Spring-Boot-优点" class="headerlink" title="Spring Boot 优点"></a>Spring Boot 优点</h2><ol>
+<li>创建独立的Spring应用程序</li>
+<li>嵌入的Tomcat  Jetty  Undertow （3个服务器） 无需部署WAR文件</li>
+<li>允许通过Maven来得到starter</li>
+<li>尽可能的自动配置Spring</li>
+<li>提供生产就绪型功能 如：指标  健康检查 外部配置</li>
+<li>没有代码生成，对SML没有要求配置<br>Spring Boot 还提供了 starter的依赖：spring-boot-starter-web 捆绑了 Spring MVC 所依赖的包， spring-boot-starter-tomcat 绑定了内嵌的Tomcat</li>
+</ol>
+<h2 id="SPringleMVC-和Spring-Boot-的对比"><a href="#SPringleMVC-和Spring-Boot-的对比" class="headerlink" title="SPringleMVC 和Spring Boot 的对比"></a>SPringleMVC 和Spring Boot 的对比</h2><p>开发一个简易的 pringMVC 项目，需要配置 DispatcherServlet 和Spring IOC的容器。</p>
+<ol>
+<li>通过继承 AbstractAnnotationConfigDispatcherServletlnitializer 的方式来配置 SpringMVC DispatcherServlet<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//配置</span></span><br><span class="line"><span class="keyword">package</span> corn .springboot spr ngrnvc.conf</span><br><span class="line"><span class="keyword">import</span> org.spring frarnework web.servlet support .AbstractAnnotat onConfigDispatcherServletinitializer;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyWebAppinitializer</span>  <span class="keyword">extends</span> <span class="title">AbstractAnnotationConf</span> <span class="title">gDi</span> <span class="title">spatch</span> <span class="title">erServle</span> <span class="title">tinitializer</span> </span>&#123; </span><br><span class="line"><span class="comment">//Spring IoC 容器配置</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> Class&lt;?&gt; [] getRootConfigClasses () &#123; </span><br><span class="line"><span class="comment">//可以返回 Spring Java 配置文件数组</span></span><br><span class="line"><span class="keyword">return</span> <span class="keyword">new</span> Class&lt;?&gt; [] (&#125; ; </span><br><span class="line">II spatcherServlet URI 映射关系配置</span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> Class&lt;?&gt;[] <span class="function">getServletCo <span class="title">figClasses</span> <span class="params">()</span> </span>&#123; </span><br><span class="line"><span class="comment">//可以返回 Spring Java 文件数组</span></span><br><span class="line"><span class="keyword">return</span> <span class="keyword">new</span> Class ＜？＞［］ &#123; WebConfig<span class="class">.<span class="keyword">class</span> &#125;</span>; </span><br><span class="line"><span class="comment">//DispatcherServlet 拦截请求匹配</span></span><br><span class="line"><span class="meta">@Override</span> </span><br><span class="line"><span class="keyword">protected</span> String [] getServletMappinggs () &#123; </span><br><span class="line"><span class="keyword">return</span> ew String [] ( “*.d<span class="string">")</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2020/03/21/SpringBoot/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/03/21/SpringBoot/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-java面试题(4)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
