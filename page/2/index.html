@@ -144,6 +144,74 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-AOP" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/27/AOP/">AOP</a>
+    </h1>
+  
+
+        
+        <a href="/2020/03/27/AOP/" class="archive-article-date">
+  	<time datetime="2020-03-27T01:16:57.902Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="spring-AOP"><a href="#spring-AOP" class="headerlink" title="spring AOP"></a>spring AOP</h1><p>约定编程</p>
+<ol>
+<li>定义接口  在实现接口</li>
+<li>定义拦截器接口：里面的接口实现 并 挨个实现 通过给使用的约定 。当使用时 会调用拦截器 实现不同的结果  再按照约定 实现<br>ProxyBean何将服务类和拦截方法织入对应的流程，是 ProxyBean 要实现的功能<br>peoxy（代理）通过代理来实现控制对象<h2 id="springAOP-就是一种约定流程的编程"><a href="#springAOP-就是一种约定流程的编程" class="headerlink" title="springAOP 就是一种约定流程的编程"></a>springAOP 就是一种约定流程的编程</h2>AOP就是数据库事务的管控<br>使用JDBC插入用户：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> class <span class="title">UserService</span> <span class="params">( </span></span></span><br><span class="line"><span class="function"><span class="params"><span class="keyword">public</span> <span class="keyword">int</span> insertUser ()</span> <span class="params">( </span></span></span><br><span class="line"><span class="function"><span class="params">UserDao userDao= ηew UserDao ()</span></span>; </span><br><span class="line">User user= <span class="keyword">new</span> User() ; </span><br><span class="line"><span class="function">user <span class="title">setUsername</span><span class="params">( <span class="string">"user name l "</span> )</span></span>; </span><br><span class="line">user .setNote (” note <span class="number">1</span> ” ); </span><br><span class="line">Connection conn = <span class="keyword">null</span> ; </span><br><span class="line"><span class="keyword">int</span> result = O; </span><br><span class="line"><span class="keyword">try</span> ( </span><br><span class="line">／／获取数据事务连接</span><br><span class="line">Class . forName ( <span class="string">" com.mysql .jdbc.Driver” ); </span></span><br><span class="line"><span class="string">conn= DriverManager getConnection( ”jdbc : mysql : //localhost :3306/chapter3 "</span>, ” root”,”<span class="number">123456</span>” );</span><br><span class="line">／／非自动提交事务</span><br><span class="line">conn . setAutoCommit (fa l se ); </span><br><span class="line">result= userDao . insertUser (conn , user) ; </span><br><span class="line">／／ 提交事务</span><br><span class="line">conn . commit () ; </span><br><span class="line">&#125; <span class="keyword">catch</span> (Exception e ) &#123; </span><br><span class="line"><span class="keyword">try</span> &#123; </span><br><span class="line">／／回滚事</span><br><span class="line">conn . rollback (); </span><br><span class="line">&#125; <span class="keyword">catch</span> (SQLException ex) &#123; </span><br><span class="line">ex . printStackTrace(); </span><br><span class="line">e.printStackTrace(); </span><br><span class="line">&#125; <span class="keyword">finally</span> &#123; </span><br><span class="line">／／ 释放数据连接资源</span><br><span class="line"><span class="keyword">if</span> (conn ! = <span class="keyword">null</span> ) ( </span><br><span class="line"><span class="keyword">try</span> &#123; </span><br><span class="line">conn . close ( ) ; </span><br><span class="line">&#125; <span class="keyword">catch</span> (SQLException e ) &#123; </span><br><span class="line">e.printStackTrace() ; </span><br><span class="line"><span class="keyword">return</span> result ;</span><br><span class="line">&#125;&#125;</span><br><span class="line"></span><br><span class="line">==================</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserDao</span> </span>&#123; </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">nsertUser</span><span class="params">(Connection con n , User user)</span> <span class="keyword">throws</span> SQLException </span>&#123; </span><br><span class="line">PreparedStatement ps = <span class="keyword">null</span> ; </span><br><span class="line"><span class="keyword">try</span> &#123; </span><br><span class="line">ps = <span class="function">conn prepareStatement insert nto t _ <span class="title">user</span><span class="params">(user name , note)</span> <span class="title">values</span> <span class="params">(?,?)</span> ” ) </span>; </span><br><span class="line">ps .<span class="function">setStri <span class="title">ng</span><span class="params">(l, user . getUsername ( )</span>) </span>; </span><br><span class="line">ps . setString (<span class="number">2</span> , user. getNote () ) ; </span><br><span class="line"><span class="keyword">return</span> ps . executeUpdate() ; </span><br><span class="line">&#125; <span class="keyword">finally</span> &#123; </span><br><span class="line">ps . close () ;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2020/03/27/AOP/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/03/27/AOP/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-SpringBoot" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     

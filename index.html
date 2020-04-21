@@ -144,6 +144,92 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-JVM&amp;GC" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/20/JVM&GC/">JVM&amp;GC</a>
+    </h1>
+  
+
+        
+        <a href="/2020/04/20/JVM&GC/" class="archive-article-date">
+  	<time datetime="2020-04-20T01:32:14.534Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="JVM（java虚拟机）"><a href="#JVM（java虚拟机）" class="headerlink" title="JVM（java虚拟机）"></a>JVM（java虚拟机）</h2><p>字节码—–二进制码<br>     类装载器ClassLoader：用来装载.class文件<br>     执行引擎：执行字节码，或者执行本地方法<br>     运行时数据区：方法区、堆、Java栈、程序计数器、本地方法栈<br>     虚拟机的类加载机制：JVM把描述类数据的字节码.Class文件加载到内存，并对数据进行校验、转换解析和初始化，最终形成可以被虚拟机直接使用的java类型<br>内存的虚拟机<br>JVM是java的核心和基础，在java编译器和os平台之间的虚拟处理器。它是一种利用软件方法实现的抽象的计算机基于下层的操作系统和硬件平台，可以在上面执行java的字节码程序。java编译器只要面向JVM，生成JVM能理解的代码或字节码文件。Java源文件经编译成字节码程序，通过JVM将每一条指令翻译成不同平台机器码，通过特定平台运行。<br>执行过程：<br>1、加载.class文件<br>2、管理并分配内存<br>3、执行垃圾收集<br>jvm环境：<br>1、创建JVM装载环境和配置<br>2、装载JVM.dll<br>3、初始化JVM.dll并挂界到JNIENV(JNI调用接口)实例<br>4、调用JNIEnv实例装载并处理class类。<br>JVM生命周期：<br>（1）JVM实例的诞生当启动一个Java程序时，一个JVM实例就产生了，任何一个拥有public static void main(String[] args)函数的class都可以作为JVM实例运行的起点。（2）JVM实例的运行main()作为该程序初始线程的起点，任何其他线程均由该线程启动。JVM内部有两种线程：守护线程和非守护线程，main()属于非守护线程，守护线程通常由JVM自己使用，java程序也可以标明自己创建的线程是守护线程。（3）JVM实例的消亡当程序中的所有非守护线程都终止时，JVM才退出；若安全管理器允许，程序也可以使用java.lang.Runtime类或者java.lang.System.exit()来退出。<br>类加载器：</p>
+<h3 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h3><p>类从被加载到虚拟机内存中开始，到卸载出内存为止，它的生命周期包括了：<br>加载(Loading)——&gt;{验证(Verification)、准备(Preparation)、解析(Resolution)}——&gt;初始化(Initialization)—&gt;使用(Using)——&gt;卸载(Unloading)七个阶段，其中验证、准备、解析三个部分统称链接。<br>加载：<br>       1.通过“类全名”来获取定义此类的二进制字节流<br>       2.将字节流所代表的静态存储结构转换为方法区的运行时数据结构<br>       3.在java堆中生成一个代表这个类的java.lang.Class对象，作为方法区这些数据的访问入口<br>类从编译到执行的过程：<br>编译器将robot.java源文件编译为robot.class字节码文件<br>classloader（所有的java都是它加载的）将字节码转换为jvm的class《robot》对象<br>jvm利用class《robot》对象实例化为robot对象<br>类加载器的任务：<br>          是根据一个类的全限定名来读取此类的二进制字节流到JVM中，然后转换为一个与目标类对应的java.lang.Class对象实例，在虚拟机提供了4种类加载器，<br>          启动（Bootstrap ClassLoader）类加载器、扩展（Extension ClassLoader）类加载器、应用程序（Application ClassLoader）类加载器、自定义（User ClassLoader）类加载器。<br>         1.启动类加载器：这个类加载器负责放在<JAVA_HOME>\lib目录中的，或者被-Xbootclasspath参数所指定的路径中的，并且是虚拟机识别的类库。用户无法直接使用。<br>         2.扩展类加载器：这个类加载器由sun.misc.Launcher$AppClassLoader实现。它负责<JAVA_HOME>\lib\ext目录中的，或者被java.ext.dirs系统变量所指定的路径中的所有类库。用户可以直接使用。<br>         3.应用程序类加载器：这个类由sun.misc.Launcher$AppClassLoader实现。是ClassLoader中getSystemClassLoader()方法的返回值。它负责用户路径（ClassPath）所指定的类库。用户可以直接使用。如果用户没有自己定义类加载器，默认使用这个。<br>         4.自定义加载器：用户自己定义的类加载器。</p>
+<h3 id="执行引擎"><a href="#执行引擎" class="headerlink" title="执行引擎"></a>执行引擎</h3><p>输入：字节码文件<br>处理：字节码解析<br>输出：执行结果。<br>物理机的执行引擎是由硬件实现的，和物理机的执行过程不同的是虚拟机的执行引擎由于自己实现的。<br>类装载器装载负责装载编译后的字节码，并加载到运行时数据区（Runtime Data Area），然后执行引擎执行会执行这些字节码。通过类装载器装载的，被分配到JVM的运行时数据区的字节码会被执行引擎执行。执行引擎以指令为单位读取Java字节码。它就像一个CPU一样，一条一条地执行机器指令。每个字节码指令都由一个1字节的操作码和附加的操作数组成。执行引擎取得一个操作码，然后根据操作数来执行任务，完成后就继续执行下一条操作码。不过Java字节码是用一种人类可以读懂的语言编写的，而不是用机器可以直接执行的语言。</p>
+<h3 id="运行时数据区"><a href="#运行时数据区" class="headerlink" title="运行时数据区"></a>运行时数据区</h3><pre><code>方法区——线程共享
+ 堆——线程共享
+ Java栈（虚拟机栈）——非线程共享
+ 程序计数器——非线程共享
+ 本地方法栈——非线程共享</code></pre><p>java反射：<br>Java的反射机制是在运行状态中，对于任意一个类，都能够指定这个类的所有属性和方法。<br>对于任意一个对象，都能够调优它的任意方法和属于。<br>这种动态的获取信息，和动态调用对象的功能。<br>类从编译到执行的过程：<br>编译器将robot.java源文件编译为robot.class字节码文件<br>classloader（所有的java都是它加载的）将字节码转换为jvm的class《robot》对象<br>jvm利用class《robot》对象实例化为robot对象</p>
+<h3 id="类加载机制"><a href="#类加载机制" class="headerlink" title="类加载机制"></a>类加载机制</h3><p>Class文件由类装载器装载后，在JVM中将形成一份描述Class结构的元信息对象，通过该元信息对象可以获知Class的结构信息：如构造函数，属性和方法等，Java允许用户借由这个Class相关的元信息对象间接调用Class对象的功能<br>。虚拟机把描述类的数据从class文件加载到内存，并对数据进行校验，转换解析和初始化，最终形成可以被虚拟机直接使用的Java类型，这就是虚拟机的类加载机制。<br>（1）类加载时机<br>当应用程序启动的时候，所有的类会被一次性加载吗？估计你早已知道答案，当然不能，因为如果一次性加载，内存资源有限，可能会影响应用程<br>序的正常运行。那类什么时候被加载呢？例如，A a=new A()，一个类真正被加载的时机是在创建对象的时候，才会去执行以上过程，加载类。当我们测试的时候，最先加载拥有main方法的主线程所在类。<br>2）类初始化时机<br>主动引用的五种情况（发生类初始化过程）<br>1  使用new字节码指令创建类的实例，或者使用getstatic、putstatic读取或设置一个静态字段的值（放入常量池中的常量除外），或者调用一个静态方法的时候，对应类必须进行过初始化。<br>2  通过java.lang.reflect包的方法对类进行反射调用的时候，如果类没有进行过初始化，则要首先进行初始化。<br>3  当初始化一个类的时候，如果发现其父类没有进行过初始化，则首先触发父类初始化。<br>4  当虚拟机启动时，用户需要指定一个主类（包含main()方法的类），虚拟机会首先初始化这个类。<br>5  使用jdk1.7的动态语言支持时，如果一个java.lang.invoke.MethodHandle实例最后的解析结果REF_getStatic、REF_putStatic、RE_invokeStatic的方法句柄，并且这个方法句柄对应的类没有进行初始化，则需要先触发其初始化。</p>
+<p> 1.当访问一个静态变量时，只有真正声明这个变量的类才会初始化。(子类调用父类的静态变量，只有父类初始化，子类不初始化)。<br> 2.通过数组定义类引用，不会触发此类的初始化。<br> 3.静态常量不会触发此类的初始化，因为在编译阶段就存储在常量池中，不会引用到定义常量的类。</p>
+<h2 id="JVM垃圾回收机制（GC）"><a href="#JVM垃圾回收机制（GC）" class="headerlink" title="JVM垃圾回收机制（GC）"></a>JVM垃圾回收机制（GC）</h2><h4 id="GC的基本原理："><a href="#GC的基本原理：" class="headerlink" title="GC的基本原理："></a>GC的基本原理：</h4><p>将内存中不再被使用的对象进行回收，GC中用于回收的方法称为收集器，由于GC需要消耗一些资源和时间，Java在对对象的生命周期特征进行分析后，按照新生代、旧生代的方式来对对象进行收集，<br>以尽可能的缩短GC对应用造成的暂停。</p>
+<h4 id="回收内容："><a href="#回收内容：" class="headerlink" title="回收内容："></a>回收内容：</h4><p>JVM的内存结构包括五大区域：程序计数器、虚拟机栈、本地方法栈、堆区、方法区。其中程序计数器、虚拟机栈、本地方法栈3个区域随线程而生、随线程而灭，<br>因此这几个区域的内存分配和回收都具备确定性，就不需要过多考虑回收的问题，因为方法结束或者线程结束时，内存自然就跟随着回收了。而Java堆区和方法区则不一样，这部分内存的分配和回收是动态的，正是垃圾收集器所需关注的部分。</p>
+<h4 id="回收的方法："><a href="#回收的方法：" class="headerlink" title="回收的方法："></a>回收的方法：</h4><p>1 引用计数器<br>引用计数是垃圾收集器中的早期策略。在这种方法中，堆中每个对象实例都有一个引用计数。当一个对象被创建时，就将该对象实例分配给一个变量，该变量计数设置为1。<br>当任何其它变量被赋值为这个对象的引用时，计数加1（a = b,则b引用的对象实例的计数器+1），但当一个对象实例的某个引用超过了生命周期或者被设置为一个新值时，对象实例的引用计数器减1。任何引用计数器为0的对象实例可以被当作垃圾收集。<br>当一个对象实例被垃圾收集时，它引用的任何对象实例的引用计数器减1。</p>
+<p>2 可行性分析算法<br>程序把所有的引用关系看作一张图，从一个节点GC ROOTS开始，寻找对应的引用节点，找到这个节点以后，继续寻找这个节点的引用节点，当所有的引用节点寻找完毕之后，剩余的节点则被认为是没有被引用到的节点，即无用的节点，无用的节点将会被判定为是可回收的对象。</p>
+<h4 id="方法区如何判断是否需要回收"><a href="#方法区如何判断是否需要回收" class="headerlink" title="方法区如何判断是否需要回收"></a>方法区如何判断是否需要回收</h4><p>回收的内容有：废弃常量和无用的类。<br>（1）该类所有的实例都已经被回收，也就是Java堆中不存在该类的任何实例<br>（2）加载该类的ClassLoader已经被回收<br>（3）该类对应的java.lang.Class对象没有在任何地方被引用，无法在任何地方通过反射访问该类的方法。</p>
+<h4 id="垃圾回收算法"><a href="#垃圾回收算法" class="headerlink" title="垃圾回收算法"></a>垃圾回收算法</h4><p>1 标记-清除（Mark-Sweep）算法<br>标记-清除算法分为两个阶段：标记阶段和清除阶段。标记阶段的任务是标记出所有需要被回收的对象，清除阶段就是回收被标记的对象所占用的空间。<br>2 复制（Copying）算法<br>为了解决Mark-Sweep算法的缺陷，Copying算法就被提了出来。它将可用内存按容量划分为大小相等的两块，每次只使用其中的一块。当这一块的内存用完了，就将还存活着的对象复制到另外一块上面，然后再把已使用的内存空间一次清理掉，这样一来就不容易出现内存碎片的问题。</p>
+<p>3 标记-整理（Mark-Compact）算法<br>为了解决Copying算法的缺陷，充分利用内存空间，提出了Mark-Compact算法。该算法标记阶段和Mark-Sweep一样，但是在完成标记之后，它不是直接清理可回收对象，而是将存活对象都向一端移动，然后清理掉端边界以外的内存。    </p>
+<p>4  分代收集（Generational Collection）算法<br>分代收集算法是目前大部分JVM的垃圾收集器采用的算法。它的核心思想是根据对象存活的生命周期将内存划分为若干个不同的区域。一般情况下将堆区划分为老年代（Tenured Generation）和年轻代（Young Generation），在堆区之外还有一个代就是永久代（Permanet Generation），它用来存储class类、常量、方法描述等。对永久代的回收主要回收两部分内容：废弃常量和无用的类。</p>
+<p>5 年轻代（Young Generation）的回收算法：<br>6 老年代（Old Generation）的回收算法：<br>老年代的特点是每次回收都只回收少量对象，一般使用的是Mark-Compact（标记-整理）算法。a）在年轻代中经历了N次垃圾回收后仍然存活的对象，就会被放到年老代中。因此，可以认为年老代中存放的都是一些生命周期较长的对象。b）内存比新生代也大很多(大概比例是1:2)，当老年代内存满时触发Major GC或Full GC，Full GC发生频率比较低，老年代对象存活时间比较长，存活率标记高。<br> 7永久代（Permanent Generation）的回收算法：<br>永久代(permanent generation)也称为“方法区(method area)”，他存储class对象和字符串常量。所以这块内存区域绝对不是永久的存放从老年代存活下来的对象的。在这块内存中有可能发生垃圾回收。发生在这里垃圾回收也被称为major GC。</p>
+<h2 id="Minor-GC、Full-GC触发条件"><a href="#Minor-GC、Full-GC触发条件" class="headerlink" title="Minor GC、Full GC触发条件"></a>Minor GC、Full GC触发条件</h2><h4 id="Minor-GC触发条件"><a href="#Minor-GC触发条件" class="headerlink" title="Minor GC触发条件"></a>Minor GC触发条件</h4><ul>
+<li>Eden区域满了，或者新创建的对象大小 &gt; Eden所剩空间</li>
+<li>CMS设置了CMSScavengeBeforeRemark参数，这样在CMS的Remark之前会先做一次Minor GC来清理新生代，加速之后的Remark的速度。这样整体的stop-the-world时间反而短</li>
+<li>Full GC的时候会先触发Minor GC<h4 id="Full-CG触发条件"><a href="#Full-CG触发条件" class="headerlink" title="Full CG触发条件"></a>Full CG触发条件</h4>1   Minor GC后存活的对象晋升到老年代时由于悲观策略的原因，有两种情况会触发Full GC, 一种是之前每次晋升的对象的平均大小 &gt; 老年代剩余空间；一种是Minor GC后存活的对象超过了老年代剩余空间。这两种情况都是因为老年代会为新生代对象的晋升提供担保，而每次晋升的对象的大小是无法预测的，所以只能基于统计，一个是基于历史平均水平，一个是基于下一次可能要晋升的最大水平。这两种情况都是属于promotion failure<br>2   CMS失败，发生concurrent mode failure会引起Full GC，这种情况下会使用Serial Old收集器，是单线程的，对GC的影响很大。concurrent mode failure产生的原因是老年代剩余的空间不够，导致了和gc线程并发执行的用户线程创建的大对象(由PretenureSizeThreshold控制新生代直接晋升老年代的对象size阀值)不能进入到老年代，只要stop the world来暂停用户线程，执行GC清理。可以通过设置CMSInitiatingOccupancyFraction预留合适的CMS执行时剩余的空间<br>3   新生代直接晋升到老年代的大对象超过了老年代的剩余空间，引发Full GC。注意于promotion failure的区别，promotion failure指的是Minor GC后发生的担保失败<br>4   Perm永久代空间不足会触发Full GC，可以让CMS清理永久代的空间。设置CMSClassUnloadingEnabled即可<br>5   System.gc()引起的Full GC，可以设置DisableExplicitGC来禁止调用System.gc引发Full GC</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/20/JVM&GC/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-java线程和并发" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -164,27 +250,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="synchronized"><a href="#synchronized" class="headerlink" title="synchronized"></a>synchronized</h2><p>线程安全：<br>        1  存在共享数据<br>        2  存在多线程共同操作的共享数据<br>解决方法：<br>        在同一时刻有且仅有一个线程在操作共享数据，其他线程必须等待处理完成后在操作。<br>互斥锁：<br>       互斥性：在同一时刻只能一个线程只有莫一个对象锁<br>                    通过这一特征来实现多线程的协调机制。（原子性）<br>       可见性：必须确保在锁被释放之前。对共享变量所作的修改。对随后获得改锁的另一个线程是可见的。。<br>关键字：synchronized 锁的都是对象。<br>获取对象锁的方法：<br>             1 同步代码块（synchronized（this），synchronized（类实例对象））<br>                锁是小括号（）中的实例对象。<br>             2  同步非静态方法（synchroized method锁是当前对象的实例对象）<br>类锁：<br>             1 同步代码快（）synchronized（类.class），锁是小括号（）中的类对象（clss对象）<br>             2 同步静态方法（synchroized static medthod），锁是当前对象类对象（class对象）<br>对象锁和类锁总结：<br>          1 有线程访问对象的同步代码快时，另外的线程访问改对象的非同步代码块<br>          2 若锁住的时同一个对象，一个线程在访问对象的同步代码块时，另一个访问对象的同步代码块的线程会被阻塞<br>          3 若锁住的时同一个对象，一个线程在访问对象的同步方法时，另一个访问对象的同步方法的线程会被阻塞<br>          4 若所在的时同一个对象，一个线程在访问对象的同步代码块时，另一个访问对象同步放开的线程会阻塞，反之依然<br>          5 同一个类的不同不同对象的对象锁互不干扰<br>          类锁也是一个特殊的对象锁和1234一样。由于一个类只有一把对象锁，所以同一个类的不同对象使用类锁将不会同步。<br>          类锁和对象锁互不干扰。</p>
-<h2 id="synchronized底层实现原理"><a href="#synchronized底层实现原理" class="headerlink" title="synchronized底层实现原理"></a>synchronized底层实现原理</h2><p>实现synchronized的基础<br>     1. java对象头<br>     2. Monitor<br>对象在内存中的布局</p>
-<ol>
-<li>对象头</li>
-<li>实例数据</li>
-<li>对齐填充<br>对象头结构<br>mark word ：存储对象的hashcode 年龄 锁类型<br>class metadata address： 类型指针指向对象的类元数据，jvm通过这个来确定该对象是哪个类的数据。<br>Monitor：对象的锁自带的<br>synchronized可重入性：<br>  原子性，在一个线程试图操作一个其他线程的对象锁的林间资源，会阻塞。但当一个线程再次请求自己持有对象锁资源时。<br>标志位.<br>自旋锁：（PreblockSpin来更改）<pre><code>共享的数据在锁定的时间端，切换线程不值得
-通过线程执行循环等该锁的释放，不让出cpu</code></pre>自适应自旋锁<br> 自选次数不固定，<br> 通过自选的多少来确定使用的可能性。<h2 id="synchronized四种状态："><a href="#synchronized四种状态：" class="headerlink" title="synchronized四种状态："></a>synchronized四种状态：</h2><pre><code>无锁——  偏向锁----- 轻量级锁  ------重量计锁（会升级 也会降级）</code></pre>偏向锁：<br>减少同意线程获取锁的代价（CAS  compare and swap）<br>如果一个线程获取锁。就进入偏向模式。 mark word该片结构。在请求锁时，无需仍和同步操作。因为会加一个线程ID来省去锁的操作。<br>轻量级锁：<br>同意时间   多线程访问轻量级锁就升级。<h2 id="ReentrantLock（再入锁）"><a href="#ReentrantLock（再入锁）" class="headerlink" title="ReentrantLock（再入锁）"></a>ReentrantLock（再入锁）</h2>ReentrantLock类   不会</li>
-</ol>
-<h2 id="java内存模型"><a href="#java内存模型" class="headerlink" title="java内存模型"></a>java内存模型</h2><pre><code>java内存模式 JMM
-       它描述的是一株规范或规则，通过者这组规范定义了程序中各个变量（实例字段 静态字段 构成数组对象的元素）的访问方式。
-       线程都有自己的工作内存，不同的线程不能访问其他的线程的内容。但是可是访问他们的主内存。主内存时存储所有的内容。</code></pre><p>JMM的主内存。<br>      Java实例对象<br>      成员变量，类信息，常量。<br>      属于数据共享的区域，多线程并发操作时会引发线程安全问题<br>JMM的工作内存<br>     存储当前方法的所有本地变量信息，<br>     字节码指示器，native方法信息<br>JMM与java 内存区域划分时不同的概念层次<br>      1， JMM描述的是一株规则，围绕原子性，有序性，可见性<br>      2.  都存在主内存和工作内存。<br>JMM的基本数据类型直接存储在工作内存的栈振结构<br>而引用类型的本地变量。引用存储在工作内存中，实例存储在主内存。<br>成员变量 static变量，类信息在主内存中<br>主内存的共享方式时线程各自拷贝一份数据到工作内存中，操作完成后刷新回主内存。<br>happens-before 是来解决程序并发问题<br>happens-before<br>1 一个线程内，按照代码顺序，书写在前面的操作先发生与书写在后面的操作<br>2 一个unlock操作县发生与后面对同一个锁的lock操作<br>3 thread对象的start（）方法先行方式与次线程的每一个动作。<br>有顺序就h-b的概念</p>
-<h4 id="volatile：JVM提供的轻量级同步机制"><a href="#volatile：JVM提供的轻量级同步机制" class="headerlink" title="volatile：JVM提供的轻量级同步机制"></a>volatile：JVM提供的轻量级同步机制</h4><p>1 保证被volatile修饰的共享变量对所有线程总是可见的<br>2  禁止之列冲排序优化<br>volatile的可见性<br>    public static volatile int value=0：<br>volatile禁止重排优化<br>   内存屏障（memory barrier）<br>  1保持特定操作的执行顺序<br>  2保证莫些变量的内存可见性<br>  <img src="/img/v.png" alt=""></p>
-<h4 id="CAS（compare-and-swap）"><a href="#CAS（compare-and-swap）" class="headerlink" title="CAS（compare and swap）"></a>CAS（compare and swap）</h4><p>乐观锁<br>支持管子跟新操作，适用于计数器，序列发生器<br>乐观锁机制， lock-free<br>CAS操作释放时开发者决定时继续 海事执行其他的操作</p>
-<h2 id="java-线程池"><a href="#java-线程池" class="headerlink" title="java 线程池"></a>java 线程池</h2><p>利用Executors创建不同的线程池：</p>
-<ol>
-<li>newFixedThreadPool（int  nTreads）<br> 指定工作线程数量的线程池</li>
-<li>newCachedThreadPool（）<br> 处理大量短时间工作任务的线程池，<br> （1）试图缓存线程并重用，当无缓存线程可勇士，就会创建新的工作线程<br> （2）如果线程闲置的时间查看值，会被终止溢出缓存<br> （3）系统长时间现状，不会消耗资源</li>
-<li>newSingleThreadExecutor（）<br>创建额外i之的工作者线程来执行任务，如果线程异常结束，就会有另一个线程取代它</li>
-<li>newSingleThreadcheduledExecutor()与newScheduledThreadPool(int corePoolSize)<br>定时或周期性的工作调度，两者的去呗在一单一工作线程海事多个线程<br>5 newWorkStealingPool（）<br>内部会构建ForkJOINpool利用working-stealing算法（从线程的窃取任务执行），并行处理让我，不保证处理顺序<br>为什么使用线程池<br>1 降低资源消耗<br>2 提供线程的客观理性<br><img src="/img/%E7%BA%BF%E7%A8%8B%E6%B1%A01.png" alt=""><br><img src="/img/%E7%BA%BF%E7%A8%8B%E6%B1%A02.png" alt=""><br>Executor框架<br>Executor接口 上述都时有次接口来实现<br>ThreadPoolExecutor构造函数：<br>  corepoolsize：核心线程数量<br>  maximumpoolsize：线程不够用时创建最大线程数<br>  workqueue：任务等待队列<br>  keepalivetime：抢占的顺手<br>  threadfactory：创建线程<br>   handler 线程池饱和车旅<br><img src="/img/%E7%BA%BF%E7%A8%8B%E6%B1%A03.png" alt=""><br>线程池的状态：<br>runing：能接受新提交的任务，并且能够处理阻塞队列中的任务<br>shutdow：不在接受新的任务，但可以处理存量任务<br>stop：不在接受新提交的任务，也不处理存量任务<br>tidying：使用任务终止<br>terminated：改方法执行完后进入改状态<br><img src="/img/%E7%BA%BF%E7%A8%8B%E6%B1%A04.png" alt=""><br><img src="/img/%E7%BA%BF%E7%A8%8B%E6%B1%A05.png" alt="">  </li>
-</ol>
-
+        <h2 id="synchronized"><a href="#synchronized" class="headerlink" title="synchronized"></a>synchronized</h2><p>线程安全：<br>        1  存在共享数据<br>        2  存在多线程共同操作的共享数据<br>解决方法：<br>        在同一时刻有且仅有一个线程在操作共享数据，其他线程必须等待处理完成后在操作。<br>互斥锁：<br>       互斥性：在同一时刻只能一个线程只有莫一个对象锁<br>                    通过这一特征来实现多线程的协调机制。（原子性）<br>       可见性：必须确保在锁被释放之前。对共享变量所作的修改。对随后获得改锁的另一个线程是可见的。。<br>关键字：synchronized 锁的都是对象。</p>
+        
+          <a class="article-more-a" href="/2020/04/18/java%E7%BA%BF%E7%A8%8B%E5%92%8C%E5%B9%B6%E5%8F%91/#more">more >></a>
+        
       
 
       
@@ -556,98 +625,6 @@
 
 
   
-    <article id="post-牛客选择" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/29/%E7%89%9B%E5%AE%A2%E9%80%89%E6%8B%A9/">牛客选择</a>
-    </h1>
-  
-
-        
-        <a href="/2020/03/29/%E7%89%9B%E5%AE%A2%E9%80%89%E6%8B%A9/" class="archive-article-date">
-  	<time datetime="2020-03-29T12:32:34.766Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="错题"><a href="#错题" class="headerlink" title="错题"></a>错题</h1><ul>
-<li>常量的定义需要初始化 例如：const char ch；错误</li>
-<li>代表以双绞线为传输介质的快速以太网的是100base-T base为基带</li>
-<li>七层协议： <pre><code>物理层：EIA/TIA-232, EIA/TIA-499, V.35, V.24, RJ45, Ethernet, 802.3, 802.5, FDDI, NRZI, NRZ, B8ZS
-数据链路层：Frame Relay, HDLC, PPP, IEEE 802.3/802.2, FDDI, ATM,  IEEE 802.5/802.2
-网络层：IP，IPX，AppleTalk DDP
-传输层：TCP，UDP，SPX
-会话层：RPC,SQL,NFS,NetBIOS,names,AppleTalk,ASP,DECnet,SCP
-表示层:TIFF,GIF,JPEG,PICT,ASCII,EBCDIC,encryption,MPEG,MIDI,HTML
-应用层：FTP,WWW,Telnet,NFS,SMTP,Gateway,SNMP</code></pre></li>
-<li>在操作系统中，引入缓冲的主要原因： <pre><code>1、改善CPU与I/O设备间速度不匹配的矛盾 
-      例如一个程序,它时而进行长时间的计算而没有输出,时而又阵发性把输出送到打印机.由于打印机的速度跟不上CPU,而使得CPU长时间的等待.如果设置了缓冲区,程序输出的数据先送到缓冲区暂存,然后由打印机慢慢地输出.这时,CPU不必等待,可以继续执行程序.实现了CPU与I/O设备之间的并行工作.事实上,凡在数据的到达速率与其离去速率不同的地方,都可设置缓冲,以缓和它们之间速度不匹配的矛盾.众所周知,通常的程序都是时而计算,时而输出的. 
-2、可以减少对CPU的中断频率，放宽对中断响应时间的限制 
-      如果I/O操作每传送一个字节就要产生一次中断,那么设置了n个字节的缓冲区后,则可以等到缓冲区满才产生中断,这样中断次数就减少到1/n,而且中断响应的时间也可以相应的放宽 
-3、提高CPU和I/O设备之间的并行性 
-      缓冲的引入可显著提高CPU和设备的并行操作程度，提高系统的吞吐量和设备的利用率 
-      根据I/O控制方式，缓冲的实现方法有两种： 
-      一种是采用专用硬件缓冲器 
-      一种是在内存划出一个具有n个单元的专用缓冲区，以便存放输入/输出的数据，内存缓冲区又称软件缓冲</code></pre></li>
-<li>P问题:  能在多项式时间内解决的问题<br> NP问题: 不能在多项式时间内解决或不确定能不能在多项式时间内解决，但 能在多项式时间验证的问题<br> NPC问题: NP完全问题， 所有NP问题在多项式时间内都能约化(Reducibility)到它的NP问题 ，即解决了此NPC问题，所有NP问题也都得到解决。<br> NP hard问题:NP难问题， 所有NP问题在多项式时间内都能约化(Reducibility)到它的问题(不一定是NP问题)。</li>
-<li>有字符序列{Q, H, C, Y, P ,A, M, S, R, D, F, X}，新序列{F, H ,C, D, P, A, M, Q, R, S, Y, X}是下列<strong><em>快速排序</em></strong>排序算法一趟扫描的结果</li>
-<li>请求页式存储管理： 采用动态从定位 内存动态分配</li>
-<li>java数组：<ol>
-<li>数组是一个对象，不同类型的数组具有不同的类</li>
-<li>数组是一个连续的存储结构</li>
-<li>可以二维数组，且可以有多维数组，都是在java中合法的</li>
-<li>两个数组用equals方法比较时，会逐个便利其中的元素，对每个元素进行比较（感觉正确）</li>
-</ol>
-</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/29/%E7%89%9B%E5%AE%A2%E9%80%89%E6%8B%A9/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-算法思路" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -833,6 +810,98 @@ hashset.size()：返回此 set 中的元素的数量（set 的容量）。</code
 
 
   
+    <article id="post-牛客选择" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/29/%E7%89%9B%E5%AE%A2%E9%80%89%E6%8B%A9/">牛客选择</a>
+    </h1>
+  
+
+        
+        <a href="/2020/03/29/%E7%89%9B%E5%AE%A2%E9%80%89%E6%8B%A9/" class="archive-article-date">
+  	<time datetime="2020-03-29T12:32:34.766Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="错题"><a href="#错题" class="headerlink" title="错题"></a>错题</h1><ul>
+<li>常量的定义需要初始化 例如：const char ch；错误</li>
+<li>代表以双绞线为传输介质的快速以太网的是100base-T base为基带</li>
+<li>七层协议： <pre><code>物理层：EIA/TIA-232, EIA/TIA-499, V.35, V.24, RJ45, Ethernet, 802.3, 802.5, FDDI, NRZI, NRZ, B8ZS
+数据链路层：Frame Relay, HDLC, PPP, IEEE 802.3/802.2, FDDI, ATM,  IEEE 802.5/802.2
+网络层：IP，IPX，AppleTalk DDP
+传输层：TCP，UDP，SPX
+会话层：RPC,SQL,NFS,NetBIOS,names,AppleTalk,ASP,DECnet,SCP
+表示层:TIFF,GIF,JPEG,PICT,ASCII,EBCDIC,encryption,MPEG,MIDI,HTML
+应用层：FTP,WWW,Telnet,NFS,SMTP,Gateway,SNMP</code></pre></li>
+<li>在操作系统中，引入缓冲的主要原因： <pre><code>1、改善CPU与I/O设备间速度不匹配的矛盾 
+      例如一个程序,它时而进行长时间的计算而没有输出,时而又阵发性把输出送到打印机.由于打印机的速度跟不上CPU,而使得CPU长时间的等待.如果设置了缓冲区,程序输出的数据先送到缓冲区暂存,然后由打印机慢慢地输出.这时,CPU不必等待,可以继续执行程序.实现了CPU与I/O设备之间的并行工作.事实上,凡在数据的到达速率与其离去速率不同的地方,都可设置缓冲,以缓和它们之间速度不匹配的矛盾.众所周知,通常的程序都是时而计算,时而输出的. 
+2、可以减少对CPU的中断频率，放宽对中断响应时间的限制 
+      如果I/O操作每传送一个字节就要产生一次中断,那么设置了n个字节的缓冲区后,则可以等到缓冲区满才产生中断,这样中断次数就减少到1/n,而且中断响应的时间也可以相应的放宽 
+3、提高CPU和I/O设备之间的并行性 
+      缓冲的引入可显著提高CPU和设备的并行操作程度，提高系统的吞吐量和设备的利用率 
+      根据I/O控制方式，缓冲的实现方法有两种： 
+      一种是采用专用硬件缓冲器 
+      一种是在内存划出一个具有n个单元的专用缓冲区，以便存放输入/输出的数据，内存缓冲区又称软件缓冲</code></pre></li>
+<li>P问题:  能在多项式时间内解决的问题<br> NP问题: 不能在多项式时间内解决或不确定能不能在多项式时间内解决，但 能在多项式时间验证的问题<br> NPC问题: NP完全问题， 所有NP问题在多项式时间内都能约化(Reducibility)到它的NP问题 ，即解决了此NPC问题，所有NP问题也都得到解决。<br> NP hard问题:NP难问题， 所有NP问题在多项式时间内都能约化(Reducibility)到它的问题(不一定是NP问题)。</li>
+<li>有字符序列{Q, H, C, Y, P ,A, M, S, R, D, F, X}，新序列{F, H ,C, D, P, A, M, Q, R, S, Y, X}是下列<strong><em>快速排序</em></strong>排序算法一趟扫描的结果</li>
+<li>请求页式存储管理： 采用动态从定位 内存动态分配</li>
+<li>java数组：<ol>
+<li>数组是一个对象，不同类型的数组具有不同的类</li>
+<li>数组是一个连续的存储结构</li>
+<li>可以二维数组，且可以有多维数组，都是在java中合法的</li>
+<li>两个数组用equals方法比较时，会逐个便利其中的元素，对每个元素进行比较（感觉正确）</li>
+</ol>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/03/29/%E7%89%9B%E5%AE%A2%E9%80%89%E6%8B%A9/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-访问数据库" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -871,74 +940,6 @@ hashset.size()：返回此 set 中的元素的数量（set 的容量）。</code
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/03/27/%E8%AE%BF%E9%97%AE%E6%95%B0%E6%8D%AE%E5%BA%93/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-AOP" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/27/AOP/">AOP</a>
-    </h1>
-  
-
-        
-        <a href="/2020/03/27/AOP/" class="archive-article-date">
-  	<time datetime="2020-03-27T01:16:57.902Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="spring-AOP"><a href="#spring-AOP" class="headerlink" title="spring AOP"></a>spring AOP</h1><p>约定编程</p>
-<ol>
-<li>定义接口  在实现接口</li>
-<li>定义拦截器接口：里面的接口实现 并 挨个实现 通过给使用的约定 。当使用时 会调用拦截器 实现不同的结果  再按照约定 实现<br>ProxyBean何将服务类和拦截方法织入对应的流程，是 ProxyBean 要实现的功能<br>peoxy（代理）通过代理来实现控制对象<h2 id="springAOP-就是一种约定流程的编程"><a href="#springAOP-就是一种约定流程的编程" class="headerlink" title="springAOP 就是一种约定流程的编程"></a>springAOP 就是一种约定流程的编程</h2>AOP就是数据库事务的管控<br>使用JDBC插入用户：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> class <span class="title">UserService</span> <span class="params">( </span></span></span><br><span class="line"><span class="function"><span class="params"><span class="keyword">public</span> <span class="keyword">int</span> insertUser ()</span> <span class="params">( </span></span></span><br><span class="line"><span class="function"><span class="params">UserDao userDao= ηew UserDao ()</span></span>; </span><br><span class="line">User user= <span class="keyword">new</span> User() ; </span><br><span class="line"><span class="function">user <span class="title">setUsername</span><span class="params">( <span class="string">"user name l "</span> )</span></span>; </span><br><span class="line">user .setNote (” note <span class="number">1</span> ” ); </span><br><span class="line">Connection conn = <span class="keyword">null</span> ; </span><br><span class="line"><span class="keyword">int</span> result = O; </span><br><span class="line"><span class="keyword">try</span> ( </span><br><span class="line">／／获取数据事务连接</span><br><span class="line">Class . forName ( <span class="string">" com.mysql .jdbc.Driver” ); </span></span><br><span class="line"><span class="string">conn= DriverManager getConnection( ”jdbc : mysql : //localhost :3306/chapter3 "</span>, ” root”,”<span class="number">123456</span>” );</span><br><span class="line">／／非自动提交事务</span><br><span class="line">conn . setAutoCommit (fa l se ); </span><br><span class="line">result= userDao . insertUser (conn , user) ; </span><br><span class="line">／／ 提交事务</span><br><span class="line">conn . commit () ; </span><br><span class="line">&#125; <span class="keyword">catch</span> (Exception e ) &#123; </span><br><span class="line"><span class="keyword">try</span> &#123; </span><br><span class="line">／／回滚事</span><br><span class="line">conn . rollback (); </span><br><span class="line">&#125; <span class="keyword">catch</span> (SQLException ex) &#123; </span><br><span class="line">ex . printStackTrace(); </span><br><span class="line">e.printStackTrace(); </span><br><span class="line">&#125; <span class="keyword">finally</span> &#123; </span><br><span class="line">／／ 释放数据连接资源</span><br><span class="line"><span class="keyword">if</span> (conn ! = <span class="keyword">null</span> ) ( </span><br><span class="line"><span class="keyword">try</span> &#123; </span><br><span class="line">conn . close ( ) ; </span><br><span class="line">&#125; <span class="keyword">catch</span> (SQLException e ) &#123; </span><br><span class="line">e.printStackTrace() ; </span><br><span class="line"><span class="keyword">return</span> result ;</span><br><span class="line">&#125;&#125;</span><br><span class="line"></span><br><span class="line">==================</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserDao</span> </span>&#123; </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">nsertUser</span><span class="params">(Connection con n , User user)</span> <span class="keyword">throws</span> SQLException </span>&#123; </span><br><span class="line">PreparedStatement ps = <span class="keyword">null</span> ; </span><br><span class="line"><span class="keyword">try</span> &#123; </span><br><span class="line">ps = <span class="function">conn prepareStatement insert nto t _ <span class="title">user</span><span class="params">(user name , note)</span> <span class="title">values</span> <span class="params">(?,?)</span> ” ) </span>; </span><br><span class="line">ps .<span class="function">setStri <span class="title">ng</span><span class="params">(l, user . getUsername ( )</span>) </span>; </span><br><span class="line">ps . setString (<span class="number">2</span> , user. getNote () ) ; </span><br><span class="line"><span class="keyword">return</span> ps . executeUpdate() ; </span><br><span class="line">&#125; <span class="keyword">finally</span> &#123; </span><br><span class="line">ps . close () ;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2020/03/27/AOP/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/27/AOP/">展开全文 >></a>
         </p>
       
 
