@@ -16,7 +16,7 @@
 <meta property="og:description" content="Spring1.Spring通过控制反转（IOC）来管理java资源从而降低各种资源的耦合；2.并且提供了极低的侵入性，也就是使 Spring 框架开发 编码 脱离了 Spring API 也可以继续使用3.而 Spring 的面 切面的编程（ AOP ）通 动态代理技术，允许 按照约定进行配置编程 增强了 Bean 的功能，它除去了大量的重复代码如：try。。。catch。。。finally语句">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-03-21T07:08:38.457Z">
-<meta property="article:modified_time" content="2020-03-27T06:22:52.899Z">
+<meta property="article:modified_time" content="2020-04-24T13:18:40.900Z">
 <meta property="article:author" content="7LL">
 <meta name="twitter:card" content="summary">
   
@@ -171,7 +171,7 @@
 <li>起步依赖<br> 对一个Maven项目对象模型（project object model pom）定义了对其他库的传递依赖  加起来形成功能</li>
 <li>自动装配<br> 程序启动时 多种因素spring自动配置完成</li>
 </ol>
-<h2 id="注解-XML（可扩展标记语言）"><a href="#注解-XML（可扩展标记语言）" class="headerlink" title="注解       XML（可扩展标记语言）"></a>注解       XML（可扩展标记语言）</h2><p>Spring的开发，大部分使用XML为主 注解为辅<br>业务类使用注解。如：MVC开发中控制器@controller    业务层@service     持久层@repository</p>
+<h2 id="注解-XML（可扩展标记语言）"><a href="#注解-XML（可扩展标记语言）" class="headerlink" title="注解       XML（可扩展标记语言）"></a>注解       XML（可扩展标记语言）</h2><p>Spring的开发，大部分使用XML为主 注解为辅<br>业务类使用注解。如：MVC开发中控制器@controller    业务层@service     持久层@repository<br>           1 创建一个application.properties文件里面有属性的内容。在创建一个配置属性类需要注解@configuartionproperties 。在主方法中启动这个类@enableconfiguartionproperties在spring启动中就会调用这个注入方式。在主方法中通过@autowired 1 类 2 方法 3 在方法中加入类3种方式启动。<br>            2 @data 会生成get set方法 这个注解 需要依赖lombok 依赖<br>            3 通过文件 yaml文件来实现注入<br>           4  通过properties注入配置<br>           5 @spring boot application注解 主函数   这就是个配置类<br>           6 @ componentscan 主键扫描配置<br>           7 日志 logger log=loggerfactory.getlogger（**.class）  或者 @slf4j      ——-log.debug（）<br>           8 通用mapper 单表的增删改<br>           9 @GetMapping(“{id}”)<br>               public User hello(@PathVariablr(“id”) Long id)<br>                { return userService.queryByid(id)}</p>
 <h2 id="Spring-Boot-优点"><a href="#Spring-Boot-优点" class="headerlink" title="Spring Boot 优点"></a>Spring Boot 优点</h2><ol>
 <li>创建独立的Spring应用程序</li>
 <li>嵌入的Tomcat  Jetty  Undertow （3个服务器） 无需部署WAR文件</li>
