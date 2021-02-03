@@ -206,7 +206,34 @@
 </ol>
 <p>三级模式二级映像 </p>
 <h2 id="1-4数据库系统的组成"><a href="#1-4数据库系统的组成" class="headerlink" title="1.4数据库系统的组成"></a>1.4数据库系统的组成</h2><p>数据库系统： 数据库 数据库管理系统  应用系统 数据库管理员<br>硬件的要求： 大内存：（操作系统 DBMS核心模块 数据缓冲区 应用程序)<br>软件： DBMS  操作系统 数据库接口的高级语言 和编译系统  DBMS的核心应用开发工具<br>1 数据库管理员（DBA）  决定数据库中的信息内容和结构  数据库的改进和重组（监控 调优）<br>2 单用户  分布式数据库系统  客户/服务器结构<br>C/S （用户+应用程序———-数据库服务器）<br>C/S （用户———应用服务器——-数据库服务器） 适合互联网</p>
-<h2 id="2-1-关系数据结构及形式化定义"><a href="#2-1-关系数据结构及形式化定义" class="headerlink" title="2.1 关系数据结构及形式化定义"></a>2.1 关系数据结构及形式化定义</h2>
+<h2 id="2-1-关系数据结构及形式化定义"><a href="#2-1-关系数据结构及形式化定义" class="headerlink" title="2.1 关系数据结构及形式化定义"></a>2.1 关系数据结构及形式化定义</h2><ol>
+<li><p>关系（值<br>域 （是相同类型一个集合）   笛卡尔积（）  关系</p>
+</li>
+<li><p>关系模式  （型（对关系的描述<br>R( U,D,DOM,F)<br>R关系名<br>U属性名集合<br>D 域<br>DOM 映像集合<br>F 属性依赖之间的关系</p>
+</li>
+<li><p>关系数据库<br>关系模式的结合</p>
+</li>
+<li><p>关系操作</p>
+<h2 id="2-3-关系的完整性"><a href="#2-3-关系的完整性" class="headerlink" title="2.3 关系的完整性"></a>2.3 关系的完整性</h2><p>实体      参照        用户定义   完整性<br>属性A 是主属性 就不能为空。（实体完整性规则）  实体是可以区分。<br>参照完整性（外码  参照）</p>
+<h2 id="2-4-关系代数"><a href="#2-4-关系代数" class="headerlink" title="2.4 关系代数"></a>2.4 关系代数</h2><p>1 集合运算<br>2 关系代数运算</p>
+</li>
+<li><p>并（union）R U A  不需来个 同一个域</p>
+</li>
+<li><p>差（difference）R-S</p>
+</li>
+<li><p>交（intersenction）</p>
+</li>
+<li><p>笛卡尔积 </p>
+</li>
+</ol>
+<ol>
+<li>选择  2. 投影Π  3.连接 oo （自然连接  外连接   左连接  右连接  （把某边的元组保留））<ol start="4">
+<li>除 有共同的部分（ B中有A中属性的所有 属性）<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">查询至少选修 1号课程和3号课程 的学习号码。</span><br><span class="line">(至少  ---- 除 )</span><br><span class="line">查询选修了2号课程 学生的学号。</span><br><span class="line">（投影（选择 2号课程））</span><br><span class="line"> 查询至少选修了其（直接先行课）为5号课程的学生的姓名 </span><br><span class="line">（连接。。。。。。。。）</span><br><span class="line">查询选修了全部课程的学生号码和姓名</span><br><span class="line">（         （选课除  课程）来凝结 姓名       ）</span><br></pre></td></tr></table></figure>
+##2.5关系演算<h2 id="3-1-SQL"><a href="#3-1-SQL" class="headerlink" title="3.1 SQL"></a>3.1 SQL</h2></li>
+</ol>
+</li>
+</ol>
+
       
 
       
