@@ -169,7 +169,7 @@
 <li>概念模型的基本概念</li>
 <li>关系数据库的基本概念</li>
 <li>数据库系统的三级模式  两级映射</li>
-<li>数据结构  物理独立性 逻辑独立性<br>一————————————————————-<br>什么是数据：  数据和语义是不可分的。描述事物的符号记录。数据是信息的载体，是描述<pre><code>客观事物的数，字符能被计算机识别和处理的集合。</code></pre>什么是数据库（DB）：是长期储存在计算机内 有组织的 可共享的 数据集合。<br>什么是数据库管理系统（DBMS）： 是一种操纵和管理数据库的大型软件，用于建立、使用和维护数据库<br>什么是数据库系统（Database System）：是由数据库及其管理软件组成的系统。<br>什么是数据管理：是对数据分类 组织 编码 存储 检索 和维护</li>
+<li>数据结构  物理独立性 逻辑独立性<br>一————————————————————-<br>什么是数据：  数据和语义是不可分的。描述事物的符号记录。数据是信息的载体，是描述<pre><code>客观事物的数，字符能被计算机识别和处理的集合。</code></pre>什么是数据库（DB）：是长期储存在计算机内 有组织的 可共享的 数据集合。<br>什么是数据库管理系统（DBMS）： 是一种操纵和管理数据库的大型软件，用于建立、使用和维护数据库（数据定义 数据炒作 数据库运行和建立）<br>什么是数据库系统（Database System）：是由数据库及其管理软件组成的系统。<br>什么是数据管理：是对数据分类 组织 编码 存储 检索 和维护</li>
 </ul>
 <hr>
 <ul>
@@ -193,24 +193,29 @@
 <li>层次是网状的一个特例</li>
 </ol>
 </li>
-<li>关系数据模型</li>
-</ul>
-<ol>
-<li>关系   一个关系代表一张表<ol start="2">
+<li>关系数据模型<ol>
+<li>关系   一个关系代表一张表</li>
 <li>元组   表中的一行</li>
 <li>属性  表中的列 </li>
+<li>主码   域<br>关系必须是规范化的 。 不可以表中有表  表中的数据不可以分<br>关系数据模型的完整性。（实体完整性  参照完整性 用户定义完整性）</li>
 </ol>
 </li>
-<li>主码   域<br>关系必须是规范化的 。 不可以表中有表  表中的数据不可以分<br>关系数据模型的完整性。（实体完整性  参照完整性 用户定义完整性）<h2 id="1-3数据库系统结构"><a href="#1-3数据库系统结构" class="headerlink" title="1.3数据库系统结构"></a>1.3数据库系统结构</h2>数据库系统的模式结构： 逻辑结构和特征的描述   是型的描述<br>型 （type）数据结构和属性的 说明<br>值（value）型的具体值<br>模式：数据库中全体数据的逻辑结构和特征的描述<br>定义： 数据的逻辑结构（数据项的名字）<pre><code>数据之间的联系
+<li>关系数据结构<br>关系  值<br>关系模式  型  是对关系的描述<br>关系数据库<br>关系： </li>
+</ul>
+<ol>
+<li>域 ：相同数据类型的值的集合</li>
+<li>笛卡尔积<br>关系的三类完整性： 实体 参照  用户定义完整性<h2 id="1-3数据库系统结构"><a href="#1-3数据库系统结构" class="headerlink" title="1.3数据库系统结构"></a>1.3数据库系统结构</h2>数据库系统的模式结构： 逻辑结构和特征的描述   是型的描述<br>型 （type）数据结构和属性的 说明<br>值（value）型的具体值<br>模式：数据库中全体数据的逻辑结构和特征的描述<br>定义： 数据的逻辑结构（数据项的名字）<pre><code>数据之间的联系
 数据的安全性  完整性</code></pre>外模式：介于模式和应用之间  可以反应不同用户的要求  （1对多的关系）<br>   用途： 保证数据库安全性 ，让用户直能看到<br>内模式：是数据物理结构和存储方式的描述<br>二级映像：<br>外模式/模式映像   保证数据的逻辑独立性<br>模式/内模式映像 定义了全局逻辑结构和存储结构之间的对应关系    保证数据的物理独立性</li>
 </ol>
 <p>三级模式二级映像 </p>
 <h2 id="1-4数据库系统的组成"><a href="#1-4数据库系统的组成" class="headerlink" title="1.4数据库系统的组成"></a>1.4数据库系统的组成</h2><p>数据库系统： 数据库 数据库管理系统  应用系统 数据库管理员<br>硬件的要求： 大内存：（操作系统 DBMS核心模块 数据缓冲区 应用程序)<br>软件： DBMS  操作系统 数据库接口的高级语言 和编译系统  DBMS的核心应用开发工具<br>1 数据库管理员（DBA）  决定数据库中的信息内容和结构  数据库的改进和重组（监控 调优）<br>2 单用户  分布式数据库系统  客户/服务器结构<br>C/S （用户+应用程序———-数据库服务器）<br>C/S （用户———应用服务器——-数据库服务器） 适合互联网</p>
 <h2 id="2-1-关系数据结构及形式化定义"><a href="#2-1-关系数据结构及形式化定义" class="headerlink" title="2.1 关系数据结构及形式化定义"></a>2.1 关系数据结构及形式化定义</h2><ol>
-<li><p>关系（值<br>域 （是相同类型一个集合）   笛卡尔积（）  关系</p>
-</li>
+<li>关系（值<br>关系（Ｒｅｌａｔｉｏｎ） １）关系 Ｄ１×Ｄ２×… ×Ｄｎ的子集叫作在域 Ｄ１，Ｄ２，…，Ｄｎ上的关系，表示为： Ｒ（Ｄ１，Ｄ２，…，Ｄｎ） Ｒ：关系名 ｎ：关系的目或度（Ｄｅｇｒｅｅ） 注意： 关系是笛卡尔积的有限子集。无限关系在数据库系统中是无意义的。 由于笛卡尔积不满足交换律，即（ｄ１，ｄ２，…，ｄｎ）≠（ｄ２，ｄ１，…，ｄｎ） 但关系满足交换律，即 （ｄ１，ｄ２，…，ｄｉ，ｄｊ，…，ｄｎ）＝（ｄ１，ｄ２，…，ｄｊ，ｄｉ，…，ｄｎ）（ｉ，ｊ＝１，２，…，ｎ） 解决方法：为关系的每个列附加一个属性名以取消关系元组的有序性<br>域 （是相同类型一个集合）   笛卡尔积（）  关系<br>１）笛卡尔积 给定一组域 Ｄ１，Ｄ２，…，Ｄｎ，这些域中可以有相同的。<br>Ｄ１，Ｄ２，…，Ｄｎ的笛卡尔积为： Ｄ１×Ｄ２×… ×Ｄｎ＝｛（ｄ１，ｄ２，…，ｄｎ）｜ｄｉ!Ｄｉ，ｉ＝１，２，…，ｎ｝ ·所有域的所有取值的一个组合 ·不能重复 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">【例】 给出三个域：</span><br><span class="line">Ｄ１＝ＳＵＰＥＲＶＩＳＯＲ ＝｛张清玫，刘逸 ｝</span><br><span class="line"> Ｄ２＝ＳＰＥＣＩＡＬＩＴＹ＝｛计算机专业，信息专业｝ </span><br><span class="line">Ｄ３＝ＰＯＳＴＧＲＡＤＵＡＴＥ＝｛李勇，刘晨，王敏｝</span><br><span class="line"> 则 Ｄ１，Ｄ２，Ｄ３的笛卡尔积为：</span><br><span class="line"> Ｄ１×Ｄ２×Ｄ３＝ ｛（张清玫，计算机专业，李勇），</span><br><span class="line">（张清玫，计算机专业，刘晨），</span><br><span class="line"> （张清玫，计算机专业，王敏），（张清玫，信息专业，李勇），</span><br><span class="line"> （张清玫，信息专业，刘晨），（张清玫，信息专业，王敏），</span><br><span class="line"> （刘逸，计算机专业，李勇），（刘逸，计算机专业，刘晨）， </span><br><span class="line">（刘逸，计算机专业，王敏），（刘逸，信息专业，李勇），</span><br><span class="line"> （刘逸，信息专业，刘晨），（刘逸，信息专业，王敏）｝</span><br></pre></td></tr></table></figure>
+２）元组（Ｔｕｐｌｅ） 笛卡尔积中每一个元素（ｄ１，ｄ２，…，ｄｎ）叫作一个 ｎ元组（ｎ－ｔｕｐｌｅ）或简称元组。 ３）分量（Ｃｏｍｐｏｎｅｎｔ） 笛卡尔积元素（ｄ１，ｄ２，…，ｄｎ）中的每一个值 ｄｉ叫作一个分量。 ４）基数（Ｃａｒｄｉｎａｌｎｕｍｂｅｒ） 若 Ｄｉ（ｉ＝１，２，…，ｎ）为有限集，其基数为 ｍｉ（ｉ＝１，２，…，ｎ），则 Ｄ１×Ｄ２×… ×Ｄｎ的基数 Ｍ为： ｎ Ｍ ＝Π ｍｉ ｉ＝１ 在上例中，基数：２×２×３＝１２，即 Ｄ１×Ｄ２×Ｄ３共有 ２×２×３＝１２个元组</li>
+</ol>
+<ol start="2">
 <li><p>关系模式  （型（对关系的描述<br>R( U,D,DOM,F)<br>R关系名<br>U属性名集合<br>D 域<br>DOM 映像集合<br>F 属性依赖之间的关系</p>
-</li>
+<ol start="3">
 <li><p>关系数据库<br>关系模式的结合</p>
 </li>
 <li><p>关系操作</p>
@@ -226,13 +231,72 @@
 <li><p>笛卡尔积 </p>
 </li>
 </ol>
-<ol>
-<li>选择  2. 投影Π  3.连接 oo （自然连接  外连接   左连接  右连接  （把某边的元组保留））<ol start="4">
+</li>
+<li><p>选择  2. 投影Π  3.连接 oo （自然连接  外连接   左连接  右连接  （把某边的元组保留））</p>
+<ol start="4">
 <li>除 有共同的部分（ B中有A中属性的所有 属性）<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">查询至少选修 1号课程和3号课程 的学习号码。</span><br><span class="line">(至少  ---- 除 )</span><br><span class="line">查询选修了2号课程 学生的学号。</span><br><span class="line">（投影（选择 2号课程））</span><br><span class="line"> 查询至少选修了其（直接先行课）为5号课程的学生的姓名 </span><br><span class="line">（连接。。。。。。。。）</span><br><span class="line">查询选修了全部课程的学生号码和姓名</span><br><span class="line">（         （选课除  课程）来凝结 姓名       ）</span><br></pre></td></tr></table></figure>
-##2.5关系演算<h2 id="3-1-SQL"><a href="#3-1-SQL" class="headerlink" title="3.1 SQL"></a>3.1 SQL</h2></li>
+基本运算： 并 差 笛卡尔积 投影 选择<br>交 ：R-(R-S)<br>连接： 通过笛卡尔积<br>除：<br>除：   R*S  R中  与 S中 有相同的属性  相除  就是出去R中 与S 相同的 属性 （R中 相同的属性包含 s 所有的属性  的  其他的值）<br>##2.5关系演算<h2 id="3-1-SQL"><a href="#3-1-SQL" class="headerlink" title="3.1 SQL"></a>3.1 SQL</h2>SQL可以 对 视图（外模式） 基本表（模式）<br>不可以  存储文件（内模式）</li>
 </ol>
 </li>
+<li><p>SQL是一个通用的，功能强的关系数据库语言</p>
+</li>
+<li><p>高度的非过程化  嵌入式</p>
+</li>
+<li><p>外模式对应视图（view） 和 部分基本表（base table）</p>
+</li>
+<li><p>模式对应基本表</p>
+</li>
+<li><p>内模式 对应存储文件（stored file）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> create table  student(</span><br><span class="line">  con char(4) prinmary key</span><br><span class="line">)&#x2F;&#x2F;创建</span><br></pre></td></tr></table></figure>
+<p>创建表语句  有关表的定义 约束条件 翻译成内部表示存储到系统的 数据字典中<br>数据字典包括所有实体的内容 </p>
+</li>
 </ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">alter table&lt;表名&gt;&#123;alter column&#125;</span><br><span class="line">&#123;add&#125;</span><br><span class="line">&#123;drop&#125;</span><br></pre></td></tr></table></figure>
+<p>修改基本表</p>
+<ul>
+<li>索引的建立和删除</li>
+</ul>
+<ol>
+<li>加快查询的数据</li>
+<li>B+ HASH来实现</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">create    （unique）（cluster）------  index&lt;索引名&gt;</span><br><span class="line">on &lt;表名&gt;&lt;列名&gt;&lt;次序&gt;</span><br></pre></td></tr></table></figure>
+<p>一个关系中只能创建一个聚集索引—就是排序</p>
+<ul>
+<li>定义模式：CREATE SCHEMA &lt;模式名&gt; AUTHORIZATION&lt;用户名&gt;<pre><code>拥有模式用户DBA权限  </code></pre></li>
+<li>查询<br>SELECT &lt;&gt;  FROM &lt;&gt; WHERE &lt;&gt;  GROUP BY &lt;&gt; HAVING&lt;&gt;        ORDER BY &lt;&gt;<br>LIKE % 任意字符  - 一个字符  加下划线 变成不同字符<br>count   sum  avg  max min<br>group by  分组  having 分组中选择<br>not exists 不存在<br>外连接： 指定表位 连接主题将主表中的不满足连接条件的元组输出  （有虚行）</li>
+</ul>
+<h2 id="数据查询"><a href="#数据查询" class="headerlink" title="数据查询"></a>数据查询</h2><p>1.1 数据跟新与查询<br>insert 插入<br>update  《》 set  修改</p>
+<ul>
+<li>建立视图<br>create view 《》      as&lt;&gt;       { 查询语句}</li>
+</ul>
+<ol>
+<li>视图是一个虚表，它是一个或几个基本表导出的表。在数据库中，值存放视图的定义，不存数据。</li>
+<li>SQL语言中 基本表有对应的物理存储。而视图没有。</li>
+<li>视图 是从基本表 或视图导出的表。存放的视图的定义。</li>
+<li>视图可以在多个关系上创建</li>
+<li>聚集函数中不忽略空值 是count（）</li>
+<li>2 数据库安全<br>TDI/TCSEC 安全策略 责任 审计 保证<br>自主存取控制（DAC)<br>授权： GRANT &lt;&gt; on   form<br>收回权限： revoke   《》on  form<br>角色管理数据库： create  role 《》<br>数据库的完整性是数据的准确性和相容性<br>数据库的控制机制 是安全性</li>
+<li>3 数据库完整性<br>数据库完整性  约束定义 违约处理机制<br>参照完整性通过 在创建表中的主码来定义<br>拒接  级联删除 设置为空<br>再插入元组和修改数据，RDBMS检查是否满足约束条件。 加check 操作。<br>完整性兑现， 列  ，元组  ， 关系。  分为 静态 和动态。<br>实现参照完整性：<pre><code>系统提供定义的外码的机制
+定时外码列是否可以空值的机制</code></pre>触发器： before after</li>
+</ol>
+<ul>
+<li>数据库中，保证数据 语义真确的有效功能是  完整性约束 </li>
+<li>主键 约束 一个表只能有一个。</li>
+<li>触发器 创建不能激活 插入删除 修改可以激活触发器</li>
+<li>数据库中，限制成绩列取之范围，属于数据的用户定义约束。</li>
+<li>数据库的完整性是 数据的 实体完整性 参照完整性 用户定义完整性。 </li>
+<li>实体完整性是指基本表中  主属性不能取空值。</li>
+<li>参照玩瞎子是指基本表中  外码可以是控制 或者 另一个关系主码有效值。</li>
+<li>为了保护数据的实体完整性，用户定义要主码不唯一  DBMS 拒绝次操作。<h1 id="关系数据库"><a href="#关系数据库" class="headerlink" title="关系数据库"></a>关系数据库</h1>关系数据库逻辑的理论：<br>数据依赖：通过一个关系的   函数依赖  多值依赖<br>关系模式3元组。<br>规范化：消除不合适的数据依赖  解决插入异常，删除异常，更新异常，数据龙与问题。<br>1NF： 关系模式所有属性都是不可分的基本数据项。<br>2NF： 每一个非主属性都完全依赖与R的码。<br>3NF：关系R中每一个非主属性既不部份依赖函数候选码也不传递依赖与候选码（部分消除异常<br>BCNF：所有非主属性对每个码都完全函数依赖，没有任何属性完全依赖于非码的任何一组属性</li>
+<li>第三范式 消除了部分插入删除异常 </li>
+<li>关键字 主属性</li>
+<li>主关键字只有一个。</li>
+<li>属性域变为简单域  为第一范式  。 消除非主属性的主关键的部份依赖 为第二范式。 消除非主属性对主关键字的传递依赖   为第三范式。</li>
+<li>X-&gt;Y 但Y不属于X      X-&gt;Y非平凡函数依赖</li>
+<li>X-&gt;Y 但Y属于X      X-&gt;Y平凡函数依赖</li>
+</ul>
+<h2 id="Armstrong公理系统"><a href="#Armstrong公理系统" class="headerlink" title="Armstrong公理系统"></a>Armstrong公理系统</h2><p>依赖闭包   最小函数依赖集<br>BCNF：</p>
 
       
 
